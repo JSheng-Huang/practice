@@ -1,4 +1,4 @@
-# Quick Sort:
+# Quick Sort(230828):
 
 def quickSort(data, left, right): # 輸入資料，和從兩邊開始的位置
     # 如果左邊大於右邊，就跳出function
