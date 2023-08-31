@@ -1,36 +1,40 @@
 import heapq
+import math
+from collections import defaultdict
 
 class Solution:
-    def minCostConnectPoints(self, points) -> int:
-        N = len(points)
+    def maxStarSum(self, vals, edges, k: int) -> int:
         
-        adj = {i:[] for i in range(N)}
+        m = defaultdict(list)                   # For each node, we will have min heap of size k which stores values                                                             # of Top-K nodes it is connected to.
         
-        for i in range(N):
-            x1, y1 = points[i]
-            for j in range(i+1, N):
-                x2, y2 = points[j]
-                dis = abs(x1-x2) + abs(y1-y2)
-                adj[i].append([dis, j])
-                adj[j].append([dis, i])
-        # print(adj)
-        res = 0
-        minHeap = [[0,0]]
-        visit = set()
-        while len(visit) < N:
-            cost, node = heapq.heappop(minHeap)
-            print([cost, node])
-            if node in visit:
-                continue
-            res += cost
-            for neighCost, nei in adj[node]:
-                if nei not in visit:
-                    heapq.heappush(minHeap, [neighCost, nei])
-                    print(minHeap)
-            print('===')
-            visit.add(node)
-        return res
+        for x,y in edges:       
+            
+            if vals[y]>0:                       # If neighbor value is negative, our star will have more value without it.
+                
+                heapq.heappush(m[x], vals[y])   # For each node, push this neighbors value to its heap
+                if len(m[x])>k:                 # If the Min-Heap size is more than K.                      
+                    heapq.heappop(m[x])         # Pop the smallest Neighbour value as we can't use it anyway.             
+            
+            if vals[x]>0:
+                heapq.heappush(m[y], vals[x])   # Repeat the same for other neighbor              
+                if len(m[y])>k:
+                    heapq.heappop(m[y])
+            
+        print(m)
+        res = -math.inf
+        for i in range(len(vals)):              # We'll try to maximize the star with each node being center
+            tot = vals[i]                       # Our total will be value of that node as it has to be included.
+            
+            for nei_value in m[i]:              # We will check each value in the heap for the node.                      
+                tot+=nei_value                  # We have already excluded neg values when pushing to Min-Heap
+                
+            res = max(res, tot)                 # We'll maximize our result
+            
+        return res                              
+        
+            
+            
 
 
 qwe = Solution()
-print(qwe.minCostConnectPoints([[0,0],[2,2],[3,10],[5,2],[7,0]]))
+print(qwe.maxStarSum([1,2,3,4,10,-10,-20], [[0,1],[1,2],[1,3],[3,4],[3,5],[3,6]], 2))
