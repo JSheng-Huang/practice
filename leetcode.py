@@ -1,36 +1,28 @@
-#
 class Solution:
-    def minimumDeleteSum(self, s1: str, s2: str) -> int:
-        if len(s1) > len(s2):
-            s1, s2 = s2, s1
-        prev_row = [0] * (len(s2) + 1) 
-        for j in range(1, len(s2) + 1): 
-            prev_row[j] = prev_row[j - 1] + ord(s2[j - 1]) 
+    def buildArray(self, target, n: int):
+        # 12:07.
 
-        print(prev_row)
-        print(s1)
-        print(s2)
-        for i in range(1, len(s1) + 1): 
-            curr_row = [prev_row[0] + ord(s1[i - 1])] 
+        ans = ["Push"] * len(target)
+
+        pointer = 0
+
+        for i in range(n):
             print('===')
-            print(prev_row)
-            print(curr_row)
-            for j in range(1, len(s2) + 1): 
-                if s1[i - 1] == s2[j - 1]: 
-                    curr_row.append(prev_row[j - 1]) 
-                else: 
-                    # print(prev_row[j] + ord(s1[i - 1]))
-                    # print(curr_row[j - 1] + ord(s2[j - 1]))
-                    curr_row.append(min(prev_row[j] + ord(s1[i - 1]), curr_row[j - 1] + ord(s2[j - 1])))
-                print(curr_row)
-            prev_row = curr_row 
-        return prev_row[-1]               
+            print(ans)
+            if target[pointer] != i + 1:
+                print(i)
+                ans.insert(i, "Push")
+                ans.insert(i + 1, "Pop")
+            else:
+                pointer += 1
+            if pointer == len(target):
+                break
+
+        return ans          
         
             
             
 
 
 qwe = Solution()
-print(qwe.minimumDeleteSum("delete", "leet"))
-print(ord('d'))
-print(ord('e'))
+print(qwe.buildArray([1,3,4,6,7,8], 9))
