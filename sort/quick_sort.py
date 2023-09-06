@@ -2,28 +2,49 @@
 
 data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
 
-def quicksort(data, left, right): # 輸入資料，和從兩邊開始的位置
-    if left >= right :            # 如果左邊大於右邊，就跳出function
-        return
+# Function to find the partition position
+def partition(array, low, high):
+ 
+    # choose the rightmost element as pivot
+    pivot = array[high]
+ 
+    # pointer for greater element
+    i = low - 1
+ 
+    # traverse through all elements
+    # compare each element with pivot
+    for j in range(low, high):
+        if array[j] <= pivot:
+ 
+            # If element smaller than pivot is found
+            # swap it with the greater element pointed by i
+            i = i + 1
+ 
+            # Swapping element at i with element at j
+            (array[i], array[j]) = (array[j], array[i])
+ 
+    # Swap the pivot element with the greater element specified by i
+    (array[i + 1], array[high]) = (array[high], array[i + 1])
+ 
+    # Return the position from where partition is done
+    return i + 1
+ 
+# function to perform quicksort
+ 
+ 
+def quickSort(array, low, high):
+    if low < high:
+ 
+        # Find pivot element such that
+        # element smaller than pivot are on the left
+        # element greater than pivot are on the right
+        pi = partition(array, low, high)
 
-    i = left                      # 左邊的代理人
-    j = right                     # 右邊的代理人
-    key = data[left]                 # 基準點
+        # Recursive call on the left of pivot
+        quickSort(array, low, pi - 1)
+ 
+        # Recursive call on the right of pivot
+        quickSort(array, pi + 1, high)
 
-    while i != j:                  
-        while data[j] > key and i < j:   # 從右邊開始找，找比基準點小的值
-            j -= 1
-        while data[i] <= key and i < j:  # 從左邊開始找，找比基準點大的值
-            i += 1
-        if i < j:                        # 當左右代理人沒有相遇時，互換值
-            data[i], data[j] = data[j], data[i] 
-
-    # 將基準點歸換至代理人相遇點
-    data[left] = data[i] 
-    data[i] = key
-
-    quicksort(data, left, i-1)   # 繼續處理較小部分的子循環
-    quicksort(data, i+1, right)  # 繼續處理較大部分的子循環
-
-quicksort(data, 0, len(data)-1)
+quickSort(data, 0, len(data) - 1)
 print(data)
