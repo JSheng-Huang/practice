@@ -1,4 +1,4 @@
-# Quick Sort(230828): https://web.ntnu.edu.tw/~algo/Sort.html
+# Quick Sort(230828): 
 
 data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
 
@@ -7,7 +7,7 @@ def partition(array, low, high):
  
     # choose the rightmost element as pivot
     pivot = array[high]
- 
+    
     # pointer for greater element
     i = low - 1
  
@@ -22,7 +22,7 @@ def partition(array, low, high):
  
             # Swapping element at i with element at j
             (array[i], array[j]) = (array[j], array[i])
- 
+            print(array)
     # Swap the pivot element with the greater element specified by i
     (array[i + 1], array[high]) = (array[high], array[i + 1])
  
