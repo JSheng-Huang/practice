@@ -1,36 +1,19 @@
 class Solution:
-    def checkValidString(self, s: str) -> bool:
-        # 11:38.
-
-        if s[0] == ")":
-            return False
-        
-        star_cnt = 0
-        check_list = []
-
-        for i in range(len(s)):
-            if s[i] == "*":
-                star_cnt += 1
-            else:
-                if s[i] == "(":
-                    check_list.append("(")
-                else:
-                    if len(check_list) == 0:
-                        if star_cnt == 0:
-                            return False
-                        else:
-                            star_cnt -= 1
-                    else:
-                        check_list.pop()
-        print(check_list)
-        print(star_cnt)
-        if len(check_list) <= star_cnt:
-            return True
-        else:
-            return False 
+    def tupleSameProduct(self, nums) -> int:
+        ans = 0
+        freq = {}
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)): 
+                key = nums[i] * nums[j]
+                print(freq.get(key, 0))
+                ans += freq.get(key, 0)
+                # print(ans)
+                freq[key] = 1 + freq.get(key, 0)
+        print(freq)
+        return 8*ans
             
             
 
 
 qwe = Solution()
-print(qwe.checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())"))
+print(qwe.tupleSameProduct([1,2,4,5,10]))
