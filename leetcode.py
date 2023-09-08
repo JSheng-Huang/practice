@@ -1,19 +1,21 @@
 class Solution:
-    def tupleSameProduct(self, nums) -> int:
-        ans = 0
-        freq = {}
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)): 
-                key = nums[i] * nums[j]
-                print(freq.get(key, 0))
-                ans += freq.get(key, 0)
-                # print(ans)
-                freq[key] = 1 + freq.get(key, 0)
-        print(freq)
-        return 8*ans
-            
-            
+    def totalSteps(self, nums) -> int:      
+        res = 0
+        stack = []
 
-
+        for num in nums:
+            val = 1
+            print(stack)
+            while stack and stack[-1][0] <= num:
+                print(num)
+                val = max(val, stack.pop(-1)[1] + 1)
+                print(val)
+            if not stack:
+                val = 0
+            print(stack)
+            stack.append((num, val))
+            res = max(res, val)
+        return res
+    
 qwe = Solution()
-print(qwe.tupleSameProduct([1,2,4,5,10]))
+print(qwe.totalSteps([56,4,2,5]))
