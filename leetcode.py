@@ -18,4 +18,4 @@ class Solution:
         return res
     
 qwe = Solution()
-print(qwe.totalSteps([56,4,2,5]))
+print(qwe.totalSteps([56,4,2,7]))

@@ -4,7 +4,7 @@ data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
 
 # Function to find the partition position
 def partition(array, low, high):
- 
+    print('Partitioning: ', data)
     # choose the rightmost element as pivot
     pivot = array[high]
     
@@ -14,19 +14,24 @@ def partition(array, low, high):
     # traverse through all elements
     # compare each element with pivot
     for j in range(low, high):
-        if array[j] <= pivot:
+        print('current j: ' + str(j))
+        print('---')
+        if array[j] < pivot:
+            print('pivot:' + str(pivot))
             print('array[j]:' + str(array[j]))
             # If element smaller than pivot is found
             # swap it with the greater element pointed by i
             i = i + 1
-            print(i)
+
             # Swapping element at i with element at j
             (array[i], array[j]) = (array[j], array[i])
-            print(array)
+            print('Looping array: ', array)
     print('===')
     # Swap the pivot element with the greater element specified by i
     (array[i + 1], array[high]) = (array[high], array[i + 1])
- 
+    print('Functional array: ', array)
+    print('___')
+
     # Return the position from where partition is done
     return i + 1
  
@@ -47,5 +52,7 @@ def quickSort(array, low, high):
         # Recursive call on the right of pivot
         quickSort(array, pi + 1, high)
 
-quickSort(data, 0, len(data) - 1)
-print(data)
+if __name__ == '__main__':
+    print('Default: ', data)
+    quickSort(data, 0, len(data) - 1)
+    print('Sorted: ', data)
