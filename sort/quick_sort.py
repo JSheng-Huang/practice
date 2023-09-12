@@ -1,16 +1,18 @@
-# Quick Sort(230828): 
+# Quick Sort(230828):
 
 data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
 
 # Function to find the partition position
+
+
 def partition(array, low, high):
     print('Partitioning: ', data)
     # choose the rightmost element as pivot
     pivot = array[high]
-    
+
     # pointer for greater element
     i = low - 1
- 
+
     # traverse through all elements
     # compare each element with pivot
     for j in range(low, high):
@@ -35,13 +37,13 @@ def partition(array, low, high):
     print('___')
     # Return the position from where partition is done
     return i + 1
- 
+
 # function to perform quicksort
- 
- 
+
+
 def quickSort(array, low, high):
     if low < high:
- 
+
         # Find pivot element such that
         # element smaller than pivot are on the left
         # element greater than pivot are on the right
@@ -49,9 +51,10 @@ def quickSort(array, low, high):
 
         # Recursive call on the left of pivot
         quickSort(array, low, pi - 1)
- 
+
         # Recursive call on the right of pivot
         quickSort(array, pi + 1, high)
+
 
 if __name__ == '__main__':
     print('Default: ', data)
