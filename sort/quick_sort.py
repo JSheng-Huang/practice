@@ -14,15 +14,16 @@ def partition(array, low, high):
     # traverse through all elements
     # compare each element with pivot
     for j in range(low, high):
-        print('current j: ' + str(j))
+        print('current i: ', i)
+        print('current j: ', j)
+        print('pivot: ', pivot)
         print('---')
         if array[j] < pivot:
-            print('pivot:' + str(pivot))
-            print('array[j]:' + str(array[j]))
+            print('array[j]: ', array[j])
             # If element smaller than pivot is found
             # swap it with the greater element pointed by i
             i = i + 1
-
+            print('i in if-else: ', i)
             # Swapping element at i with element at j
             (array[i], array[j]) = (array[j], array[i])
             print('Looping array: ', array)
@@ -30,8 +31,8 @@ def partition(array, low, high):
     # Swap the pivot element with the greater element specified by i
     (array[i + 1], array[high]) = (array[high], array[i + 1])
     print('Functional array: ', array)
+    print('final i: ', i)
     print('___')
-
     # Return the position from where partition is done
     return i + 1
  
