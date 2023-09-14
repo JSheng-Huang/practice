@@ -27,34 +27,62 @@ class SingleLinkedList:
         return
 
     def add(self, node):
+        # Assert input is a node.
         if not isinstance(node, ListNode):
             node = ListNode(node)
 
+        # If linked list is empty.
         if self.head == None:
             self.head = node
+        # or append the new node to tail.
         else:
             self.tail.next = node
 
+        # tail points to the new mode.
         self.tail = node
         self.cnt += 1
 
         return
 
     def insert(self, idx, data):
+        # If the location is the end of linked list, it means appended.
         if idx == self.cnt:
             self.add(data)
         elif idx > self.cnt:
             return print("Out of bound!")
+        # In bound and not the end.
         else:
-            tmp = 0
             node = self.head
+            inserted_node = ListNode(data)
 
-            while tmp != idx:
+            if idx == 0:
+                inserted_node.next = node
+                self.head = inserted_node
+            else:
+                tmp = 0
+
+                while tmp != idx - 1:
+                    node = node.next
+                    tmp += 1
+
+                inserted_node.next = node.next
+                node.next = inserted_node
+
+    def delete(self, data):
+        prev = None
+        node = self.head
+
+        while node:
+            if node.data == data:
+                if prev:
+                    prev.next = node.next
+                    node = node.next
+                else:
+                    self.head = node.next
+                    node = node.next
+            else:
+                prev = node
                 node = node.next
-                tmp += 1
-
-            # change?
-            self.add(data)
 
 
 if __name__ == '__main__':
@@ -76,5 +104,14 @@ if __name__ == '__main__':
     linked_list.printLinkedList()
     linked_list.insert(10000, 5)
     linked_list.printLinkedList()
-    linked_list.insert(1, -1)
+    linked_list.insert(0, -1)
+    linked_list.printLinkedList()
+    linked_list.insert(0, -1)
+    linked_list.printLinkedList()
+    linked_list.insert(1, -10)
+    linked_list.printLinkedList()
+    linked_list.insert(2, -20)
+    linked_list.printLinkedList()
+
+    linked_list.delete(-1)
     linked_list.printLinkedList()
