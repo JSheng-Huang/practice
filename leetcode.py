@@ -1,5 +1,5 @@
 class Solution:
-    def totalSteps(self, nums) -> int:      
+    def totalSteps(self, nums) -> int:
         res = 0
         stack = []
 
@@ -16,6 +16,8 @@ class Solution:
             stack.append((num, val))
             res = max(res, val)
         return res
-    
-qwe = Solution()
-print(qwe.totalSteps([56,4,2,7]))
+
+
+if __name__ == '__main__':
+    qwe = Solution()
+    print(qwe.totalSteps([56, 4, 2, 7]))
