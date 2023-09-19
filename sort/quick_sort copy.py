@@ -11,15 +11,21 @@ def partition(array, low, high):
     pivot = array[high]
 
     for j in range(low, high):
-        # Why?
+        # If the element is less than `pivot`,
+        #
         if array[j] < pivot:
             i += 1
             array[i], array[j] = array[j], array[i]
-
+            print('i:', i)
+            print('j:', j)
+            print('Going:', array)
+            print('---')
+    print('Out')
     # Why?
     # array[i], array[j] = array[j], array[i]
     (array[i + 1], array[high]) = (array[high], array[i + 1])
     print(array)
+    print('===')
     return i + 1
 
 # Function to perform quicksort
