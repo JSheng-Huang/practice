@@ -1,63 +1,77 @@
 # https://www.codingninjas.com/studio/online-compiler/online-python-compiler
 
-def isValid(maze, res, x, y):
-    if x >= 0 and y >= 0 and x < n and y < n and maze[x][y] == 1 and res[x][y] == 0:
-        return True
-    return False
-
-# A recursive utility function to solve Maze problem
+N = 4
 
 
-def RatMaze(n, maze, move_x, move_y, x, y, res):
-    # if (x, y is goal) return True
-    if x == n-1 and y == n-1:
-        return True
-    for i in range(4):
-        # Generate new value of x
-        x_new = x + move_x[i]
-
-        # Generate new value of y
-        y_new = y + move_y[i]
-
-        # Check if maze[x][y] is valid
-        if isValid(n, maze, x_new, y_new, res):
-
-            # mark x, y as part of solution path
-            res[x_new][y_new] = 1
-            if RatMaze(n, maze, move_x, move_y, x_new, y_new, res):
+def checkposition(m, x, y):
+    if x >= 0 and x < len(m):
+        if y >= 0 and y < len(m[0]):
+            if m[x][y] == 1:
                 return True
-            res[x_new][y_new] = 0
+
     return False
 
 
-def solveMaze(maze):
-    # Creating a 4 * 4 2-D list
-    res = [[0 for i in range(n)] for i in range(n)]
-    res[0][0] = 1
+def solvemaze(m, sol):
 
-    # x matrix for each direction
-    move_x = [-1, 1, 0, 0]
+    if rat_maze_sol(m, 0, 0, sol) == False:
+        return False
 
-    # y matrix for each direction
-    move_y = [0, 0, -1, 1]
-
-    if RatMaze(n, maze, move_x, move_y, 0, 0, res):
-        for i in range(n):
-            for j in range(n):
-                print(res[i][j], end=' ')
-            print()
-    else:
-        print('Solution does not exist')
+    for i in sol:
+        for j in i:
+            print(str(j) + " ", end="")
+        print("")
+    return True
 
 
-# Driver program to test above function
-if __name__ == "__main__":
-    # Initialising the maze
-    maze = [[1, 0, 0, 0],
-            [1, 1, 0, 1],
-            [0, 1, 0, 0],
-            [1, 1, 1, 1]]
+def rat_maze_sol(m, x, y, sol):
+    print('in')
+    if x == len(m) - 1 and y == len(m[0]) - 1 and m[x][y] == 1:
+        sol[x][y] = 1
+        return True
 
-    solveMaze(maze)
+    if checkposition(m, x, y) == True:
+        if sol[x][y] == 1:
+            return False
 
-# This code is contributed by Anvesh Govind Saxena
+        sol[x][y] = 1
+
+        if rat_maze_sol(m, x + 1, y, sol):
+            return True
+
+        if rat_maze_sol(m, x, y + 1, sol) == True:
+            return True
+
+        if rat_maze_sol(m, x - 1, y, sol) == True:
+            return True
+
+        if rat_maze_sol(m, x, y - 1, sol) == True:
+            return True
+
+        sol[x][y] = 0
+        return False
+
+
+m = [
+    [1, 0, 0, 0],
+    [1, 1, 0, 1],
+    [0, 1, 0, 0],
+    [1, 1, 1, 1]
+]
+
+sol = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+]
+# Different! https://skylinelimit.blogspot.com/2018/04/python-variable-reference.html
+solu = [[0] * len(m)] * len(m[0])
+Lt = [[0] * 3 for i in range(3)]
+
+print(type(sol))
+print(type(solu))
+# solvemaze(m, sol)
+rat_maze_sol(m, 0, 0, sol)
+print('---')
+rat_maze_sol(m, 0, 0, solu)

@@ -7,36 +7,11 @@ data = [10, 80, 70, 20, 30, 90, 40]
 
 
 def partition(array, low, high):
-    i = low - 1
-    pivot = array[high]
-
-    for j in range(low, high):
-        # If the element is less than `pivot`,
-        #
-        if array[j] < pivot:
-            i += 1
-            array[i], array[j] = array[j], array[i]
-            print('i:', i)
-            print('j:', j)
-            print('Going:', array)
-            print('---')
-    print('Out')
-    # Why?
-    # array[i], array[j] = array[j], array[i]
-    (array[i + 1], array[high]) = (array[high], array[i + 1])
-    print(array)
-    print('===')
-    return i + 1
-
-# Function to perform quicksort
+    pass
 
 
 def quickSort(array, low, high):
-    if low < high:
-        pos = partition(array, low, high)
-
-        quickSort(array, pos + 1, high)
-        quickSort(array, low, pos - 1)
+    pass
 
 
 if __name__ == '__main__':
