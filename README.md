@@ -1,2 +1,2 @@
-# practice_Git_command
+# Practice
 As title.
