@@ -1,62 +1,31 @@
 # Quick Sort(230828): https://www.geeksforgeeks.org/quick-sort/
 
-# data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
-data = [10, 80, 70, 20, 30, 90, 40]
+data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
+# data = [10, 80, 70, 20, 30, 90, 40]
 
 # Function to find the partition position
 
 
 def partition(array, low, high):
-    print('Partitioning: ', data)
-    print('Low: ', low)
-    print('High: ', high)
-    # choose the rightmost element as pivot
+    i = low - 1
     pivot = array[high]
 
-    # pointer for greater element
-    i = low - 1
-
-    # traverse through all elements
-    # compare each element with pivot
     for j in range(low, high):
-        print('current i: ', i)
-        print('current j: ', j)
-        print('pivot: ', pivot)
-        print('---')
         if array[j] < pivot:
-            print('array[j]: ', array[j])
-            # If element smaller than pivot is found
-            # swap it with the greater element pointed by i
-            i = i + 1
-            print('i in if-else: ', i)
-            # Swapping element at i with element at j
-            (array[i], array[j]) = (array[j], array[i])
-            print('Looping array: ', array)
-    print('===')
-    # Swap the pivot element with the greater element specified by i
-    (array[i + 1], array[high]) = (array[high], array[i + 1])
-    print('Functional array: ', array)
-    print('final i: ', i)
-    print('___')
-    # Return the position from where partition is done
-    return i + 1
+            i += 1
+            array[i], array[j] = array[j], array[i]
 
-# function to perform quicksort
+    array[i + 1], array[high] = array[high], array[i + 1]
+
+    return i + 1
 
 
 def quickSort(array, low, high):
     if low < high:
+        pos = partition(array, low, high)
 
-        # Find pivot element such that
-        # element smaller than pivot are on the left
-        # element greater than pivot are on the right
-        pi = partition(array, low, high)
-
-        # Recursive call on the left of pivot
-        quickSort(array, low, pi - 1)
-
-        # Recursive call on the right of pivot
-        quickSort(array, pi + 1, high)
+        quickSort(array, low, pos - 1)
+        quickSort(array, pos + 1, high)
 
 
 if __name__ == '__main__':
