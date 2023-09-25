@@ -1,4 +1,5 @@
 # Linked List(230912): https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
+# 
 
 class ListNode:
     def __init__(self, data) -> None:
