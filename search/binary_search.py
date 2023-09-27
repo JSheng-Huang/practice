@@ -11,17 +11,18 @@ def binary_search(nums, target):
     while left <= right:
         mid = math.floor((left + right) / 2)
 
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] > target:
+        if nums[mid] > target:
             right = mid - 1
         elif nums[mid] < target:
             left = mid + 1
         else:
-            return -1
+            return mid
+
+    return left
+    # return -1
 
 
 if __name__ == '__main__':
     nums = [1, 3, 5, 6, 7, 8, 9, 11, 13, 24]
-    ans = binary_search(nums, 5)
+    ans = binary_search(nums, 4)
     print(ans)
