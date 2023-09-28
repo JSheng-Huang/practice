@@ -18,11 +18,17 @@ def binary_search(nums, target):
         else:
             return mid
 
-    return left
+    # For finding the number which is larger than
+    # `target` and it is the closet one, if the
+    # returned index is `len(nums)`, means every
+    # number in `nums` are smaller than `target`.
+    # return left
+
     # return -1
 
 
 if __name__ == '__main__':
     nums = [1, 3, 5, 6, 7, 8, 9, 11, 13, 24]
-    ans = binary_search(nums, 4)
+    nums = [1, 3, 4, 7, 8, 10]
+    ans = binary_search(nums, 2)
     print(ans)
