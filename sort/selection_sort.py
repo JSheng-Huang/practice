@@ -7,13 +7,16 @@ data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
 
 def selectionSort(array):
     for i in range(len(array)):
-        min_idx = i
+        tmp_min = i
 
+        # Select the minimum in each loop.
         for j in range(i + 1, len(array)):
-            if array[min_idx] > array[j]:
-                min_idx = j
+            if array[j] < array[tmp_min]:
+                tmp_min = j
 
-        array[i], array[min_idx] = array[min_idx], array[i]
+        array[i], array[tmp_min] = array[tmp_min], array[i]
+
+    return
 
 
 if __name__ == '__main__':
