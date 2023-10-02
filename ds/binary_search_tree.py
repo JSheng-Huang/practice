@@ -1,81 +1,60 @@
-# https://lovedrinkcafe.com/python-binary-search-tree-part-1/
-# https://lovedrinkcafe.com/python-binary-search-tree-2/
+# # (jason_huang):
+# # Insert: https://lovedrinkcafe.com/python-binary-search-tree-part-1/
+# # Delete: https://lovedrinkcafe.com/python-binary-search-tree-2/
+# # Search: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+#
 
 class Node:
     def __init__(self, value=None):
         self.value = value
-        self.left_child = None  # smaller
-        self.right_child = None  # greater
+        self.left_child = None
+        self.right_child = None
 
 
-class Binary_search_tree:
+class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, cur_node, value):
-        # 判斷tree是否為空
-        if cur_node.root == None:
-            cur_node.root = Node(value)
+    def insert(self, value):
+        if self.root == None:
+            self.root = Node(value)
         else:
-            cur_node = self.root
+            self._insert(self.root, value)
 
-            if cur_node.value > value:
-                if cur_node.left_child == None:
-                    cur_node.left_child = Node(value)
-                else:
-                    cur_node = cur_node.left_child
-                    self.insert(cur_node, value)
-            elif cur_node.value < value:
-                if cur_node.right_child == None:
-                    cur_node.right_child = Node(value)
-                else:
-                    cur_node = cur_node.right_child
-                    self.insert(cur_node, value)
-            else:
-                print("[ERROR] THIS VALUE HAS ALREADY EXISTED!")
-            # self._insert(value, self.root)
-
-    def _insert(self, value, cur_node):
-        if value < cur_node.value:
+    def _insert(self, cur_node, value):
+        if cur_node.value > value:
             if cur_node.left_child == None:
                 cur_node.left_child = Node(value)
             else:
-                self._insert(value, cur_node.left_child)
-
-        elif value > cur_node.value:
+                self._insert(cur_node.left_child, value)
+        elif cur_node.value < value:
             if cur_node.right_child == None:
                 cur_node.right_child = Node(value)
             else:
-                self._insert(value, cur_node.right_child)
-
-        # value == cur_node.value
+                self._insert(cur_node.right_child, value)
         else:
-            print("This value has existed")
+            print('[ERROR] THE INSERTED VALUE HAS EXISTED!')
 
-    def print_tree(self):
-        if self.root != None:
-            self._print_tree(self.root)
-
-    def _print_tree(self, cur_node):
+    def print_tree(self, cur_node):
         if cur_node != None:
             self._print_tree(cur_node.left_child)
             print(str(cur_node.value))
             self._print_tree(cur_node.right_child)
 
 
-def fill_tree(tree, num_elems=50, max_int=50):
+def fill_tree(tree, num_element=10, max_int=50):
     from random import randint
-    for _ in range(num_elems):  # 10個 value
-        cur_elem = randint(0, max_int)  # 隨機0~50(不含50)的值
+    for _ in range(num_element):
+        cur_elem = randint(0, max_int)
         tree.insert(cur_elem)
     return tree
 
 
-tree = Binary_search_tree()
-tree.insert(tree, 3)
-tree.insert(tree, 6)
-tree.insert(tree, 9)
-tree.insert(tree, 12)
-# tree = fill_tree(tree)
-# print(tree.root.value)
-tree.print_tree()
+if __name__ == '__main__':
+    tree = BinarySearchTree()
+    # # (jason_huang): Fill tree with random number.
+    # tree = fill_tree(tree)
+    if tree.root:
+        tree.print_tree(tree.root)
+    else:
+        print('[ERROR] THIS TREE IS EMPTY!')
