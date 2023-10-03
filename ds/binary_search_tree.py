@@ -1,7 +1,6 @@
 # Refer to:
 # Insert: https://lovedrinkcafe.com/python-binary-search-tree-part-1/
-# Delete: https://lovedrinkcafe.com/python-binary-search-tree-2/
-# Search: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+# Search/Delete: https://lovedrinkcafe.com/python-binary-search-tree-2/
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #
@@ -37,11 +36,32 @@ class BinarySearchTree:
         else:
             print('[ERROR] THE INSERTED VALUE HAS EXISTED!')
 
+    def search(self, value):
+        if self.root != None:
+            return self._search(self.root, value)
+        else:
+            return None
+
+    def _search(self, cur_node, value):
+        if cur_node.value == value:
+            return cur_node
+        if cur_node.value > value and cur_node.left_child != None:
+            return self._search(cur_node.left_child, value)
+        if cur_node.value < value and cur_node.right_child != None:
+            return self._search(cur_node.right_child, value)
+        return None
+
+    def delete():
+        pass
+
+    def _delete():
+        pass
+
     def print_tree(self, cur_node):
         if cur_node != None:
-            self._print_tree(cur_node.left_child)
+            self.print_tree(cur_node.left_child)
             print(str(cur_node.value))
-            self._print_tree(cur_node.right_child)
+            self.print_tree(cur_node.right_child)
 
 
 def fill_tree(tree, num_element=10, max_int=50):
@@ -58,6 +78,12 @@ if __name__ == '__main__':
     # # (jason_huang): Fill tree with random number.
     # tree = fill_tree(tree)
 
+    for i in range(10):
+        tree.insert(i)
+    if tree.search(5):
+        print('Value found.')
+    else:
+        print('[ERROR] VALUE NOT FOUND!')
     if tree.root:
         tree.print_tree(tree.root)
     else:
