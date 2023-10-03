@@ -1,7 +1,9 @@
-# # (jason_huang):
-# # Insert: https://lovedrinkcafe.com/python-binary-search-tree-part-1/
-# # Delete: https://lovedrinkcafe.com/python-binary-search-tree-2/
-# # Search: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+# Refer to:
+# Insert: https://lovedrinkcafe.com/python-binary-search-tree-part-1/
+# Delete: https://lovedrinkcafe.com/python-binary-search-tree-2/
+# Search: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+#
+# Created by JSheng <jasonhuang0124@gmail.com>
 #
 
 class Node:
@@ -52,8 +54,10 @@ def fill_tree(tree, num_element=10, max_int=50):
 
 if __name__ == '__main__':
     tree = BinarySearchTree()
+
     # # (jason_huang): Fill tree with random number.
     # tree = fill_tree(tree)
+
     if tree.root:
         tree.print_tree(tree.root)
     else:

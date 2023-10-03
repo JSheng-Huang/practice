@@ -1,5 +1,6 @@
-# # (jason_huang):
-# # https://www.codingninjas.com/studio/online-compiler/online-python-compiler
+# Refer to: https://www.codingninjas.com/studio/online-compiler/online-python-compiler
+#
+# Created by JSheng <jasonhuang0124@gmail.com>
 #
 
 def isValid(m, x, y):
@@ -37,6 +38,7 @@ if __name__ == '__main__':
         [1, 1, 1, 1],
         [0, 0, 0, 1]
     ]
+
     # # (jason_huang):
     # # Both are available.
     s = [
@@ -46,11 +48,13 @@ if __name__ == '__main__':
         [0, 0, 0, 0]
     ]
     s = [[0] * len(m) for i in range(len(m[0]))]
+
     # # (jason_huang):
     # # This would fail because of shallow copy:
     # # 1. https://skylinelimit.blogspot.com/2018/04/python-variable-reference.html
     # # 2. https://ithelp.ithome.com.tw/articles/10221255
     # s = [[0] * len(m)] * len(m[0])
+
     try:
         if solveMaze(m, 0, 0, s):
             print('INTC Yes!')

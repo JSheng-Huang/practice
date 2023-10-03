@@ -1,4 +1,6 @@
-# # (jason_huang): https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
+# Refer to: https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
+#
+# Created by JSheng <jasonhuang0124@gmail.com>
 #
 
 class ListNode:
@@ -16,7 +18,7 @@ class SingleLinkedList:
 
     def printLinkedList(self):
         if self.head == None:
-            return print('You have to add nodes in the linked list first!')
+            return print('[ERROR] YOU HAVE TO ADD NODES IN THE LINKED LIST FIRST!')
         node = self.head
         while node:
             arrow = ' => ' if node.next != None else '\n'
@@ -25,27 +27,30 @@ class SingleLinkedList:
         return
 
     def add(self, node):
-        # # (jason_huang): Assert input is a node.
+        # # Assert input is a node.
         if not isinstance(node, ListNode):
             node = ListNode(node)
-        # # (jason_huang): If linked list is empty,
+
+        # # If linked list is empty,
         if self.head == None:
             self.head = node
-        # # (jason_huang): or append the new node to tail.
+        # # or append the new node to tail.
         else:
             self.tail.next = node
-        # # (jason_huang): Tail points to the new mode.
+        # # Tail points to the new mode.
         self.tail = node
+
         self.cnt += 1
         return
 
     def insert(self, idx, data):
-        # # (jason_huang): If the location is the end of linked list, it means appended.
+        # # (jason_huang): If the location is the end of linked list, it means
+        # # appended.
         if idx == self.cnt:
             self.add(data)
         elif idx > self.cnt:
             return print("Out of bound!")
-        # # (jason_huang): In bound and not the end.
+        # # In bound and not the end.
         else:
             node = self.head
             inserted_node = ListNode(data)

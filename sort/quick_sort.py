@@ -1,4 +1,6 @@
-# Quick Sort(230828): https://www.geeksforgeeks.org/quick-sort/
+# Refer to: https://www.geeksforgeeks.org/quick-sort/
+#
+# Created by JSheng <jasonhuang0124@gmail.com>
 #
 
 data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
@@ -10,26 +12,24 @@ def partition(array, low, high):
     pivot = array[high]
 
     for j in range(low, high):
-        # If `array[j]` is less than `pivot`,
-        # swap it with `array[i]`, which is the element
-        # that pointed by `i`.
+        # # If `array[j]` is less than `pivot`,
+        # # swap it with `array[i]`, which is the element
+        # # that pointed by `i`.
         if array[j] < pivot:
             i += 1
             array[i], array[j] = array[j], array[i]
-
-    # Swap `array[high]` which is the pivot with `array[i]`,
-    # which is the element that pointed by `i`.
+    # # Swap `array[high]` which is the pivot with `array[i]`,
+    # # which is the element that pointed by `i`.
     array[i + 1], array[high] = array[high], array[i + 1]
 
-    # Return the position from where partition is done,
-    # it means `array[i]` is at the right position.
+    # # Return the position from where partition is done,
+    # # it means `array[i]` is at the right position.
     return i + 1
 
 
 def quickSort(array, low, high):
     if low < high:
         pos = partition(array, low, high)
-
         quickSort(array, low, pos - 1)
         quickSort(array, pos + 1, high)
 

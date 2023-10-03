@@ -1,4 +1,7 @@
 # Refer to: https://blog.csdn.net/fuxuemingzhu/article/details/82914423
+#
+# Created by JSheng <jasonhuang0124@gmail.com>
+#
 
 class Solution:
     def partitionDisjoint(self, A) -> int:

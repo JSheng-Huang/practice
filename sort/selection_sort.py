@@ -1,4 +1,6 @@
-# Selection Sort: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
+# Refer to: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
+#
+# Created by JSheng <jasonhuang0124@gmail.com>
 #
 
 data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
@@ -9,7 +11,7 @@ def selectionSort(array):
     for i in range(len(array)):
         tmp_min = i
 
-        # Select the minimum in each loop.
+        # # Select the minimum in each loop.
         for j in range(i + 1, len(array)):
             if array[j] < array[tmp_min]:
                 tmp_min = j
