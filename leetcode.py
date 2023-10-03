@@ -1,23 +1,19 @@
-class Solution:
-    def totalSteps(self, nums) -> int:
-        res = 0
-        stack = []
+# Refer to: https://blog.csdn.net/fuxuemingzhu/article/details/82914423
 
-        for num in nums:
-            val = 1
-            print(stack)
-            while stack and stack[-1][0] <= num:
-                print(num)
-                val = max(val, stack.pop(-1)[1] + 1)
-                print(val)
-            if not stack:
-                val = 0
-            print(stack)
-            stack.append((num, val))
-            res = max(res, val)
-        return res
+class Solution:
+    def partitionDisjoint(self, A) -> int:
+        disjoint = 0
+        v = A[0]
+        max_so_far = v
+        for i in range(len(A)):
+            max_so_far = max(max_so_far, A[i])
+            if A[i] < v:
+                v = max_so_far
+                disjoint = i
+        return disjoint + 1
 
 
 if __name__ == '__main__':
     qwe = Solution()
-    print(qwe.totalSteps([56, 4, 2, 7]))
+    print(qwe.partitionDisjoint([5, 0, 3, 8, 6]))
+    print(qwe.partitionDisjoint([1, 1, 1, 0, 6, 2]))
