@@ -1,55 +1,160 @@
-# Refer to: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+# Refer to:
+# Insert/Search/Delete: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+# Pre/In/Post Order: https://hackmd.io/@datastruct/ByfLfjlO9
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #
 
 class Node:
-    def __init__(self, key):
-        self.left = None
-        self.right = None
-        self.val = key
+    def __init__(self, value):
+        self.root = value
+        self.left_child = None
+        self.right_child = None
 
 
-def insert(root, key):
-    if root is None:
-        return Node(key)
+def insert(node, value):
+    if node is None:
+        return Node(value)
     else:
-        if root.val == key:
-            return root
-        elif root.val < key:
-            root.right = insert(root.right, key)
+        if node.root == value:
+            return node
+        elif node.root < value:
+            node.right_child = insert(node.right_child, value)
         else:
-            root.left = insert(root.left, key)
-    return root
+            node.left_child = insert(node.left_child, value)
+    return node
 
 
-def inOrder(root):
-    if root:
-        inOrder(root.left)
-        print(root.val)
-        inOrder(root.right)
+def inOrder(node):
+    if node:
+        inOrder(node.left_child)
+        print(node.root, end=' ')
+        inOrder(node.right_child)
 
 
-def search(root, key):
-    if root is None or root.key == key:
-        return root
-    if root.key < key:
-        return search(root.right, key)
-    return search(root.left, key)
+def preOrder(node):
+    if node:
+        print(node.root, end=' ')
+        preOrder(node.left_child)
+        preOrder(node.right_child)
+
+
+def postOrder(node):
+    if node:
+        postOrder(node.left_child)
+        postOrder(node.right_child)
+        print(node.root, end=' ')
+
+
+def search(node, value):
+    if node is None or node.root == value:
+        return node
+    if node.root > value:
+        return search(node.left_child, value)
+    return search(node.right_child, value)
+
+
+def deleteNode(node, value):
+    # # Finding the target.
+    if node is None:
+        return node
+    if node.root > value:
+        node.left_child = deleteNode(node.left_child, value)
+        return node
+    if node.root < value:
+        node.right_child = deleteNode(node.right_child, value)
+        return node
+    # # If one of the children is empty.
+    if node.left_child is None:
+        tmp = node.right_child
+        del node
+        return tmp
+    if node.right_child is None:
+        tmp = node.left_child
+        del node
+        return tmp
+    # # If both of the children are filled.
+    successor_parent = node
+    # # Find successor
+    successor = node.right_child
+    while successor.left_child is not None:
+        successor_parent = successor
+        successor = successor.left_child
+
+    # # Delete successor.  Since successor
+    # # is always left child of its parent
+    # # we can safely make successor's right
+    # # right child as left of its parent.
+    # # If there is no succ, then assign
+    # # succ.right to succParent.right
+    if successor_parent != node:
+        successor_parent.left_child = successor.right_child
+    else:
+        successor_parent.right_child = successor.right_child
+
+    # # Copy Successor Data to root
+    node.root = successor.root
+
+    # # Delete Successor and return root
+    del successor
+    return node
 
 
 if __name__ == '__main__':
-    #     50
-    #   /	\
-    #  30	70
-    #  / \  / \
-    # 20 40 60 80
-    r = Node(50)
-    r = insert(r, 30)
-    r = insert(r, 20)
-    r = insert(r, 40)
-    r = insert(r, 70)
-    r = insert(r, 60)
-    r = insert(r, 80)
+    # #    50
+    # #   /	  \
+    # #  30	  70
+    # #  / \  / \
+    # # 20 40 60 80
+    root = Node(50)
+    root = insert(root, 30)
+    root = insert(root, 20)
+    root = insert(root, 40)
+    root = insert(root, 70)
+    root = insert(root, 60)
+    root = insert(root, 80)
+    print('In-order:')
+    inOrder(root)
+    print()
+    print('Pre-order:')
+    preOrder(root)
+    print()
+    print('Post-order:')
+    postOrder(root)
+    print()
+    # value = 20
+    value = 200
+    if search(root, value):
+        print(value, 'Found!')
+    else:
+        print('[ERROR]', value, "NOT FOUND!")
+    root = deleteNode(root, 20)
 
-    in_order(r)
+    # #    50
+    # #   /	 \
+    # #  40	 70
+    # #  /   / \
+    # # 30  60 80
+    print('In-order:')
+    inOrder(root)
+    print()
+    root = deleteNode(root, 70)
+
+    # #    50
+    # #   /	 \
+    # #  40	 80
+    # #  /   /
+    # # 30  60
+    print('In-order:')
+    inOrder(root)
+    print()
+
+    # #    60
+    # #   /	 \
+    # #  40	 80
+    # #  /
+    # # 30
+    root = deleteNode(root, 50)
+    print('In-order:')
+    inOrder(root)
+    print()
