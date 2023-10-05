@@ -23,11 +23,11 @@ def insert(root, key):
     return root
 
 
-def in_order(root):
+def inOrder(root):
     if root:
-        in_order(root.left)
+        inOrder(root.left)
         print(root.val)
-        in_order(root.right)
+        inOrder(root.right)
 
 
 def search(root, key):

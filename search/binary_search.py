@@ -6,7 +6,7 @@
 import math
 
 
-def binary_search(nums, target):
+def binarySearch(nums, target):
     left = 0
     right = len(nums) - 1
     while left <= right:
