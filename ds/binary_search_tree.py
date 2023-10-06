@@ -67,11 +67,11 @@ def deleteNode(node, value):
     # # If one of the children is empty.
     if node.left_child is None:
         tmp = node.right_child
-        del node
+        # del node
         return tmp
     if node.right_child is None:
         tmp = node.left_child
-        del node
+        # del node
         return tmp
     # # If both of the children are filled.
     successor_parent = node
@@ -81,22 +81,18 @@ def deleteNode(node, value):
         successor_parent = successor
         successor = successor.left_child
 
-    # # Delete successor.  Since successor
-    # # is always left child of its parent
-    # # we can safely make successor's right
-    # # right child as left of its parent.
-    # # If there is no succ, then assign
-    # # succ.right to succParent.right
+    # # Since successor is always left child of its parent
+    # # we can safely make successor's right child as left
+    # # of its parent. If there is no `successor`, then assign
+    # # `successor.right_child` to `successor_parent.right_child`.
     if successor_parent != node:
         successor_parent.left_child = successor.right_child
     else:
         successor_parent.right_child = successor.right_child
-
-    # # Copy Successor Data to root
+    # # Copy `successor.root` to `node.root`.
     node.root = successor.root
 
-    # # Delete Successor and return root
-    del successor
+    # del successor
     return node
 
 
