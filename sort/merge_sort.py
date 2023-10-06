@@ -1,4 +1,4 @@
-# Refer to: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
+# Refer to: https://hackmd.io/@coherent17/Sy79MIyju
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #
@@ -7,60 +7,50 @@ data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
 # data = [10, 80, 70, 20, 30, 90, 40]
 
 
-def selectionSort(array):
-    for i in range(len(array)):
-        tmp_min = i
+def mergeSort(array):
+    if len(array) > 1:
+        # find the division point
+        mid = len(array)//2
+        left_array = array[:mid]
+        right_array = array[mid:]
 
-        # # Select the minimum in each loop.
-        for j in range(i + 1, len(array)):
-            if array[j] < array[tmp_min]:
-                tmp_min = j
+        print(left_array, right_array)
+        # use recursion to keep dividing
+        mergeSort(left_array)
+        mergeSort(right_array)
 
-        array[i], array[tmp_min] = array[tmp_min], array[i]
+        # initialize the comparison index
+        right_index = 0
+        left_index = 0
+        merge_index = 0
 
-    return
+        print(left_array)
+        # start comparing
+        # case 1: right array compare with left array
+        while right_index < len(right_array) and left_index < len(left_array):
+            if right_array[right_index] < left_array[left_index]:
+                array[merge_index] = right_array[right_index]
+                right_index += 1
+            else:
+                array[merge_index] = left_array[left_index]
+                left_index += 1
+            merge_index += 1
+
+        # case 2: right array compare with itself
+        while right_index < len(right_array):
+            array[merge_index] = right_array[right_index]
+            right_index += 1
+            merge_index += 1
+
+        # case 3: left array compare with itself
+        while left_index < len(left_array):
+            array[merge_index] = left_array[left_index]
+            left_index += 1
+            merge_index += 1
+    return array
 
 
 if __name__ == '__main__':
     print('Default: ', data)
-    selectionSort(data)
+    mergeSort(data)
     print('Sorted: ', data)
-
-# void merge(int array[], int left, int right, int mid)
-# {
-# 	int n = right - left + 1;
-# 	int* x = new int[n];
-
-# 	int i = left, j = mid + 1;
-# 	for (int k=0; k<n; k++)
-# 	{
-# 		if      (i == mid + 1)         x[k] = array[j++];
-# 		else if (j == right + 1)       x[k] = array[i++];
-# 		else if (array[i] <= array[j]) x[k] = array[i++];
-# 		else                           x[k] = array[j++];
-# 	}
-
-# 	for (int k=0; k<n; k++)
-# 		array[left + k] = x[k];
-# 	delete[] x;
-# }
-
-# void merge_sort(int array[], int left, int right)
-# {
-# 	if (left >= right) return;
-
-# 	/* Divide */
-# 	int mid = left + (right - left) / 2;
-
-# 	/* Conquer */
-# 	merge_sort(array, left, mid);
-# 	merge_sort(array, mid+1, right);
-
-# 	/* Combine */
-# 	merge(array, left, right, mid);
-# }
-
-# void merge_sort(int array[], int n)
-# {
-# 	merge_sort(array, 0, n-1);
-# }
