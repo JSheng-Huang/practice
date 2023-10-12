@@ -39,15 +39,15 @@ def mergeSort(arr):
             merge_idx += 1
         # # Case 2 & 3 are designed while one of two pointers has
         # # reached the end.
-        # # Case 2: The right array compares with itself.
-        while len(right_arr) > right_idx:
-            arr[merge_idx] = right_arr[right_idx]
-            right_idx += 1
-            merge_idx += 1
-        # # Case 3: The left array compares with itself.
+        # # Case 2: The left array compares with itself.
         while len(left_arr) > left_idx:
             arr[merge_idx] = left_arr[left_idx]
             left_idx += 1
+            merge_idx += 1
+        # # Case 3: The right array compares with itself.
+        while len(right_arr) > right_idx:
+            arr[merge_idx] = right_arr[right_idx]
+            right_idx += 1
             merge_idx += 1
     return arr
 
