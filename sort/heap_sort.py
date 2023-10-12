@@ -11,35 +11,44 @@ data = [3, 9, 2, 1, 4, 5]
 
 
 def heapify(arr, size, idx):
-    tmp_max_idx = idx
-    left_child = 2 * idx + 1
-    right_child = 2 * idx + 2
-    if left_child < size and arr[left_child] > arr[tmp_max_idx]:
-        tmp_max_idx = left_child
-    if right_child < size and arr[right_child] > arr[tmp_max_idx]:
-        tmp_max_idx = right_child
+    root_idx = idx
+    left_child_idx = 2 * idx + 1
+    right_child_idx = 2 * idx + 2
+    if left_child_idx < size and arr[left_child_idx] > arr[root_idx]:
+        root_idx = left_child_idx
+    if right_child_idx < size and arr[right_child_idx] > arr[root_idx]:
+        root_idx = right_child_idx
     # # Check if it needs to swap or not?
-    if tmp_max_idx != idx:
-        arr[idx], arr[tmp_max_idx] = arr[tmp_max_idx], arr[idx]
-        heapify(arr, size, tmp_max_idx)
+    if root_idx != idx:
+        # # Debugging.
+        # print('===')
+        # print(idx)
+        # print(arr)
+        arr[idx], arr[root_idx] = arr[root_idx], arr[idx]
+        # print(arr)
+
+        # # Validate that the swapping would have an impact on subtrees.
+        heapify(arr, size, root_idx)
 
 
 def heapSort(arr):
     size = len(arr)
 
-    # # Construct max heap
+    # # Construct a array which is max heap.
     for i in range(size // 2 - 1, -1, -1):
         # # Debugging.
-        print('Debugging:', i)
+        # print('Debugging:', i)
         heapify(arr, size, i)
-        print('Debugging:', arr)
+        # print('Debugging:', arr)
     # # Debugging.
-    # print('Debugging:', arr)
+    # print('---')
+    print('Debugging:', arr)
 
-    # Swap the root(idx = 0) to the end of the array.
+    # Swap the root(idx = 0) to the end of the subarray.
     for i in range(size - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
-        # # Heapify root element
+        # # Heapify once again to move the maximum to `arr[i]` for next
+        # # swapping.
         heapify(arr, i, 0)
 
 
