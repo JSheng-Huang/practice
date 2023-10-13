@@ -7,37 +7,43 @@ class MaxHeap:
     def __init__(self):
         self.heap = []
 
-    def insert(self, item):
-        self.heap.append(item)
-        self.__swim(len(self.heap) - 1)
+    def insert(self, value):
+        # # Append the new value in the tail.
+        self.heap.append(value)
+        # # Keep comparing the new value until it is less or equal to its
+        # # parent.
+        self.compare_to_root()
+
+    def compare_to_root(self):
+        idx = len(self.heap) - 1
+        while idx > 0 and self.heap[(idx - 1) // 2] < self.heap[idx]:
+            self.heap[(idx - 1) //
+                      2], self.heap[idx] = self.heap[idx], self.heap[(idx - 1) // 2]
+            idx = (idx - 1) // 2
 
     def extract_max(self):
         value = self.heap[0]
         self.heap[0] = self.heap[-1]
         self.heap.pop()
-        self.__sink(0)
+
+        # # Keep comparing the new root value which was in the tail until it is
+        # # larger or equal to its children.
+        self.compare_to_bottom()
+
         return value
 
-    def __swim(self, k):
-        while (k > 0 and self.heap[(k - 1) // 2] < self.heap[k]):
-            self.__swap((k - 1) // 2, k)
-            k = (k - 1) // 2
-
-    def __sink(self, k):
-        while (k * 2 + 1 < len(self.heap)):
-            j = k * 2 + 1
-            if (k * 2 + 2 < len(self.heap) and self.heap[k * 2 + 2] > self.heap[k * 2 + 1]):
-                j = k * 2 + 2
-
-            if (self.heap[j] > self.heap[k]):
-                self.__swap(j, k)
-
-            k = j
-
-    def __swap(self, j, k):
-        tmp = self.heap[j]
-        self.heap[j] = self.heap[k]
-        self.heap[k] = tmp
+    def compare_to_bottom(self):
+        root_idx = 0
+        while (len(self.heap) > root_idx * 2 + 1):
+            next_idx = root_idx * 2 + 1
+            if len(self.heap) > root_idx * 2 + 2 and self.heap[root_idx * 2 + 2] > self.heap[root_idx * 2 + 1]:
+                next_idx = root_idx * 2 + 2
+            if self.heap[root_idx] < self.heap[next_idx]:
+                self.heap[root_idx], self.heap[next_idx] = self.heap[next_idx], self.heap[root_idx]
+                root_idx = next_idx
+            # # Set an early breakpoint to improve T(n).
+            else:
+                break
 
 
 heap_arr = MaxHeap()
