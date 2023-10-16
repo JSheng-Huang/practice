@@ -1,5 +1,5 @@
 # Refer to:
-# https://magiclen.org/quickselect/
+# https://magiclen.org/quickselect/ # # The manipulation is right, but the example is wrong.
 # https://www.geeksforgeeks.org/quickselect-algorithm/
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
@@ -12,15 +12,12 @@
 # and moves all smaller element to left of
 # it and greater elements to right
 def partition(arr, l, r):
-
     x = arr[r]
     i = l
     for j in range(l, r):
-
         if arr[j] <= x:
             arr[i], arr[j] = arr[j], arr[i]
             i += 1
-
     arr[i], arr[r] = arr[r], arr[i]
     return i
 
@@ -58,9 +55,9 @@ def kthSmallest(arr, l, r, k):
 
 
 # Driver Code
-arr = [10, 4, 5, 8, 6, 11, 26]
+arr = [47, 32, 30, 38, 9, 2, 61, 69, 81, 79]
 n = len(arr)
-k = 3
+k = 5
 print("K-th smallest element is ", end="")
 print(kthSmallest(arr, 0, n - 1, k))
 
