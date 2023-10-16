@@ -1,4 +1,5 @@
-# Refer to: https://www.geeksforgeeks.org/quick-sort/
+# Refer to:
+# https://www.geeksforgeeks.org/quick-sort/
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #

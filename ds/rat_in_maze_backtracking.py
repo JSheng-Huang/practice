@@ -1,4 +1,5 @@
-# Refer to: https://www.codingninjas.com/studio/online-compiler/online-python-compiler
+# Refer to:
+# https://www.codingninjas.com/studio/online-compiler/online-python-compiler
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #

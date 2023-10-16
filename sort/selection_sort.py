@@ -1,4 +1,5 @@
-# Refer to: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
+# Refer to:
+# https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #

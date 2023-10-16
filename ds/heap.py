@@ -1,4 +1,5 @@
-# Refer to: https://www.shubo.io/binary-heap/
+# Refer to:
+# https://www.shubo.io/binary-heap/
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
 #
