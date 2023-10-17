@@ -23,27 +23,14 @@ def partition(arr, left_idx, right_idx):
 
     for i in range(left_idx, right_idx):
         if arr[i] <= pivot:
-            # # Debugging.
-            print('If `arr[i]` <= `pivot`:')
-            print('The last index which is larger than `pivot`:', idx)
-            print('Looping `i`:', i)
-
             arr[idx], arr[i] = arr[i], arr[idx]
             idx += 1
-
-            # # Debugging.
-            print('`arr` after swapping values between the last index which is larger than `pivot` and looping `i`:')
-            print(arr)
-            print('---')
-    # # Debugging.
-    print('`arr` after swapping values between `pivot` and the last index which is larger than `pivot`:')
-
     # # Swap the pivot to the right position.
     arr[idx], arr[right_idx] = arr[right_idx], arr[idx]
 
     # # Debugging.
     print(arr)
-    print('===')
+    print('---')
 
     return idx
 
@@ -65,7 +52,7 @@ def kth_smallest(arr, left_idx, right_idx, k):
         if (pivot_idx - left_idx > k - 1):
             return kth_smallest(arr, left_idx, pivot_idx - 1, k)
         # # Else recur for right subarray.
-        # # ?????
+        # # `+ left_idx` needs to think for a while.
         return kth_smallest(arr, pivot_idx + 1, right_idx,
                             k - pivot_idx + left_idx - 1)
     print('[ERROR] Index out of bound!')
@@ -73,6 +60,6 @@ def kth_smallest(arr, left_idx, right_idx, k):
 
 arr = [47, 32, 30, 100, 38, 9, 101, 2, 61, 69, 81, 79]
 n = len(arr)
-k = 2
+k = 3
 print("K-th smallest element is ")
 print(kth_smallest(arr, 0, n - 1, k))
