@@ -1,8 +1,9 @@
-# Refer to:
-# https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
+"""
+Refer to: https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
 #
 # Created by JSheng <jasonhuang0124@gmail.com>
-#
+"""
+
 
 class ListNode:
     def __init__(self, data) -> None:
