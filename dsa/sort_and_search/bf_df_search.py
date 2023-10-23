@@ -15,35 +15,35 @@ graph = {
 }
 
 
-def BFS(graph, s):
+def BFS(graph, bgn):
     queue = []
-    queue.append(s)
+    queue.append(bgn)
     seen = set()
-    seen.add(s)
-    while (len(queue) > 0):
-        vertex = queue.pop(0)
-        nodes = graph[vertex]
-        for w in nodes:
-            if w not in seen:
-                queue.append(w)
-                seen.add(w)
-        print(vertex)
+    seen.add(bgn)
+    while len(queue) > 0:
+        node = queue.pop(0)
+        node_neighbor = graph[node]
+        for n in node_neighbor:
+            if n not in seen:
+                queue.append(n)
+                seen.add(n)
+        print(node)
 
 
-def DFS(graph, s):
+def DFS(graph, bgn):
     stack = []
-    stack.append(s)
+    stack.append(bgn)
     seen = set()
-    seen.add(s)
-    while (len(stack) > 0):
-        vertex = stack.pop()
-        nodes = graph[vertex]
-        for w in nodes:
-            if w not in seen:
-                stack.append(w)
-                seen.add(w)
-        print(vertex)
+    seen.add(bgn)
+    while len(stack) > 0:
+        node = stack.pop()
+        node_neighbor = graph[node]
+        for n in node_neighbor:
+            if n not in seen:
+                stack.append(n)
+                seen.add(n)
+        print(node)
 
 
-BFS(graph, 'E')
-DFS(graph, 'E')
+BFS(graph, 'A')
+DFS(graph, 'A')
