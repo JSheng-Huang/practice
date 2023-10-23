@@ -45,5 +45,7 @@ def DFS(graph, bgn):
         print(node)
 
 
-BFS(graph, 'A')
-DFS(graph, 'A')
+if __name__ == '__main__':
+    BFS(graph, 'A')
+    print('===')
+    DFS(graph, 'A')
