@@ -18,9 +18,11 @@ class Dijkstra():
         while True:
             if self.open_dict is None:
                 print('[ERROR] NO WAY OUT!')
-                return
+                break
+            self.open_dict.keys
             min_dist_node, min_dist = min(
                 zip(self.open_dict.keys(), self.open_dict.values()))
+            print(min(zip(self.open_dict.keys(), self.open_dict.values())))
             self.open_dict.pop(min_dist_node)
             self.closed_dict[min_dist_node] = min_dist
             if min_dist_node == self.goal:
@@ -35,7 +37,6 @@ class Dijkstra():
                 print('The length of the shortest path:', self.min_dist)
                 return
             for node in self.graph[min_dist_node].keys():
-                print(node)
                 if node not in self.closed_dict.keys():
                     if node in self.open_dict.keys():
                         if self.graph[min_dist_node][node] + min_dist < self.open_dict[node]:
