@@ -9,23 +9,43 @@ class Dijkstra():
         self.graph = graph
         self.start = start
         self.goal = goal
-        self.open_dict = {'start': 0.0}
+        self.open_dict = {start: 0.0}
         self.closed_dict = {}
         self.parent = {start: None}
         self.min_dist = None
 
     def find_shortest_path(self):
-        min_dist_node, min_dist = self.find_min_dist_node()
-
-    def find_min_dist_node(self):
-        if self.open_dict is None:
-            print('[ERROR] NO WAY OUT!')
-            return
-        min_node = {'tmp': float('INF')}
-        for k, v in self.open_dict:
-            if v < min_node['tmp']:
-                min_node = {k: v}
-        return k, v
+        while True:
+            if self.open_dict is None:
+                print('[ERROR] NO WAY OUT!')
+                return
+            min_dist_node, min_dist = min(
+                zip(self.open_dict.keys(), self.open_dict.values()))
+            self.open_dict.pop(min_dist_node)
+            self.closed_dict[min_dist_node] = min_dist
+            if min_dist_node == self.goal:
+                self.min_dist = min_dist
+                shortest_path = [self.goal]
+                parent_node = self.parent[self.goal]
+                while parent_node != self.start:
+                    shortest_path.append(parent_node)
+                    parent_node = self.parent[parent_node]
+                shortest_path.append(self.start)
+                print(shortest_path[::-1])
+                print('The length of the shortest path:', self.min_dist)
+                return
+            for node in self.graph[min_dist_node].keys():
+                print(node)
+                if node not in self.closed_dict.keys():
+                    if node in self.open_dict.keys():
+                        if self.graph[min_dist_node][node] + min_dist < self.open_dict[node]:
+                            self.open_dict[node] = min_dist + \
+                                self.graph[min_dist_node][node]
+                            self.parent[node] = min_dist_node
+                    else:
+                        self.open_dict[node] = min_dist + \
+                            self.graph[min_dist_node][node]
+                        self.parent[node] = min_dist_node
 
 
 if __name__ == '__main__':
@@ -36,5 +56,5 @@ if __name__ == '__main__':
              '5': {'7': 6},
              '7': {'6': 1}
              }
-    qwe = Dijkstra(graph, 1, 6)
+    qwe = Dijkstra(graph, '1', '6')
     qwe.find_shortest_path()
