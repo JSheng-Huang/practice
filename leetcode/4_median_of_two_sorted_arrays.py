@@ -12,8 +12,11 @@ class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
         nums1_len = len(nums1)
         nums2_len = len(nums2)
+
         if (nums1_len + nums2_len) % 2 == 1:
-            pass
+            return self.findKthSmallest(nums1, 0, nums1_len, nums2, 0, nums2_len, (nums1_len + nums2_len + 1) // 2)
+        else:
+            return (self.findKthSmallest(nums1, 0, nums1_len, nums2, 0, nums2_len, (nums1_len + nums2_len) // 2) + self.findKthSmallest(nums1, 0, nums1_len, nums2, 0, nums2_len, (nums1_len + nums2_len) // 2 + 1)) / 2
 
     def findKthSmallest(self, nums1, nums1_bgn, nums1_len, nums2, nums2_bgn, nums2_len, k):
         """
@@ -25,10 +28,10 @@ class Solution:
         # # Because the answer is not in `nums1`,
         # # just find it in `nums2`.
         """
-        if nums1 == 0:
-            return nums2_bgn + k - 1
+        if nums1_len == 0:
+            return nums2[nums2_bgn + k - 1]
         """
-        # # Why???
+        # # `k == 1` => Find the smallest one in two lists.
         """
         if k == 1:
             return min(nums1[nums1_bgn], nums2[nums2_bgn])
@@ -37,11 +40,11 @@ class Solution:
         """
         k_1 = min(nums1_len, k // 2)
         k_2 = k - k_1
-        if nums1[nums1_bgn + k_1 - 1] < nums2[nums2_bgn + k_2 - 1]:
-        if (nums1[a+k1-1]<nums2[b+k2-1])
-            return FindKthSmallest(nums1,a+k1,m-k1,nums2,b,n,k-k1);
-        else
-            return FindKthSmallest(nums1,a,n,nums2,b+k2,n-k2,k-k2);
+        if nums1[int(nums1_bgn + k_1 - 1)] < nums2[int(nums2_bgn + k_2 - 1)]:
+            return self.findKthSmallest(nums1, nums1_bgn + k_1, nums1_len - k_1, nums2, nums2_bgn, nums2_len, k - k_1)
+        else:
+            return self.findKthSmallest(nums1, nums1_bgn, nums1_len, nums2, nums2_bgn + k_2, nums2_len - k_2, k - k_2)
+
 
 if __name__ == '__main__':
     qwe = Solution()
