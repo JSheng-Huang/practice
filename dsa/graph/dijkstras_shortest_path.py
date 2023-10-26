@@ -1,7 +1,7 @@
 """Dijkstras Shortest Path Algorithm
 # # Refer to: 
 # # 1. https://blog.csdn.net/feriman/article/details/113619939
-# # Time Complexity: ???
+# # Time Complexity: O((E + V) * log(V))
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
