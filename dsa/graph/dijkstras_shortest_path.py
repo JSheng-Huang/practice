@@ -1,6 +1,7 @@
 """Dijkstras Shortest Path Algorithm
 # # Refer to: 
 # # 1. https://blog.csdn.net/feriman/article/details/113619939
+# # Time Complexity: ???
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -44,9 +45,19 @@ class Dijkstra():
                 print(shortest_path[::-1])
                 print('The length of the shortest path:', self.min_dist)
                 return
-
+            """
+            # # Looping neighbors of `min_dist_node`.
+            """
             for node in self.graph[min_dist_node].keys():
+                """
+                # # `node` in `closed_dict` has already found the shortest path.
+                """
                 if node not in self.closed_dict.keys():
+                    """
+                    # # Update the shortest path in `open_dict` if it could be 
+                    # # reach from the current `min_dist_node` and the length 
+                    # # is shorter.
+                    """
                     if node in self.open_dict.keys():
                         if self.graph[min_dist_node][node] + min_dist < self.open_dict[node]:
                             self.open_dict[node] = min_dist + \
