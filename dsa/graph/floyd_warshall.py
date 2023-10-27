@@ -1,84 +1,51 @@
 """Floyd Warshall Algorithm
 # # Refer to: 
-# # 1. https://www.techiedelight.com/zh-tw/pairs-shortest-paths-floyd-warshall-algorithm/
-# # Time Complexity: ???
+# # 1. https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
+# # Time Complexity: O(V^3), "V = Vertex".
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
-# 遞歸的函數從源頂點`v`打印給定頂點`u`的路徑
-def print_path(path, v, u, route):
-    if path[v][u] == v:
-        return
-    print_path(path, v, path[v][u], route)
-    route.append(path[v][u])
+def floyd_warshall(graph):
+    dist = list(map(lambda i: list(map(lambda j: j, i)), graph))
+    graph_len = len(dist)
+    """ Add all vertices one by one 
+	to the set of intermediate
+	vertices.
+	---> Before start of an iteration, 
+	we have shortest distances
+	between all pairs of vertices 
+	such that the shortest
+	distances consider only the 
+	vertices in the set 
+	{0, 1, 2, .. k-1} as intermediate vertices.
+	----> After the end of a 
+	iteration, vertex no. k is
+	added to the set of intermediate 
+	vertices and the 
+	set becomes {0, 1, 2, .. k}
+	"""
+    for k in range(graph_len):
+
+        # pick all vertices as source one by one
+        for i in range(graph_len):
+
+            # Pick all vertices as destination for the
+            # above picked source
+            for j in range(graph_len):
+
+                # If vertex k is on the shortest path from
+                # i to j, then update the value of dist[i][j]
+                dist[i][j] = min(dist[i][j],
+                                 dist[i][k] + dist[k][j]
+                                 )
+    print(dist)
 
 
-# 用路徑打印最短成本的功能
-# 所有頂點對之間的#信息
-def print_solution(path, n):
-    for v in range(n):
-        for u in range(n):
-            if u != v and path[v][u] != -1:
-                route = [v]
-                print_path(path, v, u, route)
-                route.append(u)
-                print(f'The shortest path from {v} —> {u} is', route)
-
-
-# 運行 Floyd–Warshall 算法的函數
-def floyd_warshall(adjMatrix):
-
-    # 基礎案例
-    if not adjMatrix:
-        return
-
-    # `adjMatrix` 中的頂點總數
-    n = len(adjMatrix)
-
-    # 成本和路徑矩陣存儲最短路徑
-    # (最短成本/最短路徑)信息
-
-    # 最初，成本將與邊緣的重量相同
-    cost = adjMatrix.copy()
-    path = [[None for x in range(n)] for y in range(n)]
-
-    # 初始化成本和路徑
-    for v in range(n):
-        for u in range(n):
-            if v == u:
-                path[v][u] = 0
-            elif cost[v][u] != float('inf'):
-                path[v][u] = v
-            else:
-                path[v][u] = -1
-
-    # 運行弗洛伊德-沃歇爾
-    for k in range(n):
-        for v in range(n):
-            for u in range(n):
-                # 如果頂點 `k` 在從 `v` 到 `u` 的最短路徑上，
-                # 然後更新 cost[v][u] 和 path[v][u] 的值
-                if cost[v][k] != float('inf') and cost[k][u] != float('inf') \
-                        and (cost[v][k] + cost[k][u] < cost[v][u]):
-                    cost[v][u] = cost[v][k] + cost[k][u]
-                    path[v][u] = path[k][u]
-
-            # 如果對角元素變為負數，則
-            # 圖包含負權循環
-            if cost[v][v] < 0:
-                print('Negative-weight cycle found')
-                return
-
-    # 打印所有頂點對之間的最短路徑
-    print_solution(path, n)
-
-
-if __name__ == '__main__':
-    inf = float('inf')
-    adjMatrix = [
-        [0, inf, -2, inf],
-        [4, 0, 3, inf],
-        [inf, inf, 0, 2],
-        [inf, -1, inf, 0]
-    ]
-    floyd_warshall(adjMatrix)
+if __name__ == "__main__":
+    INF = float('inf')
+    graph = [[0, 5, INF, 10],
+             [INF, 0, 3, INF],
+             [INF, INF, 0, 1],
+             [INF, INF, INF, 0]
+             ]
+    floyd_warshall(graph)
