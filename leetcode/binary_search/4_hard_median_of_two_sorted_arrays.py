@@ -17,8 +17,8 @@ class Solution:
         nums2_len = len(nums2)
 
         """
-        # # Make sure `nums1` length <= `nums2` length for the following 
-        # # operation.
+        # # Make sure `nums1` length is smaller than `nums2` length for the 
+        # # following operation.
         """
         if nums1_len > nums2_len:
             return self.findMedianSortedArrays(nums2, nums1)
@@ -27,7 +27,8 @@ class Solution:
         r = nums1_len
 
         """
-        # # ???
+        # # Do Binary Search and `l` would be the k-th smallest number in two 
+        # # arrays.
         """
         while l < r:
             m1 = l + (r - l) // 2
@@ -36,18 +37,30 @@ class Solution:
                 l = m1 + 1
             else:
                 r = m1
+        """
+        # # Because of the previous operation, `nums1` length is smaller than 
+        # # `nums2`, set `m2` as the rest portion of `l`.
+        """
         m1 = l
         m2 = target - l
-        print('m1: ', m1)
-        print('m2: ', m2)
-        # ans1 = max(float('-inf') if m1 <=
-        #            0 else nums1[m1 - 1], float('-inf') if m2 <= 0 else nums2[m2 - 1])
-        ans1 = max(nums1[m1 - 1], nums2[m2 - 1])
+
+        """
+        # # If `m1` is equal to 0 or `m2` is equal to 0, it means that the k-th 
+        # # smallest number is not in `nums1` or `nums2`. If both `m1` and `m2` # # are not equal to 0, choose the larger one as the answer.
+        """
+        ans1 = max(float('-inf') if m1 ==
+                   0 else nums1[m1 - 1], float('-inf') if m2 == 0 else nums2[m2 - 1])
         if (nums1_len + nums2_len) % 2 == 1:
             return ans1
-        # ans2 = min(float('inf') if m1 >= nums1_len else nums1[m1], float(
-        #     'inf') if m2 >= nums2_len else nums2[m2])
-        ans2 = min(nums1[m1], nums2[m2])
+        """
+        # # If the total length of two arrays are even, it needs to take 
+        # # another one to average. If `m1` is equal to `nums1` length or `m2` 
+        # # is equal to `nums2` length, it means that the k-th smallest number 
+        # # is not in `nums1` or `nums2`. If the length of `nums1` and `nums2` 
+        # # is not equal to 0, choose the smaller one to average.
+        """
+        ans2 = min(float('inf') if m1 == nums1_len else nums1[m1], float(
+            'inf') if m2 == nums2_len else nums2[m2])
         return (ans1 + ans2) / 2
 
 
@@ -108,3 +121,5 @@ if __name__ == '__main__':
     print(qwe.findMedianSortedArrays([1, 2], [3, 4]))
     print(qwe.findMedianSortedArrays(
         [2, 4, 6], [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))
+    print(qwe.findMedianSortedArrays(
+        [20, 40, 60], [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]))
