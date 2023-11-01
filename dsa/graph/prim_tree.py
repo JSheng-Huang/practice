@@ -1,10 +1,8 @@
-"""Dijkstras Shortest Path Algorithm
+"""Prim's Algorithm for Minimum Spanning Tree
 # # Refer to: 
-# #     1. https://blog.csdn.net/feriman/article/details/113619939
-# # Time Complexity: "V = Vertex", "E = Edge".
-# #     Current Version with Binary Heap: O((E + V) * V)
-# #     Standard Version with Binary Heap: O((E + V) * log(V))
-# # Space Complexity: O(E + V), where "V = Vertex", "E = Edge".
+# #     1. https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/
+# #     Time Complexity: ???
+# #     Space Complexity: ???
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

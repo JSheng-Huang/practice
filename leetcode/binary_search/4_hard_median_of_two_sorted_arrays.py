@@ -1,13 +1,15 @@
 """LeetCode#4(Hard) Median of Two Sorted Arrays
 # # Problem:
-# # There are two sorted arrays nums1 and nums2 of size m and n respectively.
-# # Find the median of the two sorted arrays. The overall run time complexity should be O(log(m + n)).
-# # 1. https://zxi.mytechroad.com/blog/algorithms/binary-search/leetcode-4-median-of-two-sorted-arrays/
-# # Time Complexity: O(log(min(n1, n2)))
-# # Space Complexity: O(1)
-# # 2. https://github.com/wisdompeak/LeetCode/tree/master/Priority_Queue/004.Median-of-Two-Sorted-Arrays
-# # Time Complexity: ???
-# # Space Complexity: ???
+# #     There are two sorted arrays nums1 and nums2 of size m and n 
+# # respectively. Find the median of the two sorted arrays. The overall run 
+# # time complexity should be O(log(m + n)).
+# # Refer to:
+# #     1. https://zxi.mytechroad.com/blog/algorithms/binary-search/leetcode-4-median-of-two-sorted-arrays/
+# #     Time Complexity: O(log(min(n1, n2)))
+# #     Space Complexity: O(1)
+# #     2. https://github.com/wisdompeak/LeetCode/tree/master/Priority_Queue/004.Median-of-Two-Sorted-Arrays
+# #     Time Complexity: ???
+# #     Space Complexity: ???
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -33,6 +35,14 @@ class Solution:
         while l < r:
             m1 = l + (r - l) // 2
             m2 = target - m1
+
+            """
+            # # If `nums1[m1] < nums[m2 -1]`, it means the k-th smallest number 
+            # # in two arrays may be in the range `nums1[:m1 + 1]`, else it may 
+            # # be in the range `nums1[m1 + 1:]`, If `l` reaches `nums1` 
+            # # length, it means the k-th smallest number is either the first/
+            # # last number in `nums1` or in `nums2`.
+            """
             if nums1[m1] < nums2[m2 - 1]:
                 l = m1 + 1
             else:
