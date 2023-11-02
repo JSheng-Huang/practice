@@ -31,7 +31,7 @@ class Graph():
                 min_index = v
         return min_index
 
-    def prim_MST(self):
+    def Prim_MST(self):
         """`dist` is used to store the minimum distances."""
         dist = [float('inf')] * self.vertex
 
@@ -44,25 +44,21 @@ class Graph():
         checkSet = [False] * self.vertex
         for _ in range(self.vertex):
             """
-            Pick the minimum distance vertex from the set of vertices not yet processed.
+            Pick the minimum distance vertex from the set of vertices not yet 
+            processed.
             """
             min_idx = self.pick_min_dist(dist, checkSet)
             checkSet[min_idx] = True
 
-            # Update dist value of the adjacent vertices
-            # of the picked vertex only if the current
-            # distance is greater than new distance and
-            # the vertex in not in the shortest path tree
+            """
+            Update dist values of the adjacent vertices of the picked vertex 
+            only if the current distance is greater than new distance and the 
+            vertex in not in the shortest path tree
+            """
             for v in range(self.vertex):
-
-                # graph[u][v] is non zero only for adjacent vertices of m
-                # checkSet[v] is false for vertices not yet included in MST
-                # Update the key only if graph[u][v] is smaller than key[v]
-                if self.graph[min_idx][v] > 0 and checkSet[v] == False \
-                        and dist[v] > self.graph[min_idx][v]:
+                if self.graph[min_idx][v] > 0 and checkSet[v] == False and dist[v] > self.graph[min_idx][v]:
                     dist[v] = self.graph[min_idx][v]
                     parent[v] = min_idx
-        print(parent)
         self.print_MST(parent)
 
 
@@ -73,4 +69,4 @@ if __name__ == '__main__':
                [0, 3, 0, 0, 7],
                [6, 8, 0, 0, 9],
                [0, 5, 7, 9, 0]]
-    g.prim_MST()
+    g.Prim_MST()
