@@ -16,6 +16,7 @@ def partition(array, low, high):
         # # If `array[j]` is less than `pivot`,
         # # swap it with `array[i]`, which is the element
         # # that pointed by `i`.
+        # # `i` tracks the first number which is larger than `pivot`.
         if array[j] < pivot:
             i += 1
             array[i], array[j] = array[j], array[i]

@@ -1,8 +1,17 @@
 """Kruskals's Algorithm for Minimum Spanning Tree
 Refer to: 
     1. https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
-    Time Complexity: ???
-    Space Complexity: ???
+    Time Complexity: O(E * logE) or O(E * logV), where V is the number of 
+        vertices and E is the number of edges in the graph.
+        Refer to: https://stackoverflow.com/questions/20432801/time-complexity-of-the-kruskal-algorithm
+        Explanation: Sorting of edges takes O(E * logE) time. After sorting, we 
+        iterate through all edges and apply the find-union algorithm. The find 
+        and union operations can take at most O(logV) time. So overall 
+        complexity is O(E * logE + E * logV) time. The value of E can be at 
+        most O(V^2), so O(logV) and O(logE) are the same. Therefore, the 
+        overall time complexity is O(E * logE) or O(E * logV).
+    Space Complexity: O(V + E), where V is the number of vertices and E is the 
+        number of edges in the graph.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -23,7 +32,7 @@ class Graph:
 
     def union(self, parent, rank, x, y):
         """Union two trees
-        Attach the smaller rank(aka "tree height") tree under root of the 
+        Attach the smaller rank tree under root of the 
         higher rank tree, if ranks are same, then make one as root and 
         increment its rank by one.
         """
@@ -41,51 +50,43 @@ class Graph:
         """An index variable, used for sorted edges."""
         i = 0
 
-        # Sort all the edges in
-        # non-decreasing order of their
-        # weight
-        self.graph = sorted(self.graph,
-                            key=lambda item: item[2])
-        print(self.graph)
+        """Sort all the edges in non-decreasing order of their weight."""
+        self.graph = sorted(self.graph, key=lambda item: item[2])
         parent = []
         rank = []
-
-        # Create V subsets with single elements
         for node in range(self.vertex):
             parent.append(node)
             rank.append(0)
-        # Number of edges to be taken is less than to V-1
+        """Only need (vertices - 1) edges to connect all vertices."""
         while i < self.vertex:
-
-            # Pick the smallest edge and increment
-            # the index for next iteration
-            u, v, w = self.graph[i]
-            i = i + 1
-            print('i: ', i)
+            """
+            Pick the smallest weight edge and increment the index for next 
+            iteration.
+            """
+            bgn, end, weight = self.graph[i]
 
             """
             In the first loop, they are meaningless, because all vertices are 
             unconnected in the beginning.
             """
-            x = self.find(parent, u)
-            y = self.find(parent, v)
+            parentBgn = self.find(parent, bgn)
+            parentEnd = self.find(parent, end)
 
-            # If including this edge doesn't
-            # cause cycle, then include it in result
-            # and increment the index of result
-            # for next edge
-            if x != y:
-                # e = e + 1
-                ans.append([u, v, w])
-                self.union(parent, rank, x, y)
-            # Else discard the edge
-
-        minimumCost = 0
+            """
+            If including this edge doesn't cause cycle, then include it in 
+            result and increment the index of result for next edge. Else 
+            discard the edge.
+            """
+            if parentBgn != parentEnd:
+                ans.append([bgn, end, weight])
+                self.union(parent, rank, parentBgn, parentEnd)
+            i = i + 1
+        minCost = 0
         print('Edges in the constructed MST')
         for u, v, weight in ans:
-            minimumCost += weight
+            minCost += weight
             print('%d -- %d == %d' % (u, v, weight))
-        print('Minimum Spanning Tree', minimumCost)
+        print('Minimum Spanning Tree', minCost)
 
 
 if __name__ == '__main__':
