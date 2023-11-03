@@ -1,4 +1,4 @@
-"""kruskals's Algorithm for Minimum Spanning Tree
+"""Kruskals's Algorithm for Minimum Spanning Tree
 Refer to: 
     1. https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
     Time Complexity: ???
@@ -21,20 +21,16 @@ class Graph:
             parent[i] = self.find(parent, parent[i])
         return parent[i]
 
-    # A function that does union of two sets of x and y
-    # (uses union by rank)
-
     def union(self, parent, rank, x, y):
-
-        # Attach smaller rank tree under root of
-        # high rank tree (Union by Rank)
+        """Union two trees
+        Attach the smaller rank(aka "tree height") tree under root of the 
+        higher rank tree, if ranks are same, then make one as root and 
+        increment its rank by one.
+        """
         if rank[x] < rank[y]:
             parent[x] = y
         elif rank[x] > rank[y]:
             parent[y] = x
-
-        # If ranks are same, then make one as root
-        # and increment its rank by one
         else:
             parent[y] = x
             rank[x] += 1
@@ -42,11 +38,8 @@ class Graph:
     def Kruskal_MST(self):
         ans = []
 
-        # An index variable, used for sorted edges
+        """An index variable, used for sorted edges."""
         i = 0
-
-        # An index variable, used for result[]
-        e = 0
 
         # Sort all the edges in
         # non-decreasing order of their
@@ -62,13 +55,14 @@ class Graph:
             parent.append(node)
             rank.append(0)
         # Number of edges to be taken is less than to V-1
-        while e < self.vertex - 1:
+        while i < self.vertex:
 
             # Pick the smallest edge and increment
             # the index for next iteration
             u, v, w = self.graph[i]
             i = i + 1
-            print(e)
+            print('i: ', i)
+
             """
             In the first loop, they are meaningless, because all vertices are 
             unconnected in the beginning.
@@ -81,11 +75,9 @@ class Graph:
             # and increment the index of result
             # for next edge
             if x != y:
-                e = e + 1
+                # e = e + 1
                 ans.append([u, v, w])
-                print('parent before union(): ', parent)
                 self.union(parent, rank, x, y)
-                print('parent after union(): ', parent)
             # Else discard the edge
 
         minimumCost = 0
