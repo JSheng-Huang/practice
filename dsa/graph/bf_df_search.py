@@ -1,7 +1,7 @@
-"""
-# # Refer to: 
-# # 1. https://blog.csdn.net/zjjaibc/article/details/125110128  
-# # 2. https://youtu.be/oLtvUWpAnTQ
+"""BFS and DFS
+Refer to: 
+1. https://blog.csdn.net/zjjaibc/article/details/125110128  
+2. https://youtu.be/oLtvUWpAnTQ
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -16,6 +16,12 @@ graph = {
 
 
 def BFS(graph, bgn):
+    """BFS
+    1. V is the number of vertices.
+    2. E is the number of edges.
+    Time Complexity: O(V + E)
+    Space Complexity: O(V)
+    """
     queue = []
     queue.append(bgn)
     seen = set()
@@ -31,6 +37,12 @@ def BFS(graph, bgn):
 
 
 def DFS(graph, bgn):
+    """DFS
+    1. V is the number of vertices.
+    2. E is the number of edges.
+    Time Complexity: O(V + E)
+    Space Complexity: O(logV)
+    """
     stack = []
     stack.append(bgn)
     seen = set()

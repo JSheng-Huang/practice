@@ -1,12 +1,14 @@
-# Refer to:
-# GCD: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
-# LCM: https://mpm580.pixnet.net/blog/post/261336626
-# Created by JSheng <jasonhuang0124@gmail.com>
-#
+"""
+Refer to:
+    GCD: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
+    LCM: https://mpm580.pixnet.net/blog/post/261336626
+Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
-# # Euclid's Algorithm.
 def gcd(a, b):
+    """Euclid's Algorithm.
+    Time Complexity: O(log(min(a ,b)))
+    """
     if a < b:
         a, b = b, a
     while b != 0:
