@@ -1,6 +1,9 @@
 """Linked List
 Refer to: 
     1. https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
+    2. https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
+    Time Complexity: O(n), where n is the number of nodes in the linked list. 
+    Space Complexity: O(1) as it uses constant extra space.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -49,47 +52,36 @@ class SingleLinkedList:
             return print('[ERROR] OUT OF BOUND!')
         else:
             node = self.head
-            insertedNode = ListNode(data)
+            inserted_node = ListNode(data)
             if idx == 0:
-                insertedNode.next = node
-                self.head = insertedNode
+                inserted_node.next = node
+                self.head = inserted_node
             else:
                 tmp = 0
                 while tmp != idx - 1:
                     node = node.next
                     tmp += 1
-                insertedNode.next = node.next
-                node.next = insertedNode
+                inserted_node.next = node.next
+                node.next = inserted_node
+                self.cnt += 1
+        return
 
-    def insertSorted(self, data):
+    def insertSorted(self, node):
         if not isinstance(node, ListNode):
-            node = ListNode(data)
+            node = ListNode(node)
         if self.head == None:
             self.head = node
-        elif self.head.data > data:
-            self.insert(0, data)
+        elif self.head.data > node.data:
+            node.next = self.head
+            self.head = node
         else:
-            curNode = self.head
-            while curNode.next is not None and curNode.next.data < node.data:
-                curNode = curNode.next
-
-        # if idx == self.cnt:
-        #     self.add(data)
-        # elif idx > self.cnt:
-        #     return print("Out of bound!")
-        # else:
-        #     node = self.head
-        #     insertedNode = ListNode(data)
-        #     if idx == 0:
-        #         insertedNode.next = node
-        #         self.head = insertedNode
-        #     else:
-        #         tmp = 0
-        #         while tmp != idx - 1:
-        #             node = node.next
-        #             tmp += 1
-        #         insertedNode.next = node.next
-        #         node.next = insertedNode
+            cur_node = self.head
+            while cur_node.next is not None and cur_node.next.data < node.data:
+                cur_node = cur_node.next
+            node.next = cur_node.next
+            cur_node.next = node
+        self.cnt += 1
+        return
 
     def delete(self, data):
         prev = None
@@ -106,9 +98,35 @@ class SingleLinkedList:
                 prev = node
                 node = node.next
 
+    def reverse(self, head, k):
+        if head == None:
+            return None
+        cur_node = head
+        next = None
+        prev = None
+        cnt = 0
+        """Reverse first k nodes of the linked list."""
+        while cur_node is not None and cnt < k:
+            next = cur_node.next
+            cur_node.next = prev
+            prev = cur_node
+            cur_node = next
+            cnt += 1
+        if cur_node is not None:
+            print('cur: ', cur_node.data)
+        # next is now a pointer to (k+1)th node
+        # recursively call for the list starting
+        # from current. And make rest of the list as
+        # next of first node
+        # if next is not None:
+        #     print('qwe')
+        #     head.next = self.reverse(next, k)
+        # prev is new head of the input list
+        return prev
+
 
 if __name__ == '__main__':
-    # linked_list = SingleLinkedList()
+    linked_list = SingleLinkedList()
     # node1 = ListNode(0)
     # linked_list.printLinkedList()
     # linked_list.add(node1)
@@ -131,4 +149,17 @@ if __name__ == '__main__':
     # linked_list.printLinkedList()
     # linked_list.delete(-1)
     # linked_list.printLinkedList()
-    pass
+    linked_list.insertSorted(5)
+    linked_list.insertSorted(4)
+    linked_list.insertSorted(6)
+    linked_list.insertSorted(3)
+    linked_list.insertSorted(7)
+    linked_list.insertSorted(2)
+    linked_list.insertSorted(8)
+    linked_list.insertSorted(1)
+    linked_list.insertSorted(9)
+    linked_list.printLinkedList()
+    linked_list.head = linked_list.reverse(linked_list.head, linked_list.cnt)
+    linked_list.printLinkedList()
+    linked_list.head = linked_list.reverse(linked_list.head, 5)
+    linked_list.printLinkedList()

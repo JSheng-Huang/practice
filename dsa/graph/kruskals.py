@@ -21,7 +21,7 @@ class Graph:
         self.vertex = vertex
         self.graph = []
 
-    def add_edge(self, bgn, end, weight):
+    def addEdge(self, bgn, end, weight):
         self.graph.append([bgn, end, weight])
 
     def find(self, parent, i):
@@ -44,7 +44,7 @@ class Graph:
             parent[y] = x
             rank[x] += 1
 
-    def Kruskal_MST(self):
+    def KruskalMST(self):
         ans = []
 
         """An index variable, used for sorted edges."""
@@ -69,31 +69,31 @@ class Graph:
             In the first loop, they are meaningless, because all vertices are 
             unconnected in the beginning.
             """
-            parentBgn = self.find(parent, bgn)
-            parentEnd = self.find(parent, end)
+            parent_bgn = self.find(parent, bgn)
+            parent_end = self.find(parent, end)
 
             """
             If including this edge doesn't cause cycle, then include it in 
             result and increment the index of result for next edge. Else 
             discard the edge.
             """
-            if parentBgn != parentEnd:
+            if parent_bgn != parent_end:
                 ans.append([bgn, end, weight])
-                self.union(parent, rank, parentBgn, parentEnd)
+                self.union(parent, rank, parent_bgn, parent_end)
             i = i + 1
-        minCost = 0
+        min_cost = 0
         print('Edges in the constructed MST')
         for u, v, weight in ans:
-            minCost += weight
+            min_cost += weight
             print('%d -- %d == %d' % (u, v, weight))
-        print('Minimum Spanning Tree', minCost)
+        print('Minimum Spanning Tree', min_cost)
 
 
 if __name__ == '__main__':
     g = Graph(4)
-    g.add_edge(0, 1, 10)
-    g.add_edge(0, 2, 6)
-    g.add_edge(0, 3, 5)
-    g.add_edge(1, 3, 15)
-    g.add_edge(2, 3, 4)
-    g.Kruskal_MST()
+    g.addEdge(0, 1, 10)
+    g.addEdge(0, 2, 6)
+    g.addEdge(0, 3, 5)
+    g.addEdge(1, 3, 15)
+    g.addEdge(2, 3, 4)
+    g.KruskalMST()
