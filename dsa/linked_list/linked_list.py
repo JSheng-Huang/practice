@@ -118,9 +118,13 @@ class SingleLinkedList:
         # recursively call for the list starting
         # from current. And make rest of the list as
         # next of first node
-        # if next is not None:
-        #     print('qwe')
-        #     head.next = self.reverse(next, k)
+        if next is not None:
+            # prev.next = next
+            # # head.next = next
+            # # head.next = cur_node
+            print('head', head.data)
+            print('prev', prev.data)
+            # head.next = self.reverse(next, k)
         # prev is new head of the input list
         return prev
 
