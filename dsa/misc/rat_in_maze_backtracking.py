@@ -1,8 +1,8 @@
-# Refer to:
-# https://www.codingninjas.com/studio/online-compiler/online-python-compiler
-#
-# Created by JSheng <jasonhuang0124@gmail.com>
-#
+"""Rat in Maze(Backtracking)
+Refer to:
+    1. https://www.codingninjas.com/studio/online-compiler/online-python-compiler
+Created by JSheng <jasonhuang0124@gmail.com>"""
+
 
 def isValid(m, x, y):
     if x >= 0 and x < len(m):
@@ -40,8 +40,7 @@ if __name__ == '__main__':
         [0, 0, 0, 1]
     ]
 
-    # # (jason_huang):
-    # # Both are available.
+    """Both are available."""
     s = [
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -50,12 +49,12 @@ if __name__ == '__main__':
     ]
     s = [[0] * len(m) for i in range(len(m[0]))]
 
-    # # (jason_huang):
-    # # This would fail because of shallow copy:
-    # # 1. https://skylinelimit.blogspot.com/2018/04/python-variable-reference.html
-    # # 2. https://ithelp.ithome.com.tw/articles/10221255
-    # s = [[0] * len(m)] * len(m[0])
-
+    """
+    This would fail because of shallow copy: `s = [[0] * len(m)] * len(m[0])`.
+    Refer to:
+        1. https://skylinelimit.blogspot.com/2018/04/python-variable-reference.html
+        2. https://ithelp.ithome.com.tw/articles/10221255
+    """
     try:
         if solveMaze(m, 0, 0, s):
             print('INTC Yes!')

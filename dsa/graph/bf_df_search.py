@@ -1,7 +1,7 @@
 """BFS and DFS
 Refer to: 
-1. https://blog.csdn.net/zjjaibc/article/details/125110128  
-2. https://youtu.be/oLtvUWpAnTQ
+    1. https://blog.csdn.net/zjjaibc/article/details/125110128  
+    2. https://youtu.be/oLtvUWpAnTQ
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -16,7 +16,7 @@ graph = {
 
 
 def BFS(graph, bgn):
-    """BFS
+    """BFS()
     1. V is the number of vertices.
     2. E is the number of edges.
     Time Complexity: O(V + E)
@@ -37,7 +37,7 @@ def BFS(graph, bgn):
 
 
 def DFS(graph, bgn):
-    """DFS
+    """DFS()
     1. V is the number of vertices.
     2. E is the number of edges.
     Time Complexity: O(V + E)

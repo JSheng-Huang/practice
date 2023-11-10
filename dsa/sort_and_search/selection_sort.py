@@ -1,8 +1,8 @@
 """
 Refer to:
     1. https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
-    Time Complexity: O(n^2)
-    Space Complexity: O(n)
+Time Complexity: O(n^2)
+Space Complexity: O(n)
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

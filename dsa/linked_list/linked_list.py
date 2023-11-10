@@ -2,8 +2,8 @@
 Refer to: 
     1. https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
     2. https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
-    Time Complexity: O(n), where n is the number of nodes in the linked list. 
-    Space Complexity: O(1) as it uses constant extra space.
+Time Complexity: O(n), where n is the number of nodes in the linked list. 
+Space Complexity: O(1) as it uses constant extra space.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -105,27 +105,25 @@ class SingleLinkedList:
         next = None
         prev = None
         cnt = 0
-        """Reverse first k nodes of the linked list."""
+        """Reverse first `k` nodes of the linked list."""
         while cur_node is not None and cnt < k:
             next = cur_node.next
             cur_node.next = prev
             prev = cur_node
             cur_node = next
             cnt += 1
-        if cur_node is not None:
-            print('cur: ', cur_node.data)
-        # next is now a pointer to (k+1)th node
-        # recursively call for the list starting
-        # from current. And make rest of the list as
-        # next of first node
+        """
+        `next` and `cur_node` are now pointers to (`k` + 1)th node, if it's 
+        null, means numbers in the linked list are reversed entirely, or we 
+        have to connect the reversed part to the un-reversed part by using 
+        `head`, because `head` here is the tail of the reversed part.
+        """
         if next is not None:
-            # prev.next = next
-            # # head.next = next
-            # # head.next = cur_node
-            print('head', head.data)
-            print('prev', prev.data)
-            # head.next = self.reverse(next, k)
-        # prev is new head of the input list
+            """Choose either this,"""
+            head.next = next
+            """Or this."""
+            # head.next = cur_node
+        """`prev` is the new `head` of the input list."""
         return prev
 
 

@@ -1,4 +1,4 @@
-"""
+"""GCD(Greatest Common Divisor) and LCM(Least Common Multiple)
 Refer to:
     GCD: https://web.ntnu.edu.tw/~algo/AlgorithmDesign.html
     LCM: https://mpm580.pixnet.net/blog/post/261336626
@@ -6,7 +6,7 @@ Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 def gcd(a, b):
-    """Euclid's Algorithm.
+    """gcd(): Euclid's Algorithm.
     Time Complexity: O(log(min(a ,b)))
     """
     if a < b:
