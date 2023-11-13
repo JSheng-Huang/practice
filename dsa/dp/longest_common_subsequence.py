@@ -14,30 +14,25 @@ Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 def longestCommonSubsequence(text1, text2):
-    t1 = len(text1)
-    t2 = len(text2)
+    t1_len = len(text1)
+    t2_len = len(text2)
 
     """`text1` must be the longer one for the following operation."""
-    if t1 < t2:
+    if t1_len < t2_len:
         longestCommonSubsequence(text2, text1)
-    prev = [0] * (t1 + 1)
-    cur = [0] * (t1 + 1)
-    for idx2 in range(1, t2 + 1):
-        for idx1 in range(1, t1 + 1):
-            # If characters are matching
-            if text2[idx2 - 1] == text1[idx1 - 1]:
-                cur[idx1] = 1 + prev[idx1 - 1]
+    prev = [0] * (t1_len + 1)
+    cur = [0] * (t1_len + 1)
+    for i in range(1, t2_len + 1):
+        for j in range(1, t1_len + 1):
+            if text2[i - 1] == text1[j - 1]:
+                cur[j] = 1 + prev[j - 1]
             else:
-                # If characters are not matching
-                cur[idx1] = max(cur[idx1 - 1], prev[idx1])
-
+                cur[j] = max(cur[j - 1], prev[j])
         prev = cur.copy()
-
-    return cur[t1]
+    return cur[-1]
 
 
 if __name__ == '__main__':
-    S1 = "AGGTAB"
-    S2 = "GXTXAYB"
-    print("Length of LCS is", longestCommonSubsequence(S1, S2))
-    print("Length of LCS is", longestCommonSubsequence(S2, S1))
+    S1 = 'AGGTAB'
+    S2 = 'GXTXAYB'
+    print('Length of LCS is', longestCommonSubsequence(S1, S2))
