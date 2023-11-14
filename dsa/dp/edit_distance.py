@@ -34,24 +34,19 @@ def editDistance(str1, str2):
         curr[0] = i
         for j in range(1, str2_len + 1):
             temp = curr[j]
-            if i == 3 and j == 2:
-                print(curr)
-                print('temp', temp)
-            if i == 3 and j == 3:
-                print('before', curr)
-                print('current j:', j)
-                print('prev: ', prev)
+            print('before:', curr)
+            print('current i:', i)
+            print('current j:', j)
             if str1[i - 1] == str2[j - 1]:
                 curr[j] = prev
             else:
                 curr[j] = 1 + min(prev, curr[j - 1], curr[j])
             prev = temp
-            if i == 3 and j == 3:
-                print('in:', curr)
-                print('===')
+            print('after:', curr)
+            print('---')
+        print('===')
     """
     Values in `curr` mean if `str1` is only considered from `0` to
-    ???
     """
     return curr[str2_len]
 
