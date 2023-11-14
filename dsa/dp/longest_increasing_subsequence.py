@@ -18,15 +18,16 @@ def longestIncreasingSubsequence(arr):
 
     for i in range(1, arr_len):
         for j in range(0, i):
-            """`lis[]???`"""
+            """
+            `lis[j]` equals to that if `arr[j]` is considered as the end in the 
+            longest increasing subsequence when the idx is `j`, and the length 
+            of it would be. So if `arr = [10, 22, 9]`, and `arr[2] = 1` because 
+            `9` is smaller than both `10` and `22`, if it is taken as the end 
+            in the longest increasing subsequence, the longest increasing 
+            subsequence is `[9]`.
+            """
             if arr[i] > arr[j] and lis[i] < lis[j] + 1:
-                print('in')
                 lis[i] = lis[j] + 1
-            print('arr[i]: ', arr[i])
-            print('arr[j]: ', arr[j])
-            print(lis)
-            print('---')
-        print('===')
     ans = max(lis)
     return ans
 
