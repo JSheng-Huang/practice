@@ -27,30 +27,21 @@ def editDistance(str1, str2):
     str2_len = len(str2)
     curr = [i for i in range(str2_len + 1)]
     prev = 0
-
-    # Loop through the rows of the dynamic programming matrix
     for i in range(1, str1_len + 1):
         prev = curr[0]
         curr[0] = i
         for j in range(1, str2_len + 1):
             temp = curr[j]
-            print('before:', curr)
-            print('current i:', i)
-            print('current j:', j)
-            print('prev:', prev)
             if str1[i - 1] == str2[j - 1]:
                 curr[j] = prev
             else:
                 """
-                `prev`: Insert.
-                `curr[j - 1]`: Remove.
+                `prev`: Remove.
+                `curr[j - 1]`: Insert.
                 `curr[j]`: Replace.
                 """
                 curr[j] = 1 + min(prev, curr[j - 1], curr[j])
             prev = temp
-            print('after:', curr)
-            print('---')
-        print('===')
     """
     Values in `curr` mean if `str1` is only considered from `0` to `n`, and the 
     minimum edit distance they need.
