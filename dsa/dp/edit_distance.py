@@ -1,4 +1,4 @@
-"""Longest Increasing Subsequence
+"""Edit Distance
 Problem:
         Given two strings `str1` and `str2` of length m and n respectively and 
     below operations that can be performed on `str1`. Find the minimum number 
@@ -37,16 +37,23 @@ def editDistance(str1, str2):
             print('before:', curr)
             print('current i:', i)
             print('current j:', j)
+            print('prev:', prev)
             if str1[i - 1] == str2[j - 1]:
                 curr[j] = prev
             else:
+                """
+                `prev`: Insert.
+                `curr[j - 1]`: Remove.
+                `curr[j]`: Replace.
+                """
                 curr[j] = 1 + min(prev, curr[j - 1], curr[j])
             prev = temp
             print('after:', curr)
             print('---')
         print('===')
     """
-    Values in `curr` mean if `str1` is only considered from `0` to
+    Values in `curr` mean if `str1` is only considered from `0` to `n`, and the 
+    minimum edit distance they need.
     """
     return curr[str2_len]
 
