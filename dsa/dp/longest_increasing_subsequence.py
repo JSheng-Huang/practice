@@ -1,7 +1,7 @@
 """Longest Increasing Subsequence
 Problem:
     Given an array `arr[]` of size `n`, the task is to find the length of the
-longest increasing subsequence i.e., the longest possible subsequence in 
+longest increasing subsequence, i.e., the longest possible subsequence in 
 which the elements of the subsequence are sorted in increasing order.
 Refer to:
     1. https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/

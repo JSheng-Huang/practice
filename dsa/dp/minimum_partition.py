@@ -22,6 +22,10 @@ def minDifference(arr, n):
     sum = 0
     for i in range(n):
         sum += arr[i]
+    """
+    The half of sum of two subsets would be the closet one to the difference of 
+    two subsets.
+    """
     y = sum // 2 + 1
     print('y:', y)
     # dp[i] gives whether is it possible to get i as
@@ -33,7 +37,8 @@ def minDifference(arr, n):
     # Initializing dp and dd
 
     # sum = 0 is possible
-    dp[0] = True  # let dp array is used for storing
+    dp[0] = True
+    # let dp array is used for storing
     # previous values and dd array is used to
     # store current values
     for i in range(n):
@@ -41,32 +46,32 @@ def minDifference(arr, n):
         # updating dd[k] as True if k can be formed
         # using elements from 1 to i+1
         for j in range(y):
-            if (j + arr[i] < y and dp[j]):
+            if j + arr[i] < y and dp[j]:
                 dd[j + arr[i]] = True
-        print(dd)
+        print('dd:', dd)
         print('...')
         # updating dd
         for j in range(y):
             if (dd[j]):
                 dp[j] = True
             dd[j] = False  # reset dd
-
+        print('dp:', dp)
+        print('---')
     # checking the number from sum/2 to 1 which is
     # possible to get as sum
-    for i in range(y-1, 0, -1):
+    for i in range(y - 1, 0, -1):
         if (dp[i]):
-            print(dp)
+            print('dp:', dp)
+            print('sum:', sum)
+            print('i:', i)
             return (sum - 2 * i)
 
         # since i is possible to form then another
-        # number is sum-i so mindifference is sum-i-i
+        # number is sum-i so min difference is sum-i-i
     return 0
 
 
 if __name__ == '__main__':
-
-    arr = [1, 6, 11, 5]
+    arr = [1, 5, 5, 11, 16]
     n = len(arr)
     print("The Minimum difference of 2 sets is ", minDifference(arr, n))
-
-# This code is contributed by umadevi9616
