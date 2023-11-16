@@ -1,11 +1,12 @@
 """Minimum Partition
 Problem:
-        Given a set of integers, the task is to divide it into two sets S1 and 
-    S2 such that the absolute difference between their sums is minimum. 
+        Given a set of non-negative integers, the task is to divide it into two 
+    sets S1 and S2 such that the absolute difference between their sums is 
+    minimum. 
         If there is a set S with n elements, then if we assume Subset1 has m 
     elements, Subset2 must have `n - m` elements and the value of abs(sum(Subset1) – sum(Subset2)) should be minimum.
 Example:
-    Input:  arr[] = {1, 6, 11, 5} 
+    Input: arr[] = {1, 6, 11, 5} 
     Output: 1
     Explanation:
         Subset1 = {1, 5, 6}, sum of Subset1 = 12 
@@ -26,52 +27,41 @@ def minDifference(arr, n):
     The half of sum of two subsets would be the closet one to the difference of 
     two subsets.
     """
-    y = sum // 2 + 1
-    print('y:', y)
-    # dp[i] gives whether is it possible to get i as
-    # sum of elements dd is helper variable we use dd
-    # to ignoring duplicates
-    dp = [False for i in range(y)]
-    dd = [False for i in range(y)]
+    half_sum = sum // 2 + 1
 
-    # Initializing dp and dd
+    dp = [False for _ in range(half_sum)]
+    curr_dp = [False for _ in range(half_sum)]
 
-    # sum = 0 is possible
+    """Image that the subset is empty in the beginning."""
     dp[0] = True
-    # let dp array is used for storing
-    # previous values and dd array is used to
-    # store current values
+
     for i in range(n):
-
-        # updating dd[k] as True if k can be formed
-        # using elements from 1 to i+1
-        for j in range(y):
-            if j + arr[i] < y and dp[j]:
-                dd[j + arr[i]] = True
-        print('dd:', dd)
-        print('...')
-        # updating dd
-        for j in range(y):
-            if (dd[j]):
+        for j in range(half_sum):
+            """
+            `dp[j] == True` means `j` is one possible output which is combine 
+            from numbers in `arr[i]` and it's less than `half_sum`.
+            """
+            if dp[j] and j + arr[i] < half_sum:
+                curr_dp[j + arr[i]] = True
+        for j in range(half_sum):
+            if (curr_dp[j]):
                 dp[j] = True
-            dd[j] = False  # reset dd
-        print('dp:', dp)
-        print('---')
-    # checking the number from sum/2 to 1 which is
-    # possible to get as sum
-    for i in range(y - 1, 0, -1):
-        if (dp[i]):
-            print('dp:', dp)
-            print('sum:', sum)
-            print('i:', i)
-            return (sum - 2 * i)
-
-        # since i is possible to form then another
-        # number is sum-i so min difference is sum-i-i
-    return 0
+            curr_dp[j] = False
+    for i in range(half_sum - 1, 0, -1):
+        if dp[i]:
+            """
+            Since `i` is possible to form the number which is the closet to 
+            `half_sum`, then the complementary of it is `sum - i`, so the 
+            minimum difference is sum - 2 * i.
+            """
+            return sum - 2 * i
+    return sum
 
 
 if __name__ == '__main__':
     arr = [1, 5, 5, 11, 16]
+    # arr = [5, 5, 6, 6]
+    # arr = [1, 1, 1, 1, 1, 1]
+    # arr = [0, 5]
     n = len(arr)
     print("The Minimum difference of 2 sets is ", minDifference(arr, n))
