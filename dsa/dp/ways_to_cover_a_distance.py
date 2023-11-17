@@ -1,6 +1,7 @@
 """Ways to Cover a Distance
 Problem:
-        Given a distance ‘dist’, count total number of ways to cover the distance with 1, 2 and 3 steps. 
+        Given a distance ‘dist’, count total number of ways to cover the 
+    distance with 1, 2 and 3 steps. 
 Example:
     Input: n = 3
     Output: 4
@@ -27,10 +28,12 @@ def wayToCoverDist(dist):
     way[1] = 1
     way[2] = 2
 
-    """Bottom-up approach???"""
+    """Bottom-up Approach
+    Sum up ways from `dist = 0` to `dist = n`, where `n` is the input.
+    e.g., 'dist = 4' = 'dist = 3' + 'dist = 2' + 'dist = 1' + 'dist = 0'.
+    """
     for i in range(3, dist + 1):
         way[i % 3] = way[(i - 1) % 3] + way[(i - 2) % 3] + way[(i - 3) % 3]
-        print('way:', way)
     return way[dist % 3]
 
 
