@@ -10,41 +10,39 @@ Refer to:
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
-# Returns True if there is a subset of set[]
-# with a sum equal to the given sum
 def isSubsetSum(nums, n, sum):
-    # Create a list to store the previous row result
     prev = [False] * (sum + 1)
-
-    # If sum is 0, then the answer is True
-    prev[0] = True
-
-    # If sum is not 0 and the set is empty,
-    # then the answer is False
-    """Why???"""
     for i in range(1, n + 1):
         curr = [False] * (sum + 1)
+
+        """`curr[0]` means to add to the empty set."""
+        curr[0] = True
+
         for j in range(1, sum + 1):
-            if j < nums[i - 1]:
+            """
+            If:
+            Else:
+            """
+            if nums[i - 1] > j:
                 curr[j] = prev[j]
-            if j >= nums[i - 1]:
+            else:
                 print('i', i)
                 print('j', j)
                 print('prev[j]', prev[j])
                 print('prev[j - nums[i - 1]', prev[j - nums[i - 1]])
                 curr[j] = prev[j] or prev[j - nums[i - 1]]
-                print(curr)
                 print('---')
+        print(prev)
+        print(curr)
         # Now curr becomes prev for (i+1)-th element
         prev = curr
         print('===')
     return prev[sum]
 
 
-# Driver code
 if __name__ == '__main__':
-    nums = [3, 34, 4, 12, 5, 2]
-    sum_value = 9
+    nums = [3, 4, 5, 2]
+    sum_value = 6
     n = len(nums)
     if isSubsetSum(nums, n, sum_value):
         print("Found a subset with the given sum")
