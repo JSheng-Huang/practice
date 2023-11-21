@@ -19,24 +19,13 @@ def isSubsetSum(nums, n, sum):
         curr[0] = True
 
         for j in range(1, sum + 1):
-            """
-            If:
-            Else:
-            """
+            """`j` is subsets of `sum`."""
             if nums[i - 1] > j:
                 curr[j] = prev[j]
             else:
-                print('i', i)
-                print('j', j)
-                print('prev[j]', prev[j])
-                print('prev[j - nums[i - 1]', prev[j - nums[i - 1]])
+                """If `prev[j - nums[i - 1]]` is `True`, it means `curr[j]` is one of the subsets of `sum`."""
                 curr[j] = prev[j] or prev[j - nums[i - 1]]
-                print('---')
-        print(prev)
-        print(curr)
-        # Now curr becomes prev for (i+1)-th element
         prev = curr
-        print('===')
     return prev[sum]
 
 
@@ -45,6 +34,6 @@ if __name__ == '__main__':
     sum_value = 6
     n = len(nums)
     if isSubsetSum(nums, n, sum_value):
-        print("Found a subset with the given sum")
+        print('Found a subset with the given sum.')
     else:
-        print("No subset with the given sum")
+        print('No subset with the given sum.')
