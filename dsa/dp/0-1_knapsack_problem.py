@@ -15,22 +15,22 @@ Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 def knapSack(weight_limit, wt, val, n):
-    # Making the dp array
     dp = [0 for _ in range(weight_limit + 1)]
-
-    # Taking first i elements
     for i in range(1, n + 1):
-
-        # Starting from back,
-        # so that we also have data of
-        # previous computation when taking i-1 items
         for w in range(weight_limit, 0, -1):
-            if wt[i-1] <= w:
-
-                # Finding the maximum value
-                dp[w] = max(dp[w], dp[w-wt[i-1]]+val[i-1])
-
-    # Returning the maximum value of knapsack
+            """The pack is affordable for the weight of the current item."""
+            if w >= wt[i - 1]:
+                """
+                `dp[w]`(before updating): Do not take the current item, which 
+                means just take the previous result which only takes `wt[0:i]` 
+                into account.
+                `dp[w - wt[i - 1]]`: Get the maximum profit from the current 
+                weight limit which minus the weight of the current item, which 
+                means the maximum profit that does not take the value of the 
+                current item into account.
+                `val[i - 1]`: The profit of the current item.
+                """
+                dp[w] = max(dp[w], dp[w - wt[i - 1]] + val[i - 1])
     return dp[weight_limit]
 
 
