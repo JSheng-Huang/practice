@@ -8,33 +8,16 @@ Problem:
     Note: The opponent is as clever as the user. 
 Refer to:
     1. https://www.geeksforgeeks.org/optimal-strategy-for-a-game-dp-31/
-    Time Complexity:  O(n^2).
-    Space Complexity: O(n^2). As a 2-D table is used for storing states.
+    Time Complexity: O(n ^ 2).
+    Space Complexity: O(n ^ 2). As a 2-D table is used for storing states.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 def optimalStrategyOfGame(arr, n):
     table = [[0 for _ in range(n)] for _ in range(n)]
-
-    # Fill table using above recursive
-    # formula. Note that the table is
-    # filled in diagonal fashion
-    # (similar to http://goo.gl / PQqoS),
-    # from diagonal elements to
-    # table[0][n-1] which is the result.
     for gap in range(n):
-        print('gap', gap)
         for j in range(gap, n):
-            print('j', j)
             i = j - gap
-            print('i', i)
-            # print('i', i)
-            # print('j', j)
-
-            # Here x is value of F(i + 2, j),
-            # y is F(i + 1, j-1) and z is
-            # F(i, j-2) in above recursive
-            # formula
             """
             Example:
                 [8, 15, 11, 22]
@@ -53,44 +36,33 @@ def optimalStrategyOfGame(arr, n):
                 y = 0
                 z = 0
             else:
+                """
+                If `gap` == 2: Three options, so pick the larger "combination" 
+                from the previous result.
+                e.g.:
+                `j` == 2: [ 8, 15, 3], pick `8` and `3`, coz the opponent would 
+                pick `15` while options = [15, 3], so the sum user gets = 11.
+                `j` == 3: [15,  3, 7], pick `15` and `3`, coz the opponent 
+                would pick `7` while options = [3, 7], so the sum user gets = 
+                18.
+                If `gap` == 3: Three options, so pick the larger "combination" 
+                from the previous result.
+                e.g.:
+                `j` == 3: [15, 15, 7], pick `15` and `7`, coz the opponent 
+                would pick `15` while options = [15, 7], so the sum user gets = 
+                22.
+                """
                 x = table[i + 2][j]
                 y = table[i + 1][j - 1]
                 z = table[i][j - 2]
-
-        #     x = 0
-        #     if ((i + 2) <= j):
-        #         x = table[i + 2][j]
-        #         print('gap', gap)
-        #         print('j', j)
-        #         print('i', i)
-        #         print('x')
-        #     y = 0
-        #     if ((i + 1) <= (j - 1)):
-        #         y = table[i + 1][j - 1]
-        #         print('y')
-        #     z = 0
-        #     if (i <= (j - 2)):
-        #         z = table[i][j - 2]
-        #         print('z')
+            """
+            If `arr = [x, y, z]`, you could only decide to pick `x` or `z', and the opponent would leave the smaller one of the other to you.
+            """
             table[i][j] = max(arr[i] + min(x, y), arr[j] + min(y, z))
-        #     print('---')
-        # print('===')
-            for k in range(4):
-                print(table[k])
-            print('---')
-        print('===')
     return table[0][n - 1]
 
 
 if __name__ == '__main__':
-    arr1 = [8, 15, 3, 7]
-    n = len(arr1)
-    print(optimalStrategyOfGame(arr1, n))
-
-    # arr2 = [2, 2, 2, 2]
-    # n = len(arr2)
-    # print(optimalStrategyOfGame(arr2, n))
-
-    # arr3 = [20, 30, 2, 2, 2, 10]
-    # n = len(arr3)
-    # print(optimalStrategyOfGame(arr3, n))
+    arr = [8, 15, 3, 7]
+    n = len(arr)
+    print(optimalStrategyOfGame(arr, n))
