@@ -21,7 +21,9 @@ class DoubleLinkedList:
         self.size = 0
 
     def addLast(self, x: Node):
-        """Add the new node from the tail."""
+        """addLast()
+        Add the new node to the tail.
+        """
         x.next = self.tail
         x.prev = self.tail.prev
         self.tail.prev.next = x
@@ -29,15 +31,20 @@ class DoubleLinkedList:
         self.size += 1
 
     def remove(self, x: Node):
-        # 移除特定的節點
+        """Handle the previous and the next node of the removed node."""
         x.next.prev = x.prev
         x.prev.next = x.next
+
+        """Remove the node."""
         x.prev = None
         x.next = None
         self.size -= 1
 
     def removeFirst(self):
-        # 移除最久之前的節點
+        """removeFirst()
+        Remove the first node, which is the least recently used node, because 
+        we would re-allocate the order of nodes when users query a node.
+        """
         if self.head.next == self.tail:
             return None
         first_node = self.head.next
@@ -53,7 +60,7 @@ class LRUCache:
         # 初始化
         self.capacity = capacity
         self.map = {}
-        self.lruCache = DoubleLinkedList()
+        self.d_l_l = DoubleLinkedList()
 
     def get(self, key: int) -> int:
         x = self.map.get(key)
@@ -68,7 +75,7 @@ class LRUCache:
             self.deleteKey(key)
             self.addRecently(key, value)
             return
-        if self.capacity == self.lruCache.getSize():
+        if self.capacity == self.d_l_l.getSize():
             self.removeLeastRecently()
         self.addRecently(key, value)
         return
@@ -76,24 +83,24 @@ class LRUCache:
     def makeRecently(self, key: int):
         # 將節點變成最新使用過的資料
         x = self.map.get(key)
-        self.lruCache.remove(x)
-        self.lruCache.addLast(x)
+        self.d_l_l.remove(x)
+        self.d_l_l.addLast(x)
 
     def addRecently(self, key: int, value: int):
         # 加入新節點並且是最新使用的資料
         x = Node(key, value)
-        self.lruCache.addLast(x)
+        self.d_l_l.addLast(x)
         self.map[key] = x
 
     def deleteKey(self, key: int):
         # 刪除節點
         x = self.map.get(key)
-        self.lruCache.remove(x)
+        self.d_l_l.remove(x)
         self.map.pop(key)
 
     def removeLeastRecently(self):
         # 刪除最久沒使用的資料
-        firstNode = self.lruCache.removeFirst()
+        firstNode = self.d_l_l.removeFirst()
         self.map.pop(firstNode.key)
 
 
@@ -104,4 +111,6 @@ if __name__ == '__main__':
     l_r_u.put('e', 3)
     l_r_u.put('a', 4)
     l_r_u.put('s', 5)
+    print(l_r_u.get('a'))
+    l_r_u.deleteKey('a')
     print(l_r_u.get('a'))
