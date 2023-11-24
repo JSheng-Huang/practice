@@ -57,7 +57,6 @@ class DoubleLinkedList:
 
 class LRUCache:
     def __init__(self, capacity: int):
-        # 初始化
         self.capacity = capacity
         self.map = {}
         self.d_l_l = DoubleLinkedList()
@@ -81,13 +80,11 @@ class LRUCache:
         return
 
     def makeRecently(self, key: int):
-        # 將節點變成最新使用過的資料
         x = self.map.get(key)
         self.d_l_l.remove(x)
         self.d_l_l.addLast(x)
 
     def addRecently(self, key: int, value: int):
-        # 加入新節點並且是最新使用的資料
         x = Node(key, value)
         self.d_l_l.addLast(x)
         self.map[key] = x
@@ -103,6 +100,13 @@ class LRUCache:
         firstNode = self.d_l_l.removeFirst()
         self.map.pop(firstNode.key)
 
+    def debugMap(self, key):
+        z = self.map.get(key)
+        print(z)
+        print(self.map[key])
+        print(self.map)
+        return
+
 
 if __name__ == '__main__':
     l_r_u = LRUCache(5)
@@ -110,7 +114,8 @@ if __name__ == '__main__':
     l_r_u.put('w', 2)
     l_r_u.put('e', 3)
     l_r_u.put('a', 4)
-    l_r_u.put('s', 5)
+    l_r_u.put('s', 'poi')
     print(l_r_u.get('a'))
     l_r_u.deleteKey('a')
     print(l_r_u.get('a'))
+    l_r_u.debugMap('s')
