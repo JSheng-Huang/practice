@@ -61,14 +61,20 @@ class LRUCache:
         self.map = {}
         self.d_l_l = DoubleLinkedList()
 
-    def get(self, key: int) -> int:
+    def getData(self, key: int) -> int:
+        """getData()
+        Time Complexity: O(1).
+        """
         x = self.map.get(key)
         if x == None:
             return -1
         self.makeRecently(key)
         return x.value
 
-    def put(self, key: int, value: int) -> None:
+    def putData(self, key: int, value: int) -> None:
+        """putData()
+        Time Complexity: O(1).
+        """
         x = self.map.get(key)
         if x != None:
             self.deleteKey(key)
@@ -81,6 +87,11 @@ class LRUCache:
 
     def makeRecently(self, key: int):
         x = self.map.get(key)
+
+        """
+        Remove it from the original position, then append it to the tail, which 
+        means it is the most recently used.
+        """
         self.d_l_l.remove(x)
         self.d_l_l.addLast(x)
 
@@ -90,32 +101,29 @@ class LRUCache:
         self.map[key] = x
 
     def deleteKey(self, key: int):
-        # 刪除節點
+        """deleteKey()
+        Delete the data directly regardless of the order.
+        """
         x = self.map.get(key)
         self.d_l_l.remove(x)
         self.map.pop(key)
 
     def removeLeastRecently(self):
-        # 刪除最久沒使用的資料
-        firstNode = self.d_l_l.removeFirst()
-        self.map.pop(firstNode.key)
-
-    def debugMap(self, key):
-        z = self.map.get(key)
-        print(z)
-        print(self.map[key])
-        print(self.map)
-        return
+        """removeLeastRecently()
+        Remove the first node in the double link, because it's the least 
+        recently used.
+        """
+        first_node = self.d_l_l.removeFirst()
+        self.map.pop(first_node.key)
 
 
 if __name__ == '__main__':
     l_r_u = LRUCache(5)
-    l_r_u.put('q', 1)
-    l_r_u.put('w', 2)
-    l_r_u.put('e', 3)
-    l_r_u.put('a', 4)
-    l_r_u.put('s', 'poi')
-    print(l_r_u.get('a'))
+    l_r_u.putData('q', 1)
+    l_r_u.putData('w', 2)
+    l_r_u.putData('e', 3)
+    l_r_u.putData('a', 4)
+    l_r_u.putData('s', 5)
+    print(l_r_u.getData('a'))
     l_r_u.deleteKey('a')
-    print(l_r_u.get('a'))
-    l_r_u.debugMap('s')
+    print(l_r_u.getData('a'))
