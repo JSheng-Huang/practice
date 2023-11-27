@@ -1,9 +1,10 @@
-# Refer to:
-# Insert/Search/Delete: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-# Pre/In/Post Order: https://hackmd.io/@datastruct/ByfLfjlO9
-#
-# Created by JSheng <jasonhuang0124@gmail.com>
-#
+"""
+Refer to:
+    1. Insert/Search/Delete: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+    2. Pre/In/Post Order: https://hackmd.io/@datastruct/ByfLfjlO9
+Created by JSheng <jasonhuang0124@gmail.com>
+"""
+
 
 class Node:
     def __init__(self, value):
@@ -55,7 +56,7 @@ def search(node, value):
 
 
 def deleteNode(node, value):
-    # # Finding the target.
+    """Finding the target."""
     if node is None:
         return node
     if node.root > value:
@@ -64,7 +65,7 @@ def deleteNode(node, value):
     if node.root < value:
         node.right_child = deleteNode(node.right_child, value)
         return node
-    # # If one of the children is empty.
+    """If one of the children is empty."""
     if node.left_child is None:
         tmp = node.right_child
         # del node
@@ -73,10 +74,12 @@ def deleteNode(node, value):
         tmp = node.left_child
         # del node
         return tmp
-    # # If both of the children are filled.
+    """If both of the children are filled."""
     successor_parent = node
-    # # Find successor
+
+    """Find successor"""
     successor = node.right_child
+
     while successor.left_child is not None:
         successor_parent = successor
         successor = successor.left_child
