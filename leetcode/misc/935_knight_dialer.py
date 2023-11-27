@@ -10,7 +10,7 @@ Problem:
     then you should perform n - 1 jumps to dial a number of length n. All jumps 
     should be valid knight jumps.
         As the answer may be very large, return the answer modulo 10 ^ 9 + 7.
-Constraints: 1 <= n <= 5000
+Constraints: 1 <= n <= 5000.
 Example:
     #1:
       Input: n = 1
