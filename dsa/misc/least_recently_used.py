@@ -1,6 +1,5 @@
 """Least Recently Used
-Refer to:
-    1. https://tycoon0049.medium.com/%E6%BC%94%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97-%E4%B8%80-lru-74b5771629ce
+Refer to: https://tycoon0049.medium.com/%E6%BC%94%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%97-%E4%B8%80-lru-74b5771629ce
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

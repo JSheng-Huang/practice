@@ -7,15 +7,16 @@ Problem:
     (i - 1, j) or (i, j - 1) with the condition that the adjacent cells have a 
     difference of 1.
 Example:
-    Input: mat[][] = {{1, 2, 9},
-                      {5, 3, 8},
-                      {4, 6, 7}}
+    Input: mat[][] = {
+            {1, 2, 9},
+            {5, 3, 8},
+            {4, 6, 7}
+           }
     Output: 4
     The longest path is 6-7-8-9.
-Refer to:
-    1. https://www.geeksforgeeks.org/find-the-longest-path-in-a-matrix-with-given-constraints/
-    Time Complexity: O(n^2), all values of dp[i][j] are computed only once.
-    Space Complexity: O(n^2), since n * n extra space has been taken.
+Refer to: https://www.geeksforgeeks.org/find-the-longest-path-in-a-matrix-with-given-constraints/
+Time Complexity: O(n^2), all values of dp[i][j] are computed only once.
+Space Complexity: O(n^2), since n * n extra space has been taken.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -27,7 +28,8 @@ def findLongestPathFromEachCell(i, j, sqr_mat, sqr_mat_size, dp):
     if dp[i][j] != -1:
         return dp[i][j]
     """
-    To store the path lengths in all the four directions, set them as `1` because if none of the adjacent fours is one greater we will take `1`.
+    To store the path lengths in all the four directions, set them as `1` 
+    because if none of the adjacent fours is one greater we will take `1`.
     """
     e, w, s, n = 1, 1, 1, 1
 
@@ -69,9 +71,11 @@ def findLongestPathOverAll(sqr_mat, sqr_mat_size):
 
 
 if __name__ == '__main__':
-    sqr_mat = [[5, 2, 9],
-               [1, 3, 8],
-               [4, 6, 7]]
+    sqr_mat = [
+        [5, 2, 9],
+        [1, 3, 8],
+        [4, 6, 7]
+    ]
     sqr_mat_size = 3
     print("Length of the longest path is ",
           findLongestPathOverAll(sqr_mat, sqr_mat_size))

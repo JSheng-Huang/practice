@@ -1,7 +1,7 @@
 """Linked List
 Refer to: 
-    1. https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
-    2. https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
+    #1. https://p61402.github.io/2017/09/02/%E9%80%A3%E7%B5%90%E4%B8%B2%E5%88%97-Linked-List/
+    #2. https://www.geeksforgeeks.org/given-a-linked-list-which-is-sorted-how-will-you-insert-in-sorted-way/
 Time Complexity: O(n), where n is the number of nodes in the linked list. 
 Space Complexity: O(1) as it uses constant extra space.
 Created by JSheng <jasonhuang0124@gmail.com>"""

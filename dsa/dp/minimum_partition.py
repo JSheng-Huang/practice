@@ -4,18 +4,19 @@ Problem:
     sets S1 and S2 such that the absolute difference between their sums is 
     minimum. 
         If there is a set S with n elements, then if we assume Subset1 has m 
-    elements, Subset2 must have `n - m` elements and the value of abs(sum(Subset1) – sum(Subset2)) should be minimum.
+    elements, Subset2 must have `n - m` elements and the value of abs(sum
+    (Subset1) – sum(Subset2)) should be minimum.
 Example:
     Input: arr[] = {1, 6, 11, 5} 
     Output: 1
     Explanation:
-        Subset1 = {1, 5, 6}, sum of Subset1 = 12 
+        Subset1 = {1, 5, 6}, sum of Subset1 = 12
         Subset2 = {11}, sum of Subset2 = 11    
-Refer to:
-    1. https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
-    Time Complexity: O(n * sum), where `n` is the number of elements and `sum` 
-    is the sum of all elements.
-    Space Complexity: O(sum)
+Refer to: https://www.geeksforgeeks.org/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum/
+Time Complexity: 
+        O(n * sum), where `n` is the number of elements and `sum` is the sum of 
+    all elements.
+Space Complexity: O(sum).
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -24,8 +25,7 @@ def minDifference(arr, n):
     for i in range(n):
         sum += arr[i]
     """
-    The half of sum of two subsets would be the closet one to the difference of 
-    two subsets.
+    The half of sum of two subsets would be the closet one to the difference of two subsets.
     """
     half_sum = sum // 2 + 1
 

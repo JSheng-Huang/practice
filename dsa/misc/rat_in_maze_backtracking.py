@@ -1,6 +1,5 @@
 """Rat in Maze(Backtracking)
-Refer to:
-    1. https://www.codingninjas.com/studio/online-compiler/online-python-compiler
+Refer to: https://www.codingninjas.com/studio/online-compiler/online-python-compiler
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -52,8 +51,8 @@ if __name__ == '__main__':
     """
     This would fail because of shallow copy: `s = [[0] * len(m)] * len(m[0])`.
     Refer to:
-        1. https://skylinelimit.blogspot.com/2018/04/python-variable-reference.html
-        2. https://ithelp.ithome.com.tw/articles/10221255
+        #1. https://skylinelimit.blogspot.com/2018/04/python-variable-reference.html
+        #2. https://ithelp.ithome.com.tw/articles/10221255
     """
     try:
         if solveMaze(m, 0, 0, s):

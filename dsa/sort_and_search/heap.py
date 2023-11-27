@@ -1,6 +1,5 @@
 """Heap
-Refer to:
-    1. https://www.shubo.io/binary-heap/
+Refer to: https://www.shubo.io/binary-heap/
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -30,8 +29,7 @@ class MaxHeap:
         self.heap.pop()
 
         """
-        Keep comparing the new root value which was in the tail until it is
-        larger or equal to its children.
+        Keep comparing the new root value which was in the tail until it is larger or equal to its children.
         """
         self.compare_to_bottom()
 

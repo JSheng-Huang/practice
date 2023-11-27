@@ -1,11 +1,11 @@
 """Subset Sum Problem
-Problem:
-    Given a set of non-negative integers and a value sum, the task is to check 
-if there is a subset of the given set whose sum is equal to the given sum. 
-Refer to:
-    #1. https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
-    Time Complexity:  O(sum * n), where `n` is the size of the array.
-    Space Complexity: O(sum), as the size of the 1-D array is `sum` + 1.
+Problem: 
+        Given a set of non-negative integers and a value sum, the task is to 
+    check if there is a subset of the given set whose sum is equal to the given 
+    sum. 
+Refer to: https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
+Time Complexity:  O(sum * n), where `n` is the size of the array.
+Space Complexity: O(sum), as the size of the 1-D array is `sum` + 1.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -22,7 +22,9 @@ def isSubsetSum(nums, n, sum):
             if nums[i - 1] > j:
                 curr[j] = prev[j]
             else:
-                """If `prev[j - nums[i - 1]]` is `True`, it means `curr[j]` is one of the subsets of `sum`."""
+                """
+                If `prev[j - nums[i - 1]]` is `True`, it means `curr[j]` is one of the subsets of `sum`.
+                """
                 curr[j] = prev[j] or prev[j - nums[i - 1]]
         prev = curr
     return prev[sum]

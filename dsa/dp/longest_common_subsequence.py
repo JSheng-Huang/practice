@@ -1,15 +1,14 @@
 """Longest Common Subsequence
-Definition:
-    A longest common subsequence is defined as the longest subsequence
-which is common in all given input sequences.
-Problem:
-    There are two sorted arrays nums1 and nums2 of size `m` and `n` 
-respectively. Find the median of the two sorted arrays. The overall run 
-time complexity should be O(log(m + n)).
-Refer to:
-    1. https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
-    Time Complexity: O(m * n), where `m` and `n` are sizes of two arrays.
-    Space Complexity: O(m), because the algorithm uses two arrays of size `m`.
+Definition: 
+        A longest common subsequence is defined as the longest subsequence 
+    which is common in all given input sequences.
+Problem: 
+        There are two sorted arrays nums1 and nums2 of size `m` and `n` 
+    respectively. Find the median of the two sorted arrays. The overall run 
+    time complexity should be O(log(m + n)).
+Refer to: https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
+Time Complexity: O(m * n), where `m` and `n` are sizes of two arrays.
+Space Complexity: O(m), because the algorithm uses two arrays of size `m`.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

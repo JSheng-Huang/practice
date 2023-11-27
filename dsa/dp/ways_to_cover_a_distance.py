@@ -1,20 +1,18 @@
 """Ways to Cover a Distance
-Problem:
-    Given a distance ‘dist’, count total number of ways to cover the distance 
-with 1, 2 and 3 steps. 
+Problem: 
+        Given a distance ‘dist’, count total number of ways to cover the 
+    distance with 1, 2 and 3 steps. 
 Example:
-    #1:
-      Input: n = 3
-      Output: 4
-      Explanation: Below are the four ways.
+    Input: n = 3
+    Output: 4
+    Explanation: Below are the four ways.
         1 step + 1 step + 1 step
         1 step + 2 step
         2 step + 1 step
         3 step
-Refer to:
-    #1. https://www.geeksforgeeks.org/count-number-of-ways-to-cover-a-distance/
-    Time Complexity: O(n), where `n` is the distance.
-    Space Complexity: O(1)
+Refer to: https://www.geeksforgeeks.org/count-number-of-ways-to-cover-a-distance/
+Time Complexity: O(n), where `n` is the distance.
+Space Complexity: O(1).
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

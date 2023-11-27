@@ -1,8 +1,7 @@
 """Rat in Maze(Stack)
-Refer to:
-    1. https://blog.csdn.net/FRBeVrQbN4L/article/details/109589567
-    1.1 The author uses lambda function, so I modify some parts.
-    1.2 Add some parts to prevent out-of-range error.
+Refer to: https://blog.csdn.net/FRBeVrQbN4L/article/details/109589567
+    #1. The author uses lambda function, so I modify some parts.
+    #2. Add some parts to prevent out-of-range error.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

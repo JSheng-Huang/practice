@@ -1,15 +1,16 @@
 """Kruskals's Algorithm for Minimum Spanning Tree
-Refer to: 
-    1. https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
-Time Complexity: O(E * logE) or O(E * logV), where V is the number of 
-    vertices and E is the number of edges in the graph.
+Refer to: https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
+Time Complexity: 
+        O(E * logE) or O(E * logV), where V is the number of vertices and E is 
+    the number of edges in the graph.
     Refer to: https://stackoverflow.com/questions/20432801/time-complexity-of-the-kruskal-algorithm
-    Explanation: Sorting of edges takes O(E * logE) time. After sorting, we 
-        iterate through all edges and apply the find-union algorithm. The find 
-        and union operations can take at most O(logV) time. So overall 
-        complexity is O(E * logE + E * logV) time. The value of E can be at 
-        most O(V^2), so O(logV) and O(logE) are the same. Therefore, the 
-        overall time complexity is O(E * logE) or O(E * logV).
+    Explanation: 
+        Sorting of edges takes O(E * logE) time. After sorting, we iterate 
+    through all edges and apply the find-union algorithm. The find and union 
+    operations can take at most O(logV) time. So overall complexity is O(E * 
+    logE + E * logV) time. The value of E can be at most O(V^2), so O(logV) and 
+    O(logE) are the same. Therefore, the overall time complexity is O(E * logE) 
+    or O(E * logV).
 Space Complexity: O(V + E), where V is the number of vertices and E is the 
     number of edges in the graph.
 Created by JSheng <jasonhuang0124@gmail.com>"""
@@ -32,9 +33,8 @@ class Graph:
 
     def union(self, parent, rank, x, y):
         """Union two trees()
-        Attach the smaller rank tree under root of the 
-        higher rank tree, if ranks are same, then make one as root and 
-        increment its rank by one.
+        Attach the smaller rank tree under root of the higher rank tree, if 
+        ranks are same, then make one as root and increment its rank by one.
         """
         if rank[x] < rank[y]:
             parent[x] = y

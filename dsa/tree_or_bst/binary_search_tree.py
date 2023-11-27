@@ -1,7 +1,7 @@
-"""
+"""Binary Search Tree
 Refer to:
-    1. Insert/Search/Delete: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-    2. Pre/In/Post Order: https://hackmd.io/@datastruct/ByfLfjlO9
+    #1. Insert/Search/Delete: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+    #2. Pre/In/Post Order: https://hackmd.io/@datastruct/ByfLfjlO9
 Created by JSheng <jasonhuang0124@gmail.com>
 """
 
@@ -84,15 +84,16 @@ def deleteNode(node, value):
         successor_parent = successor
         successor = successor.left_child
 
-    # # Since successor is always left child of its parent
-    # # we can safely make successor's right child as left
-    # # of its parent. If there is no `successor`, then assign
-    # # `successor.right_child` to `successor_parent.right_child`.
+    """
+    Since successor is always left child of its parent we can safely make 
+    successor's right child as left of its parent. If there is no `successor`, 
+    then assign `successor.right_child` to `successor_parent.right_child`.
+    """
     if successor_parent != node:
         successor_parent.left_child = successor.right_child
     else:
         successor_parent.right_child = successor.right_child
-    # # Copy `successor.root` to `node.root`.
+    """Copy `successor.root` to `node.root`."""
     node.root = successor.root
 
     # del successor
@@ -100,11 +101,14 @@ def deleteNode(node, value):
 
 
 if __name__ == '__main__':
-    # #    50
-    # #   /	  \
-    # #  30	  70
-    # #  / \  / \
-    # # 20 40 60 80
+    """
+        50
+       /   \
+      30   70
+      / \  / \
+     20 40 60 80
+    """
+
     root = Node(50)
     root = insert(root, 30)
     root = insert(root, 20)
@@ -129,30 +133,36 @@ if __name__ == '__main__':
         print('[ERROR]', value, "NOT FOUND!")
     root = deleteNode(root, 20)
 
-    # #    50
-    # #   /	 \
-    # #  40	 70
-    # #  /   / \
-    # # 30  60 80
+    """
+        50
+       /   \
+      40   70
+      /   /  \
+     30  60  80
+    """
     print('In-order:')
     inOrder(root)
     print()
     root = deleteNode(root, 70)
 
-    # #    50
-    # #   /	 \
-    # #  40	 80
-    # #  /   /
-    # # 30  60
+    """
+        50
+       /  \
+      40  80
+      /   /
+     30  60
+    """
     print('In-order:')
     inOrder(root)
     print()
 
-    # #    60
-    # #   /	 \
-    # #  40	 80
-    # #  /
-    # # 30
+    """
+        60
+       /  \
+      40  80
+      /
+     30
+    """
     root = deleteNode(root, 50)
     print('In-order:')
     inOrder(root)

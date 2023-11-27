@@ -1,8 +1,8 @@
 """Quick Select
 Refer to:
-    1. https://magiclen.org/quickselect/ 
-    1.1 The manipulation is right, but the example is wrong.
-    2. https://www.geeksforgeeks.org/quickselect-algorithm/
+    #1. https://magiclen.org/quickselect/ 
+        #1.1 The manipulation is right, but the example is wrong.
+    #2. https://www.geeksforgeeks.org/quickselect-algorithm/
 Assumption: All elements in `arr[]` are distinct.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -28,12 +28,12 @@ def kthSmallest(arr, left_idx, right_idx, k):
     """If k is smaller than number of elements in array."""
     if (k > 0 and k <= right_idx - left_idx + 1):
         """
-        Partition the array around last element and get position of pivot element in sorted array.
+        Partition the array around last element and get position of pivot 
+        element in sorted array.
         """
         pivot_idx = partition(arr, left_idx, right_idx)
 
         """If position is same as input `k.`"""
-
         if (pivot_idx - left_idx == k - 1):
             return arr[pivot_idx]
         """If position is more, recur for left subarray."""

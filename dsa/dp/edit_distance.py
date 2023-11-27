@@ -14,11 +14,10 @@ Example:
     Explanation: Last three and first characters are same. We basically need to 
     convert "un" to "atur".  This can be done using below three operations. 
     Replace "n" with "r", insert "t", insert "a".
-Refer to:
-    1. https://www.geeksforgeeks.org/edit-distance-dp-5/
-    Time Complexity: O(m x n), where `m` and `n` are lengths of `str1` and 
+Refer to: https://www.geeksforgeeks.org/edit-distance-dp-5/
+Time Complexity: O(m x n), where `m` and `n` are lengths of `str1` and 
     `str2`.
-    Space Complexity: O(n), where `n` is length of `str2`.
+Space Complexity: O(n), where `n` is length of `str2`.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

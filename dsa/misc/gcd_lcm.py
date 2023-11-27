@@ -7,7 +7,7 @@ Created by JSheng <jasonhuang0124@gmail.com>"""
 
 def gcd(a, b):
     """gcd(): Euclid's Algorithm.
-    Time Complexity: O(log(min(a ,b)))
+    Time Complexity: O(log(min(a ,b))).
     """
     if a < b:
         a, b = b, a

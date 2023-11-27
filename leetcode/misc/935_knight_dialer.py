@@ -1,15 +1,15 @@
-"""LeetCode#4(Hard) Median of Two Sorted Arrays
+"""LeetCode#935(Median) Knight Dialer
 Link: https://leetcode.com/problems/knight-dialer/?envType=daily-question&envId=2023-11-27
 Problem:
-    The chess knight has a unique movement, it may move two squares vertically 
-and one square horizontally, or two squares horizontally and one square 
-vertically (with both forming the shape of an L).
-    Given an integer n, return how many distinct phone numbers of length n we 
-can dial.
-    You are allowed to place the knight on any numeric cell initially and then 
-you should perform n - 1 jumps to dial a number of length n. All jumps should 
-be valid knight jumps.
-    As the answer may be very large, return the answer modulo 10 ^ 9 + 7.
+        The chess knight has a unique movement, it may move two squares 
+    vertically and one square horizontally, or two squares horizontally and one 
+    square vertically (with both forming the shape of an L).
+        Given an integer n, return how many distinct phone numbers of length n 
+    we can dial.
+        You are allowed to place the knight on any numeric cell initially and 
+    then you should perform n - 1 jumps to dial a number of length n. All jumps 
+    should be valid knight jumps.
+        As the answer may be very large, return the answer modulo 10 ^ 9 + 7.
 Constraints: 1 <= n <= 5000
 Example:
     #1:
@@ -24,8 +24,7 @@ Example:
       Input: n = 3131
       Output: 136006598
       Explanation: Please take care of the mod.
-Refer to:
-    #1. 
+Refer to: 
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

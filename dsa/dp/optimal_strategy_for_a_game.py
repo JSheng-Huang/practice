@@ -5,11 +5,10 @@ Problem:
     player selects either the first or last coin from the row, removes it from 
     the row permanently, and receives the value of the coin. Determine the 
     maximum possible amount of money we can definitely win if we move first.
-    Note: The opponent is as clever as the user. 
-Refer to:
-    1. https://www.geeksforgeeks.org/optimal-strategy-for-a-game-dp-31/
-    Time Complexity: O(n ^ 2).
-    Space Complexity: O(n ^ 2). As a 2-D table is used for storing states.
+Note: The opponent is as clever as the user. 
+Refer to: https://www.geeksforgeeks.org/optimal-strategy-for-a-game-dp-31/
+Time Complexity: O(n ^ 2).
+Space Complexity: O(n ^ 2). As a 2-D table is used for storing states.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -56,7 +55,8 @@ def optimalStrategyOfGame(arr, n):
                 y = table[i + 1][j - 1]
                 z = table[i][j - 2]
             """
-            If `arr = [x, y, z]`, you could only decide to pick `x` or `z', and the opponent would leave the smaller one of the other to you.
+            If `arr = [x, y, z]`, you could only decide to pick `x` or `z', and 
+            the opponent would leave the smaller one of the other to you.
             """
             table[i][j] = max(arr[i] + min(x, y), arr[j] + min(y, z))
     return table[0][n - 1]

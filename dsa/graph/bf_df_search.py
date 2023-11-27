@@ -5,22 +5,12 @@ Refer to:
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
-graph = {
-    "A": ["B", "C"],
-    "B": ["A", "C", "D"],
-    "C": ["A", "B", "D", "E"],
-    "D": ["B", "C", "E", "F"],
-    "E": ["C", "D"],
-    "F": ["D"],
-}
-
-
 def BFS(graph, bgn):
     """BFS()
     #1. V is the number of vertices.
     #2. E is the number of edges.
-    Time Complexity: O(V + E)
-    Space Complexity: O(V)
+    Time Complexity: O(V + E).
+    Space Complexity: O(V).
     """
     queue = []
     queue.append(bgn)
@@ -40,8 +30,8 @@ def DFS(graph, bgn):
     """DFS()
     #1. V is the number of vertices.
     #2. E is the number of edges.
-    Time Complexity: O(V + E)
-    Space Complexity: O(logV)
+    Time Complexity: O(V + E).
+    Space Complexity: O(logV).
     """
     stack = []
     stack.append(bgn)
@@ -58,6 +48,14 @@ def DFS(graph, bgn):
 
 
 if __name__ == '__main__':
+    graph = {
+        "A": ["B", "C"],
+        "B": ["A", "C", "D"],
+        "C": ["A", "B", "D", "E"],
+        "D": ["B", "C", "E", "F"],
+        "E": ["C", "D"],
+        "F": ["D"],
+    }
     BFS(graph, 'A')
     print('===')
     DFS(graph, 'A')

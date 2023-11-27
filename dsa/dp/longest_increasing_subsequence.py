@@ -1,12 +1,11 @@
 """Longest Increasing Subsequence
 Problem:
-    Given an array `arr[]` of size `n`, the task is to find the length of the
-longest increasing subsequence, i.e., the longest possible subsequence in 
-which the elements of the subsequence are sorted in increasing order.
-Refer to:
-    1. https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/
-    Time Complexity: O(n^2), where `n` is the size of array.
-    Space Complexity: O(n), use of any array to store the longest increasing subsequence values at each index.
+        Given an array `arr[]` of size `n`, the task is to find the length of 
+    the longest increasing subsequence, i.e., the longest possible subsequence 
+    in which the elements of the subsequence are sorted in increasing order.
+Refer to: https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/
+Time Complexity: O(n^2), where `n` is the size of array.
+Space Complexity: O(n), use of any array to store the longest increasing subsequence values at each index.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

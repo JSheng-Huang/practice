@@ -1,8 +1,7 @@
 """Prim's Algorithm for Minimum Spanning Tree
-Refer to: 
-    1. https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/
-    Time Complexity: O(V^2)
-    Space Complexity: O(V)
+Refer to: https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/
+Time Complexity: O(V^2).
+Space Complexity: O(V).
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -20,7 +19,7 @@ class Graph():
             print(parent[i], '-', i, '\t', self.graph[i][parent[i]])
 
     def pick_min_dist(self, dist, checkSet):
-        """Pick the minimum key
+        """Pick the minimum key()
         Find the vertex with the minimum distance value from the set of 
         vertices not yet included in the shortest path tree.
         """
@@ -64,9 +63,11 @@ class Graph():
 
 if __name__ == '__main__':
     g = Graph(5)
-    g.graph = [[0, 2, 0, 6, 0],
-               [2, 0, 3, 8, 5],
-               [0, 3, 0, 0, 7],
-               [6, 8, 0, 0, 9],
-               [0, 5, 7, 9, 0]]
+    g.graph = [
+        [0, 2, 0, 6, 0],
+        [2, 0, 3, 8, 5],
+        [0, 3, 0, 0, 7],
+        [6, 8, 0, 0, 9],
+        [0, 5, 7, 9, 0]
+    ]
     g.Prim_MST()

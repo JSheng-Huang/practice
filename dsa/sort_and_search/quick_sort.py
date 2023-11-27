@@ -1,10 +1,6 @@
 """Quick Sort
-Refer to:
-    1. https://www.geeksforgeeks.org/quick-sort/
+Refer to: https://www.geeksforgeeks.org/quick-sort/
 Created by JSheng <jasonhuang0124@gmail.com>"""
-
-data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
-# data = [10, 80, 70, 20, 30, 90, 40]
 
 
 def partition(array, low, high):
@@ -21,7 +17,8 @@ def partition(array, low, high):
             i += 1
             array[i], array[j] = array[j], array[i]
     """
-    Swap `array[high]` which is the pivot with `array[i]`, which is the element that pointed by `i`.
+    Swap `array[high]` which is the pivot with `array[i]`, which is the element 
+    that pointed by `i`.
     """
     array[i + 1], array[high] = array[high], array[i + 1]
 
@@ -40,6 +37,8 @@ def quickSort(array, low, high):
 
 
 if __name__ == '__main__':
+    data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
+    # data = [10, 80, 70, 20, 30, 90, 40]
     print('Default: ', data)
     quickSort(data, 0, len(data) - 1)
     print('Sorted: ', data)
