@@ -1,4 +1,4 @@
-"""LeetCode#935(Median) Knight Dialer
+"""LeetCode#935(Medium) Knight Dialer
 Link: https://leetcode.com/problems/knight-dialer/?envType=daily-question&envId=2023-11-27
 Problem:
         The chess knight has a unique movement, it may move two squares 
@@ -24,20 +24,32 @@ Example:
       Input: n = 3131
       Output: 136006598
       Explanation: Please take care of the mod.
-Refer to: 
+Refer to: https://leetcode.com/problems/knight-dialer/solutions/4333617/dp-based-on-movement-options/?envType=daily-question&envId=2023-11-27
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 class Solution:
     def knightDialer(self, n: int) -> int:
-        if n == 1:
-            return 10
-        num_dict = {
-            0: {4, 6},
+        arr = [1 for _ in range(10)]
 
-        }
+        """Because the digital '5' would lead to nowhere, it's assigned `0`."""
+        for _ in range(n - 1):
+            tmp = [
+                arr[4]+arr[6],
+                arr[6]+arr[8],
+                arr[7]+arr[9],
+                arr[4]+arr[8],
+                arr[3]+arr[9]+arr[0],
+                0,
+                arr[1]+arr[7]+arr[0],
+                arr[2]+arr[6],
+                arr[1]+arr[3],
+                arr[2]+arr[4]
+            ]
+            arr = tmp
+        return sum(arr) % (10 ** 9 + 7)
 
 
 if __name__ == '__main__':
     qwe = Solution()
-    print(qwe.knightDialer([1, 3], [2]))
+    print(qwe.knightDialer(10))
