@@ -3,7 +3,7 @@ Link: https://leetcode.com/problems/knight-dialer/?envType=daily-question&envId=
 Problem:
         The chess knight has a unique movement, it may move two squares 
     vertically and one square horizontally, or two squares horizontally and one 
-    square vertically (with both forming the shape of an L).
+    square vertically(with both forming the shape of an L).
         Given an integer n, return how many distinct phone numbers of length n 
     we can dial.
         You are allowed to place the knight on any numeric cell initially and 
@@ -30,7 +30,12 @@ Created by JSheng <jasonhuang0124@gmail.com>"""
 
 class Solution:
     def knightDialer(self, n: int) -> int:
-        pass
+        if n == 1:
+            return 10
+        num_dict = {
+            0: {4, 6},
+
+        }
 
 
 if __name__ == '__main__':
