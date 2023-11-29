@@ -27,26 +27,21 @@ Example:
       Explanation: 
             The input binary string 11111111111111111111111111111101 has a 
         total of thirty one '1' bits.
-Refer to: https://hackmd.io/@y56/rkL8ynylB
+Refer to: https://github.com/azl397985856/leetcode/blob/master/problems/191.number-of-1-bits.md
+Time Complexity: O(log(n))
+Space Complexity: O(n)
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        # After learning bit-manipulation.
-        print(type(n))
-        pass
         c = 0
         while n:
             n &= n - 1
-            print(n)
             c += 1
-            # Another: https://leetcode.com/problems/number-of-1-bits/solutions/3288353/amazing-logic-with-right-shift/
-            # c += n & 1
-            # n = n >> 1
         return c
 
 
 if __name__ == '__main__':
     qwe = Solution()
-    print(qwe.hammingWeight(int('11111111111111111111111111111101', 2)))
+    print(qwe.hammingWeight(int('00000000000000000000000010000000', 2)))
