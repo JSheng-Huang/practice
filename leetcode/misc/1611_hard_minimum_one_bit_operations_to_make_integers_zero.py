@@ -24,9 +24,13 @@ Example:
         "010" -> "011" with the 1st operation.
         "011" -> "001" with the 2nd operation since the 0th bit is 1.
         "001" -> "000" with the 1st operation.
-Refer to: ???
-Time Complexity: ???
-Space Complexity: ???
+Refer to:
+    #1. 
+    Time Complexity: O(n).
+    Space Complexity: O(1).
+    #2. https://zxi.mytechroad.com/blog/math/leetcode-1611-minimum-one-bit-operations-to-make-integers-zero/
+    Time Complexity: O(log(n)).
+    Space Complexity: O(1).
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
@@ -82,18 +86,23 @@ class Solution:
             = (2**i - 1) - f(last_binary)
 
         """
-        binary = format(n, "b")
+        binary = format(n, 'b')
         print(binary)
         N, res = len(binary), 0
-
         for i in range(1, N + 1):
-            print(res)
-            if binary[-i] == "1":
+            if binary[-i] == '1':
                 res = 2 ** i - 1 - res
+            print()
+            print(res, format(res, 'b'))
+
+        """#2. Graycode: Ans is the order of `n` in Graycode."""
+        # while n:
+        #     res ^= n
+        #     n >>= 1
 
         return res
 
 
 if __name__ == '__main__':
     qwe = Solution()
-    print(qwe.minimumOneBitOperations(6))
+    print(qwe.minimumOneBitOperations(84))
