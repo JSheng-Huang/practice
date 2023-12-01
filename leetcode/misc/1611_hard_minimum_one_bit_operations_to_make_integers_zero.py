@@ -36,56 +36,43 @@ Created by JSheng <jasonhuang0124@gmail.com>"""
 
 class Solution:
     def minimumOneBitOperations(self, n: int) -> int:
-        """#1
-        Intuition
+        """#1.
         Assume a number 1101001
         Starting from left to right to save number of operations
-        1000000->0 takes 2^7-1 = 127 steps
-        0100000->0 takes 2^6-1 = 63 steps
-        0001000->0 takes 2^4-1 = 15 steps
-        0000001->0 takes 2^1-1 = 1 step
-
-        Hence Can be said
-        1 -> 0 needs 1 operation,
-        2 -> 0 needs 3 operations,
-        4 -> 0 needs 7 operations,
-        2^k needs 2^(k+1)-1 operations.
-
+            1000000->0 takes 2 ** 7 - 1 = 127 steps
+            0100000->0 takes 2 ** 6 - 1 = 63 steps
+            0001000->0 takes 2 ** 4 - 1 = 15 steps
+            0000001->0 takes 2 ** 1 - 1 = 1 step
+        Hence can be said
+            1(2 ** 0 - 1) -> 0 needs 1 operation,
+            2(2 ** 1 - 1) -> 0 needs 3 operations,
+            4(2 ** 2 - 1) -> 0 needs 7 operations,
+        2 ** k needs 2 ** (k + 1) - 1 operations.
         Approach
-        1101001 : Required steps = 127-63+15-1 = 78
-
+            1101001: Required steps = 127 - 63 + 15 - 1 = 78
         Let steps x to convert 000000 to 100000.
-        But, since 1101001 already has 1 in the 5th bit from right, some steps will be saved.
+        But, since 1101001 already has 1 in the 5th bit from right, some steps 
+        will be saved.
         Saved steps y = Number of steps needed to convert 000000 to 100000
         Hence not all the 2^(6+1) - 1 steps to convert 1000000 -> 0 as 0100000 can be obtained in less number of steps.
-        For 0100000 -> 0, we need to add its 2^6-1 steps
-        For 0001000 -> 0, we need to add its 2^4-1 steps
-        For 0000001 -> 0, we need to add its 2^1-1 steps
-
-        Result = 2^(7)-1 - 2^6-1 + 2^4-1 - 2^1-1
-
-        Thank you for your concise and awesome explanation.
-        Note that:
-        n &= n-1; make us go to the next bit 1 from right to left (least significant).
-        n = 010100;
-        n &= n-1; 010011 & 010100
-        n = 010000;
-
+            For 0100000 -> 0, we need to add its 2 ** 6 - 1 steps
+            For 0001000 -> 0, we need to add its 2 ** 4 - 1 steps
+            For 0000001 -> 0, we need to add its 2 ** 1 - 1 steps
+        Result = (2 ** 7 - 1) - (2 ** 6 - 1) + (2 ** 4 - 1) - (2 ** 1 - 1)
+        Note that: 
+            n &= n-1; make us go to the next bit 1 from right to left 
+        (least significant).
+            n = 010100;
+            n &= n-1;  010100 & 010011
+            n = 010000;
         Reason for abs():
-        You just need to assure that the steps are added by one time + and one time - repetitively from left to right or right to left, the absolute value of answer is correct.
-
-        Again, great solution.
+            You just need to assure that the steps are added by one time + and 
+        one time - repetitively from left to right or right to left, the 
+        absolute value of answer is correct.
         """
-        # print(format(n, 'b'))
         res = 0
         while n:
-            print(format(n, 'b'))
-            print(format(n - 1, 'b'))
-            print(format(n ^ (n - 1), 'b'))
-            print(n ^ (n - 1))
-            print(res)
             res = -res - (n ^ (n - 1))
-
             n &= n - 1
         return abs(res)
         """#2. Graycode: Ans is the order of `n` in Graycode."""

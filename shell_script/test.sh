@@ -5,7 +5,7 @@
 # Refer to:
 #   #1. https://welson327.gitbooks.io/code_notes/content/Linux/shell-script.html
 #   #2. https://tw.gitbook.net/shell/case-esac-statement.html
-#
+#   #3. https://stackoverflow.com/questions/49657982/multiple-variables-in-a-case-statement-bash
 # Created by Jason5_Huang <Jason5_Huang@asus.com>
 #
 main() {
