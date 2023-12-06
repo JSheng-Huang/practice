@@ -7,7 +7,6 @@ Problem:
 Note:
     #1. Note that in some languages, such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.
     #2. In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 3, the input represents the signed integer. -3.    
-Constraints: The input must be a binary string of length 32.
 Example:
     #1:
       Input: n = 00000000000000000000000000001011
@@ -27,6 +26,7 @@ Example:
       Explanation: 
             The input binary string 11111111111111111111111111111101 has a 
         total of thirty one '1' bits.
+Constraints: The input must be a binary string of length 32.
 Refer to: https://github.com/azl397985856/leetcode/blob/master/problems/191.number-of-1-bits.md
 Time Complexity: O(log(n))
 Space Complexity: O(n)

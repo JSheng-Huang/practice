@@ -10,7 +10,6 @@ Problem:
     then you should perform n - 1 jumps to dial a number of length n. All jumps 
     should be valid knight jumps.
         As the answer may be very large, return the answer modulo 10 ^ 9 + 7.
-Constraints: 1 <= n <= 5000.
 Example:
     #1:
       Input: n = 1
@@ -28,6 +27,7 @@ Example:
       Input: n = 3131
       Output: 136006598
       Explanation: Please take care of the mod.
+Constraints: 1 <= n <= 5000.
 Refer to: https://leetcode.com/problems/knight-dialer/solutions/4333617/dp-based-on-movement-options/?envType=daily-question&envId=2023-11-27
 Time Complexity: ???
 Space Complexity: ???

@@ -5,7 +5,6 @@ Problem:
     difference whose product equals num + 1 or num + 2.
         Return the two integers in any order.
 Note: N/A.
-Constraints: 1 <= num <= 10^9
 Example:
     #1:
       Input: num = 8
@@ -21,10 +20,12 @@ Example:
       Input: num = 999
       Output: [40,25]
       Explanation: N/A.
+Constraints: 1 <= num <= 10^9
 Refer to: The following two authors use the same concept.
   #1. https://leetcode.com/problems/closest-divisors/solutions/517962/greedy-beat-100-time-memory/
   #2. https://leetcode.com/problems/closest-divisors/solutions/517595/java-c-python-easy-and-concise/
     Time Complexity: O(sqrt(n))
+    Space Complexity: O(1)
     Space Complexity: O(1)
 Created by JSheng <jasonhuang0124@gmail.com>"""
 

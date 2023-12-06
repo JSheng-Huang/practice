@@ -10,9 +10,6 @@ Problem:
 Note:
     #1. A substring is a contiguous sequence of characters within a string.
     #2. There may be leading zeroes in num or a good integer.
-Constraints: 
-    #1. 3 <= num.length <= 1000.
-    #2. num only consists of digits.
 Example:
     #1:
       Input: num = "6777133339"
@@ -30,6 +27,9 @@ Example:
       Explanation: 
             No substring of length 3 consists of only one unique digit. 
         Therefore, there are no good integers.
+Constraints: 
+    #1. 3 <= num.length <= 1000.
+    #2. num only consists of digits.
 Refer to: Myself.
 Time Complexity: O(n)?
 Space Complexity: O(1)?

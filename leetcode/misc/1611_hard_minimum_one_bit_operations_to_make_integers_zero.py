@@ -7,7 +7,6 @@ Problem:
         Change the ith bit in the binary representation of n if the (i-1)th bit 
     is set to 1 and the (i-2)th through 0th bits are set to 0.
         Return the minimum number of operations to transform n into 0.
-Constraints: 0 <= n <= 109.
 Example:
     #1:
       Input: n = 3
@@ -24,6 +23,7 @@ Example:
         "010" -> "011" with the 1st operation.
         "011" -> "001" with the 2nd operation since the 0th bit is 1.
         "001" -> "000" with the 1st operation.
+Constraints: 0 <= n <= 109.
 Refer to:
     #1. https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/solutions/4344637/c-python-java-explained/?envType=daily-question&envId=2023-11-30
     Time Complexity: O(log(n)).
