@@ -27,9 +27,9 @@ Constraints:
     #4. intervals is sorted by start_i in ascending order.
     #5. newInterval.length == 2
     #6. 0 <= start <= end <= 105
-Refer to: ???
-    Time Complexity: O(sqrt(n))
-    Space Complexity: O(1)
+Refer to: https://leetcode.com/problems/insert-interval/solutions/844549/python-super-short-simple-clean-solution-99-faster/
+    Time Complexity: O(n)?
+    Space Complexity: O(n)?
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
@@ -38,15 +38,26 @@ from typing import List
 
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        merge_bgn = -1
-        merge_end = 106
-        rm_bgn = -1
-        rm_end = -1
-
-        if len(intervals) == 0:
-            return newInterval
-        elif len(intervals) == 1:
-            pass
+        res = []
+        for i in intervals:
+            # # The new interval's range is before the other, so we can add the
+            # # new interval and update it to the current one.
+            if i[0] > newInterval[1]:
+                res.append(newInterval)
+                newInterval = i
+            # # The new interval is after the range of other interval, so we
+            # # can leave the current interval baecause the new one does not
+            # # overlap with it.
+            elif i[1] < newInterval[0]:
+                res.append(i)
+            # # The new interval is in the range of the other interval, we have
+            # # an overlap, so we must choose the min for start and max for end
+            # # of interval.
+            else:
+                newInterval[0] = min(i[0], newInterval[0])
+                newInterval[1] = max(i[1], newInterval[1])
+        res.append(newInterval)
+        return res
 
 
 if __name__ == '__main__':
