@@ -68,7 +68,15 @@ from typing import List
 
 class Solution:
     def friendRequests(self, n: int, restrictions: List[List[int]], requests: List[List[int]]) -> List[bool]:
+        blocked_map = {}
         blocked_list = []
+        res = []
+        for i in restrictions:
+            if blocked_map.get(i[0]):
+                blocked_map[i[0]].append(i[1])
+            else:
+                blocked_map[i[0]] = []
+                blocked_map[i[0]].append(i[1])
 
 
 if __name__ == '__main__':
