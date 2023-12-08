@@ -68,7 +68,7 @@ from typing import List
 
 class Solution:
     def friendRequests(self, n: int, restrictions: List[List[int]], requests: List[List[int]]) -> List[bool]:
-        pass
+        blocked_list = []
 
 
 if __name__ == '__main__':
