@@ -57,17 +57,13 @@ Constraints:
     #7. requests[j].length == 2
     #8. 0 <= u_j, v_j <= n - 1
     #9. u_j != v_j
-Refer to: ???
+Refer to: https://leetcode.com/problems/process-restricted-friend-requests/solutions/4233975/python3-simple-union-find/
     Time Complexity: ???
     Space Complexity: ???
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
 from typing import List
-
-"""
-https://leetcode.com/problems/process-restricted-friend-requests/solutions/4233975/python3-simple-union-find/
-"""
 
 
 class Solution:
@@ -77,10 +73,7 @@ class Solution:
         for a, b in requests:
             temp = self.parent.copy()
             flag = True
-
-            """???"""
             self.union(a, b)
-
             for x, y in restrictions:
                 """
                 Both `x` and `y` have the same root if `a` connects to `b`.
@@ -92,6 +85,8 @@ class Solution:
                 res.append(True)
             else:
                 res.append(False)
+
+                """Reset"""
                 self.parent = temp
         return res
 
@@ -103,7 +98,7 @@ class Solution:
             a = self.parent[a]
         """Update the root."""
         if a_cp != a:
-            self.parent[a_cp], a_cp = a, self.parent[a_cp]
+            self.parent[a_cp] = a
         return a
 
     def union(self, a, b):
