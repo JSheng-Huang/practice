@@ -62,40 +62,42 @@ from typing import List
 
 
 class Solution:
-    # def numTimesAllBlue(self, flips: List[int]) -> int:
-    #     """TLE(Myself): Do not need to use exponentiation."""
-    #     n = len(flips)
-    #     bin_sum = 0
-    #     cur_sum = 0
-    #     res = 0
-    #     for i in range(n - 1, -1, -1):
-    #         bin_sum += 2 ** i
-    #         cur_sum += 2 ** (n - flips[n - i - 1])
-    #         if bin_sum == cur_sum:
-    #             res += 1
-    #     return res
-
-    # def numTimesAllBlue(self, flips: List[int]) -> int:
-    #     """
-    #     `right` is the number of the right most lighted bulb.
-    #     Iterate the input light `flips`, update `right = max(right, flips[i])`.
-    #     Now we have lighted up `i + 1` bulbs, if `right == i + 1`, it means
-    #     that all the previous bulbs (to the left) are turned on too. Then we
-    #     increment `res`.
-    #     """
-    #     right = res = 0
-    #     for i, val in enumerate(flips, 1):
-    #         right = max(right, val)
-    #         res += (right == i)
-    #     return res
+    def numTimesAllBlue(self, flips: List[int]) -> int:
+        """TLE(Myself): Do not need to use exponentiation."""
+        n = len(flips)
+        bin_sum = 0
+        cur_sum = 0
+        res = 0
+        for i in range(n - 1, -1, -1):
+            bin_sum += 2 ** i
+            cur_sum += 2 ** (n - flips[n - i - 1])
+            if bin_sum == cur_sum:
+                res += 1
+        return res
 
     def numTimesAllBlue(self, flips: List[int]) -> int:
         """
-        The binary string is prefix-aligned if and only if the flips comprise a set of consecutive integers beginning with one (123 is valid, 234 or 125 is not)
-        The indices will always comprise a set of consecutive integers beginning with zero.
-        The binary string is prefix-aligned after k flips if and only if sum (i+1) = sum (flips[:i+1]) for i < k.
-        I could be wrong, but I think that time is O(N) and space is O(1).
-        You could use enumerate(flips, start = 1) as well :)
+        `right` is the number of the right most lighted bulb.
+        Iterate the input light `flips`, update `right = max(right, flips[i])`.
+        Now we have lighted up `i + 1` bulbs, if `right == i + 1`, it means
+        that all the previous bulbs (to the left) are turned on too. Then we
+        increment `res`.
+        """
+        right = res = 0
+        for i, val in enumerate(flips, 1):
+            right = max(right, val)
+            res += (right == i)
+        return res
+
+    def numTimesAllBlue(self, flips: List[int]) -> int:
+        """
+        The binary string is prefix-aligned if and only if the flips comprise a 
+        set of consecutive integers beginning with one(123 is valid, 234 or 125 
+        is not).
+        The indices will always comprise a set of consecutive integers 
+        beginning with zero.
+        The binary string is prefix-aligned after k flips if and only if sum(i
+        +1) = sum(flips[:i+1]) for i < k.
         """
         ans = 0
         f_sum = 0
@@ -114,4 +116,4 @@ if __name__ == '__main__':
     print(qwe.numTimesAllBlue([3, 2, 4, 1, 5]))
 
     """Return `1`."""
-    # print(qwe.numTimesAllBlue([4, 1, 2, 3]))
+    print(qwe.numTimesAllBlue([4, 1, 2, 3]))
