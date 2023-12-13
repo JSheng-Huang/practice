@@ -48,9 +48,13 @@ Constraints:
     #1. n == flips.length
     #2. 1 <= n <= 5 * 104
     #3. `flips` is a permutation of the integers in the range [1, n].
-Refer to: ???
-    Time Complexity: ???
-    Space Complexity: ???
+Refer to: 
+    #1. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/532538/java-c-python-straight-forward-o-1-space/
+    Time Complexity: O(n).
+    Space Complexity: O(1).
+    #2. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/2884695/python-3-6-lines-w-explanation-t-m-90-96/
+    Time Complexity: O(n).
+    Space Complexity: O(1).
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
@@ -59,9 +63,7 @@ from typing import List
 
 class Solution:
     # def numTimesAllBlue(self, flips: List[int]) -> int:
-    #     """
-    #     TLE: Do not need to use exponentiation.
-    #     """
+    #     """TLE(Myself): Do not need to use exponentiation."""
     #     n = len(flips)
     #     bin_sum = 0
     #     cur_sum = 0
@@ -73,64 +75,35 @@ class Solution:
     #             res += 1
     #     return res
 
-    """
-    https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/532538/java-c-python-straight-forward-o-1-space/
-    """
-    """
-    Explanation
-right is the number of the right most lighted bulb.
-
-Iterate the input light A,
-update right = max(right, A[i]).
-
-Now we have lighted up i + 1 bulbs,
-if right == i + 1,
-it means that all the previous bulbs (to the left) are turned on too.
-Then we increment res
-
-
-Complexity
-Time O(N)
-Space O(1)
-    """
-
-    def numTimesAllBlue(self, A):
-        right = res = 0
-        for i, a in enumerate(A, 1):
-            print(i)
-            print(a)
-            print(right)
-            print()
-            right = max(right, a)
-            res += right == i
-        return res
-
-    """
-    https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/2884695/python-3-6-lines-w-explanation-t-m-90-96/
-    """
-    """
-    Here's the plan:
-
-    The binary string is prefix-aligned if and only if the flips comprise a set of consecutive integers beginning with one (123 is valid, 234 or 125 is not)
-    The indices will always comprise a set of consecutive integers beginning with zero.
-    The binary string is prefix-aligned after k flips if and only if sum (i+1) = sum (flips[:i+1]) for i < k.
-
-    I could be wrong, but I think that time is O(N) and space is O(1).
-
-    You could use enumerate(flips, start = 1) as well :)
-    """
+    # def numTimesAllBlue(self, flips: List[int]) -> int:
+    #     """
+    #     `right` is the number of the right most lighted bulb.
+    #     Iterate the input light `flips`, update `right = max(right, flips[i])`.
+    #     Now we have lighted up `i + 1` bulbs, if `right == i + 1`, it means
+    #     that all the previous bulbs (to the left) are turned on too. Then we
+    #     increment `res`.
+    #     """
+    #     right = res = 0
+    #     for i, val in enumerate(flips, 1):
+    #         right = max(right, val)
+    #         res += (right == i)
+    #     return res
 
     def numTimesAllBlue(self, flips: List[int]) -> int:
-
-        ans = fSum = iSum = 0
-
-        for i, flip in enumerate(flips):
-
-            fSum += flip
-            iSum += i+1
-
-            ans += (iSum == fSum)
-
+        """
+        The binary string is prefix-aligned if and only if the flips comprise a set of consecutive integers beginning with one (123 is valid, 234 or 125 is not)
+        The indices will always comprise a set of consecutive integers beginning with zero.
+        The binary string is prefix-aligned after k flips if and only if sum (i+1) = sum (flips[:i+1]) for i < k.
+        I could be wrong, but I think that time is O(N) and space is O(1).
+        You could use enumerate(flips, start = 1) as well :)
+        """
+        ans = 0
+        f_sum = 0
+        i_sum = 0
+        for i, flip in enumerate(flips, start=1):
+            f_sum += flip
+            i_sum += i + 1
+            ans += (i_sum == f_sum)
         return ans
 
 
