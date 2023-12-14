@@ -8,6 +8,7 @@
 #   #3. https://stackoverflow.com/questions/49657982/multiple-variables-in-a-case-statement-bash
 # Created by Jason5_Huang <Jason5_Huang@asus.com>
 #
+
 main() {
     while [ $# -gt 0 ]; do
         case "$1" in
