@@ -41,9 +41,12 @@ Constraints:
     #3. 1 <= m, n <= 105
     #4. 1 <= m * n <= 105
     #5. grid[i][j] is either 0 or 1.
-Refer to: ???
-    Time Complexity: ???
-    Space Complexity: ???
+Refer to: https://leetcode.com/problems/difference-between-ones-and-zeros-in-row-and-column/solutions/4401850/really-simple-3-step-python-solution-o-m-n-time-complexity-o-1-space-complexity/
+    Time Complexity: O(m * n).
+    Space Complexity: O(1).
+    Explanation:
+        That this is a `O(1)` space complexity solution because we don't count 
+    the space used up by the output `diff` matrix.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
@@ -52,28 +55,63 @@ from typing import List
 
 class Solution:
     def onesMinusZeros(self, grid: List[List[int]]) -> List[List[int]]:
+        """Brute Force(Myself): Too slow, but pass."""
         sum_row = []
         sum_col = []
-        sum_width_length = len(grid) + len(grid[0])
+        grid_width = len(grid)
+        grid_length = len(grid[0])
+        sum_width_length = grid_width + grid_length - 1
         res = []
-        for i in range(len(grid)):
+        for i in range(grid_width):
             tmp = 0
-            for j in range(len(grid[0])):
+            for j in range(grid_length):
                 tmp += grid[i][j]
             sum_row.append(tmp)
-        for i in range(len(grid[0])):
+        for i in range(grid_length):
             tmp = 0
-            for j in range(len(grid)):
+            for j in range(grid_width):
                 tmp += grid[j][i]
-        for i in range(len(grid)):
+            sum_col.append(tmp)
+        for i in range(grid_width):
             tmp = []
-            for j in range(len(grid[0])):
-                if grid[i][j] == 1:
-                    tmp.append(- 1)
-                else:
-                    tmp.append(- 1)
+            for j in range(grid_length):
+                """
+                `-1`: Duplicated.
+                """
+                cur = (sum_row[i] + sum_col[j]) - \
+                    (sum_width_length - sum_row[i] - sum_col[j]) - 1
+                tmp.append(cur)
             res.append(tmp)
         return res
+
+    def onesMinusZeros(self, grid: List[List[int]]) -> List[List[int]]:
+        """
+        Its concept is similar to mine, but it's more efficient.
+        """
+        row_len = len(grid)
+        col_len = len(grid[0])
+        diff = [[0 for _ in range(col_len)] for _ in range(row_len)]
+        for r in range(row_len):
+            """
+            Compare to mine, it skips anther looping by using a built-in function and count `diff` by only considering rows first.
+            """
+            row_one_cnt = sum(grid[r])
+            row_zero_cnt = col_len - row_one_cnt
+            diff[r] = [(row_one_cnt - row_zero_cnt)] * col_len
+        for c in range(col_len):
+            col_one_cnt = 0
+            for r in range(row_len):
+                col_one_cnt += grid[r][c]
+            col_zero_cnt = row_len - col_one_cnt
+
+            """
+            Compare to mine, it combine the counting of `diff` into the second 
+            loop, because `diff` here has already stored the result of only 
+            considering rows.
+            """
+            for r in range(row_len):
+                diff[r][c] += (col_one_cnt - col_zero_cnt)
+        return diff
 
 
 if __name__ == '__main__':
@@ -82,5 +120,5 @@ if __name__ == '__main__':
     """Return `[[0,0,4],[0,0,4],[-2,-2,2]]`."""
     print(qwe.onesMinusZeros([[0, 1, 1], [1, 0, 1], [0, 0, 1]]))
 
-    # """Return `[[5,5,5],[5,5,5]]`."""
-    # print(qwe.onesMinusZeros([[1, 1, 1], [1, 1, 1]]))
+    """Return `[[5,5,5],[5,5,5]]`."""
+    print(qwe.onesMinusZeros([[1, 1, 1], [1, 1, 1]]))
