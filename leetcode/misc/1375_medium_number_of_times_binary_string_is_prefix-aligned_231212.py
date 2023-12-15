@@ -52,9 +52,12 @@ Refer to:
     #1. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/532538/java-c-python-straight-forward-o-1-space/
     Time Complexity: O(n).
     Space Complexity: O(1).
+    Explanation: ???
     #2. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/2884695/python-3-6-lines-w-explanation-t-m-90-96/
     Time Complexity: O(n).
     Space Complexity: O(1).
+    Explanation: ???
+Date: 231212.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.

@@ -15,7 +15,7 @@ Example:
     #1:
       Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
       Output: [[1,5],[6,9]]
-    Explanation: N/A.
+      Explanation: N/A.
     #2:
       Input: intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]
       Output: [[1,2],[3,10],[12,16]]
@@ -31,6 +31,8 @@ Constraints:
 Refer to: https://leetcode.com/problems/insert-interval/solutions/844549/python-super-short-simple-clean-solution-99-faster/
     Time Complexity: O(n)?
     Space Complexity: O(n)?
+    Explanation: N/A.
+Date: 231207.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.

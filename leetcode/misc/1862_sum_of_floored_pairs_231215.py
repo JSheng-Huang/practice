@@ -24,7 +24,7 @@ Example:
 Constraints: 
     #1. 1 <= nums.length <= 105
     #2. 1 <= nums[i] <= 105
-Refer to: 
+Refer to: https://leetcode.com/problems/sum-of-floored-pairs/solutions/1218305/python-python3-solution-bruteforce-optimized-solution-using-dictionary/
     Time Complexity: ???
     Space Complexity: ???
     Explanation: ???
@@ -37,14 +37,58 @@ from typing import List
 
 class Solution:
     def sumOfFlooredPairs(self, nums: List[int]) -> int:
+        """TLE(Myself): Brute Force."""
         res = 0
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):
-                if nums[i] > nums[j]:
+                if nums[i] == nums[j]:
+                    res += 2
+                elif nums[i] > nums[j]:
                     res += (nums[i] // nums[j])
                 else:
                     res += (nums[j] // nums[i])
-        return res + len(nums) - 1
+        return (res + len(nums)) % (10 ** 9 + 7)
+
+    def sumOfFlooredPairs(self, nums: List[int]) -> int:
+        """
+        The solution is built by using frequency of the prefix elements
+        (frequency prefix sum).
+            1. Take the frequency of the elements given in the nums and store 
+            ir in dictionary.
+            2. After storing calculate the prefix frequency of the nums 
+            according to the frequency present in the dictionary.
+            3. After computing prefix frequency just calculate the sum of the 
+            floor division.
+        """
+        max_num_plus_1 = max(nums) + 1
+        dic = {}
+        prefix = [0] * max_num_plus_1
+        res = 0
+        for i in nums:
+            if i in dic:
+                dic[i] += 1
+            else:
+                dic[i] = 1
+        # print('dic', dic)
+        for i in range(1, max_num_plus_1):
+            if i not in dic:
+                prefix[i] = prefix[i - 1]
+            else:
+                prefix[i] = prefix[i - 1] + dic[i]
+        # print('prefix', prefix)
+        # print('dic', dic)
+        for i in set(nums):
+            # print('i', i)
+            """
+            Because the step while looping is equal to `i`, `prefix[-1] - prefix
+            [j - 1]` could be take as dividing. 
+            `j - 1` matters, because `i` is 1 at least when `i` is divided by 
+            itself.
+            """
+            for j in range(i, max_num_plus_1, i):
+                res += dic[i] * (prefix[-1] - prefix[j - 1])
+                # print('res', res)
+        return res % (10 ** 9 + 7)
 
 
 if __name__ == '__main__':
@@ -54,4 +98,4 @@ if __name__ == '__main__':
     print(qwe.sumOfFlooredPairs([2, 5, 9]))
 
     """Return `49`."""
-    # print(qwe.sumOfFlooredPairs([7,7,7,7,7,7,7]))
+    print(qwe.sumOfFlooredPairs([7, 7, 7, 7, 7, 7, 7]))
