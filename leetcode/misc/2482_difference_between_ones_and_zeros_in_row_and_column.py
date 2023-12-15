@@ -1,5 +1,5 @@
 """LeetCode#2482(Medium) Difference Between Ones and Zeros in Row and Column
-Link: https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-ii/
+Link: https://leetcode.com/problems/difference-between-ones-and-zeros-in-row-and-column/description/
 Problem:
         You are given a 0-indexed m x n binary matrix grid.
         A 0-indexed m x n difference matrix diff is created with the following 
