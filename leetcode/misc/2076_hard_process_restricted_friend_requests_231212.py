@@ -58,8 +58,10 @@ Constraints:
     #8. 0 <= u_j, v_j <= n - 1
     #9. u_j != v_j
 Refer to: https://leetcode.com/problems/process-restricted-friend-requests/solutions/4233975/python3-simple-union-find/
-    Time Complexity: ???
-    Space Complexity: ???
+    Time Complexity: N/A.
+    Space Complexity: N/A.
+    Explanation: N/A.
+Date: 231212.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.

@@ -24,8 +24,10 @@ Constraints: 1 <= num <= 10^9
 Refer to: The following two authors use the same concept.
   #1. https://leetcode.com/problems/closest-divisors/solutions/517962/greedy-beat-100-time-memory/
   #2. https://leetcode.com/problems/closest-divisors/solutions/517595/java-c-python-easy-and-concise/
-    Time Complexity: O(sqrt(n))
-    Space Complexity: O(1)
+    Time Complexity: O(sqrt(n)).
+    Space Complexity: O(1).
+    Explanation: N/A.
+Date: 231204.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.

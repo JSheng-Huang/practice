@@ -52,11 +52,11 @@ Refer to:
     #1. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/532538/java-c-python-straight-forward-o-1-space/
     Time Complexity: O(n).
     Space Complexity: O(1).
-    Explanation: ???
+    Explanation: N/A.
     #2. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/2884695/python-3-6-lines-w-explanation-t-m-90-96/
     Time Complexity: O(n).
     Space Complexity: O(1).
-    Explanation: ???
+    Explanation: N/A.
 Date: 231212.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -66,7 +66,7 @@ from typing import List
 
 class Solution:
     def numTimesAllBlue(self, flips: List[int]) -> int:
-        """TLE(Myself): Do not need to use exponentiation."""
+        """TLE(Mine): Do not need to use exponentiation."""
         n = len(flips)
         bin_sum = 0
         cur_sum = 0

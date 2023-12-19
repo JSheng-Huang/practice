@@ -25,9 +25,9 @@ Constraints:
     #1. 1 <= nums.length <= 105
     #2. 1 <= nums[i] <= 105
 Refer to: https://leetcode.com/problems/sum-of-floored-pairs/solutions/1218305/python-python3-solution-bruteforce-optimized-solution-using-dictionary/
-    Time Complexity: ???
-    Space Complexity: ???
-    Explanation: ???
+    Time Complexity: N/A.
+    Space Complexity: N/A.
+    Explanation: N/A.
 Date: 231215.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -37,7 +37,7 @@ from typing import List
 
 class Solution:
     def sumOfFlooredPairs(self, nums: List[int]) -> int:
-        """TLE(Myself): Brute Force."""
+        """TLE(Mine): Brute Force."""
         res = 0
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):

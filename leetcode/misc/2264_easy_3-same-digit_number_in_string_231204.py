@@ -31,8 +31,10 @@ Constraints:
     #1. 3 <= num.length <= 1000.
     #2. num only consists of digits.
 Refer to: Myself.
-Time Complexity: O(n)?
-Space Complexity: O(1)?
+    Time Complexity: O(n)?
+    Space Complexity: O(1)?
+    Explanation: N/A.
+Date: 231204.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

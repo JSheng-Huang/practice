@@ -28,8 +28,10 @@ Example:
         3 + 4 + 5 + 6 + 7 + 8) + (3 + 4 + 5 + 6 + 7 + 8) = 96.
 Constraints: 1 <= n <= 1000
 Refer to: Myself.
-Time Complexity: O(1)?
-Space Complexity: O(1)?
+    Time Complexity: O(1)?
+    Space Complexity: O(1)?
+    Explanation: N/A.
+Date: 231206.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 

@@ -47,6 +47,7 @@ Refer to: https://leetcode.com/problems/difference-between-ones-and-zeros-in-row
     Explanation:
         That this is a `O(1)` space complexity solution because we don't count 
     the space used up by the output `diff` matrix.
+Date: 231214.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
@@ -55,7 +56,7 @@ from typing import List
 
 class Solution:
     def onesMinusZeros(self, grid: List[List[int]]) -> List[List[int]]:
-        """Brute Force(Myself): Too slow, but pass."""
+        """Brute Force(Mine): Too slow, but pass."""
         sum_row = []
         sum_col = []
         grid_width = len(grid)

@@ -15,7 +15,7 @@ Example:
     #2:
       Input: root = []
       Output: []
-    #2:
+    #3:
       Input: root = [0]
       Output: [0]
 Constraints: 
@@ -25,7 +25,7 @@ Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 Refer to: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solutions/940394/python3-iterative-solution-with-explanation/
     Time Complexity: N/A.
     Space Complexity: O(1).
-    Explanation: ???
+    Explanation: N/A.
 Date: 231218.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 

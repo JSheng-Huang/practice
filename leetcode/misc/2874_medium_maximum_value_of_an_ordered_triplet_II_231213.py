@@ -36,6 +36,8 @@ Constraints:
 Refer to: https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-ii/solutions/4111962/java-c-python-one-pass-o-n/
     Time Complexity: O(n).
     Space Complexity: O(1).
+    Explanation: N/A.
+Date: 231213.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
