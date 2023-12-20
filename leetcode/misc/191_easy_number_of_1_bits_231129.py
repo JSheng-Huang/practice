@@ -33,7 +33,6 @@ Constraints: The input must be a binary string of length 32.
 Refer to: https://github.com/azl397985856/leetcode/blob/master/problems/191.number-of-1-bits.md
     Time Complexity: O(log(n)).
     Space Complexity: O(n).
-    Explanation: N/A.
 Date: 231129.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 

@@ -8,7 +8,6 @@ Problem:
     subsequent Monday, he will put in $1 more than the previous Monday.
         Given n, return the total amount of money he will have in the Leetcode 
     bank at the end of the nth day.
-Note: N/A.
 Example:
     #1:
       Input: n = 4
@@ -30,7 +29,6 @@ Constraints: 1 <= n <= 1000
 Refer to: Myself.
     Time Complexity: O(1)?
     Space Complexity: O(1)?
-    Explanation: N/A.
 Date: 231206.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -57,5 +55,5 @@ class Solution:
 
 if __name__ == '__main__':
     qwe = Solution()
-    """Return `135`."""
+    """Should return `135`."""
     print(qwe.totalMoney(26))

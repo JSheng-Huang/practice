@@ -4,7 +4,6 @@ Problem:
         Given two sorted arrays nums1 and nums2 of size m and n respectively, 
     return the median of the two sorted arrays.
         The overall run time complexity should be O(log (m+n)).
-Note: N/A.
 Example:
     #1:
       Input: nums1 = [1,3], nums2 = [2]
@@ -23,19 +22,16 @@ Constraints:
     #6. -106 <= nums1[i], nums2[i] <= 106
 Refer to:
     #1. https://zxi.mytechroad.com/blog/algorithms/binary-search/leetcode-4-median-of-two-sorted-arrays/
-    Time Complexity: O(log(min(n1, n2))).
-    Space Complexity: O(1).
-    Explanation: N/A.
+        Time Complexity: O(log(min(n1, n2))).
+        Space Complexity: O(1).
     #2. https://github.com/wisdompeak/LeetCode/tree/master/Priority_Queue/004.Median-of-Two-Sorted-Arrays
-    Time Complexity: N/A.
-    Space Complexity: N/A.
-    Explanation: N/A.
 Date: 231030.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 
 class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
+        """#1."""
         nums1_len = len(nums1)
         nums2_len = len(nums2)
 
@@ -99,6 +95,7 @@ class Solution:
 
 class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
+        """#2."""
         nums1_len = len(nums1)
         nums2_len = len(nums2)
         if (nums1_len + nums2_len) % 2 == 1:

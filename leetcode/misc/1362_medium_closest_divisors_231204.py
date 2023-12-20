@@ -4,7 +4,6 @@ Problem:
         Given an integer num, find the closest two integers in absolute 
     difference whose product equals num + 1 or num + 2.
         Return the two integers in any order.
-Note: N/A.
 Example:
     #1:
       Input: num = 8
@@ -15,18 +14,15 @@ Example:
     #2:
       Input: num = 123
       Output: [5,25]
-      Explanation: N/A.
     #3:
       Input: num = 999
       Output: [40,25]
-      Explanation: N/A.
 Constraints: 1 <= num <= 10^9
 Refer to: The following two authors use the same concept.
   #1. https://leetcode.com/problems/closest-divisors/solutions/517962/greedy-beat-100-time-memory/
   #2. https://leetcode.com/problems/closest-divisors/solutions/517595/java-c-python-easy-and-concise/
     Time Complexity: O(sqrt(n)).
     Space Complexity: O(1).
-    Explanation: N/A.
 Date: 231204.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -53,17 +49,17 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `[3, 3]`."""
+    """Should return `[3, 3]`."""
     print(qwe.closestDivisors(8))
 
-    """Return `[5, 25]`."""
+    """Should return `[5, 25]`."""
     print(qwe.closestDivisors(123))
 
-    """Return `[40, 25]`."""
+    """Should return `[40, 25]`."""
     print(qwe.closestDivisors(999))
 
-    """Return `[3, 3]`."""
+    """Should return `[3, 3]`."""
     print(qwe.closestDivisors(7))
 
-    """Return `[2, 3]`."""
+    """Should return `[2, 3]`."""
     print(qwe.closestDivisors(4))

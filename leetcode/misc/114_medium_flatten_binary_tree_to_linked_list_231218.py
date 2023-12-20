@@ -7,7 +7,6 @@ Problem:
         child pointer is always null.
             The "linked list" should be in the same order as a pre-order 
         traversal of the binary tree.
-Note: N/A.
 Example:
     #1:
       Input: root = [1,2,5,3,4,null,6]
@@ -25,7 +24,6 @@ Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 Refer to: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solutions/940394/python3-iterative-solution-with-explanation/
     Time Complexity: N/A.
     Space Complexity: O(1).
-    Explanation: N/A.
 Date: 231218.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 

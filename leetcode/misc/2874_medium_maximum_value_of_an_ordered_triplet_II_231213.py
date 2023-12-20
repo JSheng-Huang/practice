@@ -6,7 +6,6 @@ Problem:
     that i < j < k. If all such triplets have a negative value, return 0.
         The value of a triplet of indices (i, j, k) is equal to (nums[i] - nums
     [j]) * nums[k].
-Note: N/A.
 Example:
     #1:
       Input: nums = [12,6,1,2,7]
@@ -36,7 +35,6 @@ Constraints:
 Refer to: https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-ii/solutions/4111962/java-c-python-one-pass-o-n/
     Time Complexity: O(n).
     Space Complexity: O(1).
-    Explanation: N/A.
 Date: 231213.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -70,17 +68,17 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `77`."""
+    """Should return `77`."""
     print(qwe.maximumTripletValue([12, 6, 1, 2, 7]))
 
-    """Return `133`."""
+    """Should return `133`."""
     print(qwe.maximumTripletValue([1, 10, 3, 4, 19]))
 
-    """Return `0`."""
+    """Should return `0`."""
     print(qwe.maximumTripletValue([1, 2, 3]))
 
-    """Return `0`."""
+    """Should return `0`."""
     print(qwe.maximumTripletValue([2, 3, 1]))
 
-    """Return `1`."""
+    """Should return `1`."""
     print(qwe.maximumTripletValue([3, 2, 1]))

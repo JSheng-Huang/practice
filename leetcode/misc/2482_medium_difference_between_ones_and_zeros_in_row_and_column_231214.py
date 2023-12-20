@@ -10,7 +10,6 @@ Problem:
             Let the number of zeros in the jth column be `zerosColj`.
             diff[i][j] = `onesRowi` + `onesColj` - `zerosRowi` - `zerosColj`
         Return the difference matrix diff.
-Note: N/A.
 Example:
     #1:
       Input: grid = [[0,1,1],[1,0,1],[0,0,1]]
@@ -118,8 +117,8 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `[[0,0,4],[0,0,4],[-2,-2,2]]`."""
+    """Should return `[[0,0,4],[0,0,4],[-2,-2,2]]`."""
     print(qwe.onesMinusZeros([[0, 1, 1], [1, 0, 1], [0, 0, 1]]))
 
-    """Return `[[5,5,5],[5,5,5]]`."""
+    """Should return `[[5,5,5],[5,5,5]]`."""
     print(qwe.onesMinusZeros([[1, 1, 1], [1, 1, 1]]))

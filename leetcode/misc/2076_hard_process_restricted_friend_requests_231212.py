@@ -58,9 +58,6 @@ Constraints:
     #8. 0 <= u_j, v_j <= n - 1
     #9. u_j != v_j
 Refer to: https://leetcode.com/problems/process-restricted-friend-requests/solutions/4233975/python3-simple-union-find/
-    Time Complexity: N/A.
-    Space Complexity: N/A.
-    Explanation: N/A.
 Date: 231212.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -111,18 +108,18 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `[true,false]`."""
+    """Should return `[true,false]`."""
     # print(qwe.friendRequests(3, [[0, 1]], [[0, 2], [2, 1]]))
 
-    """Return `[true,false]`."""
+    """Should return `[true,false]`."""
     # print(qwe.friendRequests(3, [[0, 1]], [[1, 2], [0, 2]]))
 
-    """Return `[true,false,true,false]`."""
+    """Should return `[true,false,true,false]`."""
     print(qwe.friendRequests(5, [[0, 1], [1, 2], [2, 3]], [
           [0, 4], [1, 2], [3, 1], [3, 4]]))
 
     """
-    Return `[true,false,true,false,false,true,false,true,false,false,false,
+    Should return `[true,false,true,false,false,true,false,true,false,false,false,
     false,false,true,false,false,true,false,false,false,false,false,true,false,
     false,false,false,false]`.
     """

@@ -10,7 +10,6 @@ Problem:
     in the inclusive range [1, i] are ones and all the other bits are zeros.
         Return the number of times the binary string is prefix-aligned during 
     the flipping process.
-Note: N/A.
 Example:
     #1:
       Input: flips = [3,2,4,1,5]
@@ -52,11 +51,9 @@ Refer to:
     #1. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/532538/java-c-python-straight-forward-o-1-space/
     Time Complexity: O(n).
     Space Complexity: O(1).
-    Explanation: N/A.
     #2. https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/solutions/2884695/python-3-6-lines-w-explanation-t-m-90-96/
     Time Complexity: O(n).
     Space Complexity: O(1).
-    Explanation: N/A.
 Date: 231212.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -79,7 +76,7 @@ class Solution:
         return res
 
     def numTimesAllBlue(self, flips: List[int]) -> int:
-        """
+        """#1.
         `right` is the number of the right most lighted bulb.
         Iterate the input light `flips`, update `right = max(right, flips[i])`.
         Now we have lighted up `i + 1` bulbs, if `right == i + 1`, it means
@@ -93,7 +90,7 @@ class Solution:
         return res
 
     def numTimesAllBlue(self, flips: List[int]) -> int:
-        """
+        """#2.
         The binary string is prefix-aligned if and only if the flips comprise a 
         set of consecutive integers beginning with one(123 is valid, 234 or 125 
         is not).
@@ -115,8 +112,8 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `2`."""
+    """Should return `2`."""
     print(qwe.numTimesAllBlue([3, 2, 4, 1, 5]))
 
-    """Return `1`."""
+    """Should return `1`."""
     print(qwe.numTimesAllBlue([4, 1, 2, 3]))

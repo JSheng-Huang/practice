@@ -33,7 +33,6 @@ Constraints:
 Refer to: Myself.
     Time Complexity: O(n)?
     Space Complexity: O(1)?
-    Explanation: N/A.
 Date: 231204.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -56,11 +55,11 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `777`."""
+    """Should return `777`."""
     print(qwe.largestGoodInteger('6777133339'))
 
-    """Return `000`."""
+    """Should return `000`."""
     print(qwe.largestGoodInteger('2300019'))
 
-    """Return ``."""
+    """Should return ``."""
     print(qwe.largestGoodInteger('42352338'))

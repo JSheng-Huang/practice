@@ -29,9 +29,6 @@ Example:
       Explanation: Please take care of the mod.
 Constraints: 1 <= n <= 5000.
 Refer to: https://leetcode.com/problems/knight-dialer/solutions/4333617/dp-based-on-movement-options/?envType=daily-question&envId=2023-11-27
-    Time Complexity: N/A.
-    Space Complexity: N/A. 
-    Explanation: N/A.
 Date: 231128.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 

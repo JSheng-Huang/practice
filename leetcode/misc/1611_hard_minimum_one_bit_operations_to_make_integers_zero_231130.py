@@ -26,11 +26,11 @@ Example:
 Constraints: 0 <= n <= 109.
 Refer to:
     #1. https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/solutions/4344637/c-python-java-explained/?envType=daily-question&envId=2023-11-30
-    Time Complexity: O(log(n)).
-    Space Complexity: O(1).
+        Time Complexity: O(log(n)).
+        Space Complexity: O(1).
     #2. https://zxi.mytechroad.com/blog/math/leetcode-1611-minimum-one-bit-operations-to-make-integers-zero/
-    Time Complexity: O(log(n)).
-    Space Complexity: O(1).
+        Time Complexity: O(log(n)).
+        Space Complexity: O(1).
 Date: 231130.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -76,12 +76,14 @@ class Solution:
             res = -res - (n ^ (n - 1))
             n &= n - 1
         return abs(res)
-        """#2. Graycode: Ans is the order of `n` in Graycode."""
-        # while n:
-        #     res ^= n
-        #     n >>= 1
 
-        # return res
+    def minimumOneBitOperations(self, n: int) -> int:
+        """#2. Graycode: Ans is the order of `n` in Graycode."""
+        while n:
+            res ^= n
+            n >>= 1
+
+        return res
 
 
 if __name__ == '__main__':

@@ -5,7 +5,6 @@ Problem:
     for all pairs of indices 0 <= i, j < nums.length in the array. Since the 
     answer may be too large, return it modulo `10 ** 9 + 7`.
         The floor() function returns the integer part of the division.
-Note: N/A.
 Example:
     #1:
       Input: nums = [2,5,9]
@@ -25,9 +24,6 @@ Constraints:
     #1. 1 <= nums.length <= 105
     #2. 1 <= nums[i] <= 105
 Refer to: https://leetcode.com/problems/sum-of-floored-pairs/solutions/1218305/python-python3-solution-bruteforce-optimized-solution-using-dictionary/
-    Time Complexity: N/A.
-    Space Complexity: N/A.
-    Explanation: N/A.
 Date: 231215.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -94,8 +90,8 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `10`."""
+    """Should return `10`."""
     print(qwe.sumOfFlooredPairs([2, 5, 9]))
 
-    """Return `49`."""
+    """Should return `49`."""
     print(qwe.sumOfFlooredPairs([7, 7, 7, 7, 7, 7, 7]))

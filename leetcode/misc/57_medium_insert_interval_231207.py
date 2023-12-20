@@ -10,7 +10,6 @@ Problem:
     in ascending order by start_i and intervals still does not have any 
     overlapping intervals (merge overlapping intervals if necessary).
         Return intervals after the insertion.
-Note: N/A.
 Example:
     #1:
       Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
@@ -31,7 +30,6 @@ Constraints:
 Refer to: https://leetcode.com/problems/insert-interval/solutions/844549/python-super-short-simple-clean-solution-99-faster/
     Time Complexity: O(n)?
     Space Complexity: O(n)?
-    Explanation: N/A.
 Date: 231207.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -66,8 +64,8 @@ class Solution:
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Return `[[1,5],[6,9]]`."""
+    """Should return `[[1,5],[6,9]]`."""
     print(qwe.insert([[1, 3], [6, 9]], [2, 5]))
 
-    """Return `[[1,2],[3,10],[12,16]]`."""
+    """Should return `[[1,2],[3,10],[12,16]]`."""
     print(qwe.insert([[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]], [4, 8]))

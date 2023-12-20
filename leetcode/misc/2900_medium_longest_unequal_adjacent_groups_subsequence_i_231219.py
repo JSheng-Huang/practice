@@ -50,7 +50,6 @@ Constraints:
 Refer to: Myself.
     Time Complexity: O(n)?
     Space Complexity: O(n)?
-    Explanation: N/A.
 Date: 231219.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
