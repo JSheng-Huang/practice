@@ -1,4 +1,4 @@
-"""LeetCode#2900(Medium) 2592. Maximize Greatness of an Array
+"""LeetCode#2592(Medium) Maximize Greatness of an Array
 Link: https://leetcode.com/problems/maximize-greatness-of-an-array/
 Problem:
         You are given a 0-indexed integer array `nums`. You are allowed to 
@@ -70,8 +70,13 @@ class Solution:
         nums_dict = {}
         max_num_freq = 0
         for num in nums:
-            
-        return len(nums) - max(Counter(nums).values())
+            if num in nums_dict:
+                nums_dict[num] += 1
+            else:
+                nums_dict[num] = 1
+            if nums_dict[num] > max_num_freq:
+                max_num_freq = nums_dict[num]
+        return len(nums) - max_num_freq
 
 
 if __name__ == '__main__':
