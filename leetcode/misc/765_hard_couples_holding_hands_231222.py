@@ -42,7 +42,6 @@ class Solution:
         res = 0
         n = len(row)
         for i in range(0, n - 2, 2):
-            print(i)
             abs_diff = abs(row[i] - row[i + 1])
             if abs_diff != 1:
                 res += 1
