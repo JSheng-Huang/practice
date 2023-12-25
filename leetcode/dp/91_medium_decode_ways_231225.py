@@ -50,34 +50,31 @@ from typing import List
 
 class Solution:
     def numDecodings(self, s: str) -> int:
-        """
-        226
-        2 and 26: BZ
-        22 and 6: VF
-        2 and 2 and 6: BBF
-        if 1st chac 0 => 0
-        if 0 consecutively => 0
-        if the chac before 0 must be 1 or 2, or => 0
-        2 and 2 pairing?
-        """
-        """For the edge case."""
-        if s[i] == 0:
+        # https://leetcode.com/problems/decode-ways/solutions/4454026/beats-99-optimal-linear-solution-video-walkthrough/?envType=daily-question&envId=2023-12-25
+        # Time O(n)
+        # Space O(1)
+        if s == '0':
             return 0
-        n = len(s)
-        res = 1
-        for i in range(n):
-            if s[i] == 0 and s[i - 1] == 0 or s[i - 1] > 2:
-                return 0
+        dp_2 = 1
+        dp_1 = int(s[-1] != '0')
+
+        """from the second to last"""
+        i = len(s) - 2
+        while i >= 0:
+            # dp_0: from i to n
+            # dp_1: s[i] is single
+            # dp_2: s[i] is 1st of bi
+            if s[i] == '0':
+                dp_0 = 0
             else:
-                if s[i] == 1:
-                    pass
-                elif s[i] == 2:
-                    pass
-                elif s[i] == 0:
-                    pass
-                else:
-                    pass
-        """Before 1200"""
+                dp_0 = dp_1
+                if (s[i] == '1') or (s[i] == '2' and int(s[i + 1]) < 7):
+                    dp_0 += dp_2
+            dp_2 = dp_1
+            dp_1 = dp_0
+            dp_0 = 0
+            i -= 1
+        return dp_1
 
 
 if __name__ == '__main__':
@@ -91,3 +88,18 @@ if __name__ == '__main__':
 
     """Should return `0`."""
     print(qwe.numDecodings("06"))
+
+    """Should return `1`."""
+    print(qwe.numDecodings("1"))
+
+    """Should return `1`."""
+    print(qwe.numDecodings("10"))
+
+    """Should return `1`."""
+    print(qwe.numDecodings("27"))
+
+    """Should return `1`."""
+    print(qwe.numDecodings("2101"))
+
+    """Should return `3`."""
+    print(qwe.numDecodings("1201234"))
