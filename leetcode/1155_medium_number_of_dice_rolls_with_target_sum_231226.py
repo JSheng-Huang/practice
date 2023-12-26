@@ -58,7 +58,7 @@ class Solution:
              because of using for-loop indexing.
         `j`: The current number of `target`, from 1 to `target`., `target + 1` 
              because of using for-loop indexing.
-        `k`: The current number of upper limit of a die(`k`), from 1 to `k`., 
+        `k`: The current number of upper limit of a die(`k`), from 1 to `k`, 
              `k + 1` because of using for-loop indexing.
         """
         for i in range(2, n + 1):
