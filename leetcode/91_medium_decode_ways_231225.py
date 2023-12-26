@@ -38,9 +38,9 @@ Example:
 Constraints: 
     #1. 1 <= s.length <= 100
     #2. s contains only digits and may contain leading zero(s).
-Refer to: ???
-    Time Complexity: ???
-    Space Complexity: ???
+Refer to: https://leetcode.com/problems/decode-ways/solutions/4454026/beats-99-optimal-linear-solution-video-walkthrough/?envType=daily-question&envId=2023-12-25
+    Time Complexity: O(n).
+    Space Complexity: O(1).
 Date: 231225.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -50,24 +50,27 @@ from typing import List
 
 class Solution:
     def numDecodings(self, s: str) -> int:
-        # https://leetcode.com/problems/decode-ways/solutions/4454026/beats-99-optimal-linear-solution-video-walkthrough/?envType=daily-question&envId=2023-12-25
-        # Time O(n)
-        # Space O(1)
         if s == '0':
             return 0
         dp_2 = 1
-        dp_1 = int(s[-1] != '0')
 
+        dp_1 = int(s[-1] != '0')
+        print(s[-1] != '0')
+        print(dp_1)
+        print()
         """from the second to last"""
         i = len(s) - 2
         while i >= 0:
-            # dp_0: from i to n
-            # dp_1: s[i] is single
-            # dp_2: s[i] is 1st of bi
+            """
+            dp_0: from i to n
+            dp_1: s[i] is single
+            dp_2: s[i] is 1st of bi
+            """
             if s[i] == '0':
                 dp_0 = 0
             else:
                 dp_0 = dp_1
+                """If """
                 if (s[i] == '1') or (s[i] == '2' and int(s[i + 1]) < 7):
                     dp_0 += dp_2
             dp_2 = dp_1
