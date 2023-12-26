@@ -22,7 +22,6 @@ Constraints:
     #2. -100 <= Node.val <= 100
 Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 Refer to: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solutions/940394/python3-iterative-solution-with-explanation/
-    Time Complexity: N/A.
     Space Complexity: O(1).
 Date: 231218.
 Created by JSheng <jasonhuang0124@gmail.com>"""

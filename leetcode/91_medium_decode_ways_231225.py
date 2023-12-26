@@ -54,28 +54,41 @@ class Solution:
             return 0
         dp_2 = 1
 
-        dp_1 = int(s[-1] != '0')
-        print(s[-1] != '0')
-        print(dp_1)
-        print()
-        """from the second to last"""
+        """Not so readable to me."""
+        # dp_1 = int(s[-1] != '0')
+        if s[-1] == '0':
+            dp_1 = 0
+        else:
+            dp_1 = 1
+        """Stat from the second to last."""
         i = len(s) - 2
         while i >= 0:
             """
-            dp_0: from i to n
-            dp_1: s[i] is single
-            dp_2: s[i] is 1st of bi
+            dp_0: From `s[i]` to `s[n]`, `n` denotes the last index of `s`. 
+            dp_1: If `s[i]` is the number which is suitable to be decoded.
+            dp_2: If `s[i]` and `s[i + 1]` are the number which is between 0 ~ 27.
             """
             if s[i] == '0':
                 dp_0 = 0
             else:
                 dp_0 = dp_1
-                """If """
                 if (s[i] == '1') or (s[i] == '2' and int(s[i + 1]) < 7):
                     dp_0 += dp_2
+            """
+            Keep the output when the current character is `0`, if the 
+            character before the current one is also `0`, it would be turn into 
+            `0`.
+            """
             dp_2 = dp_1
+
+            """
+            Keep the output at this moment when we have known `s[i]` could be decoded in 0, 1 or 2 possibilities.
+            """
             dp_1 = dp_0
-            dp_0 = 0
+
+            """Do not need to clear `dp_0`, so comment it."""
+            # dp_0 = 0
+
             i -= 1
         return dp_1
 
