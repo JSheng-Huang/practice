@@ -63,6 +63,11 @@ class Solution:
         """
         for i in range(2, n + 1):
             for j in range(1, target + 1):
+                """
+                In `k` for-looping, it finds all positive integers which is 
+                less or equal to `target`, each one of them is one of the 
+                possibilities to combine `target`.
+                """
                 for k in range(1, k + 1):
                     if j - k >= 0:
                         dp[i][j] += dp[i - 1][j - k]
@@ -84,7 +89,7 @@ if __name__ == '__main__':
     # print(qwe.numRollsToTarget(1, 6, 3))
 
     """Should return `6`."""
-    print(qwe.numRollsToTarget(2, 6, 7))
+    # print(qwe.numRollsToTarget(2, 6, 7))
 
     """Should return `222616187`."""
     # print(qwe.numRollsToTarget(30, 30, 500))
