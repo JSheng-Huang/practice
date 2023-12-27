@@ -37,9 +37,7 @@ Constraints:
     #2. 1 <= n <= 105
     #3. 1 <= neededTime[i] <= 104
     #4. colors contains only lowercase English letters.
-Refer to: ???
-    Time Complexity: ???
-    Space Complexity: ???
+Refer to: Myself.
 Date: 231227.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -50,27 +48,49 @@ from typing import List
 class Solution:
     def minCost(self, colors: str, neededTime: List[int]) -> int:
         """
-        if the current one is as same as the next one, find til next one is not
-        3 by 3
+        If the current color is as same as the next one, then collect the 
+        needed time before the next one is not the same or reaching the end of 
+        the list.
+        Just keep the largest needed time whenever we need to collect the 
+        needed time.
         """
+        i = 0
         res = 0
         c_len = len(colors)
-        for i in range(c_len - 1):
-            cur_c = colors[i]
-            nxt_idx = i + 1
-            while (nxt_idx < c_len) and (cur_c == colors[nxt_idx]):
-                nxt_idx += 1
-        pass
+
+        """
+        Use while-looping to skip the known indices which are in the same color.
+        If cur_sum != cur_max, it means there is more than one index which has 
+        the same color with the current index and it's adjacent to it, so we 
+        have to reduce the largest needed time.
+        """
+        while i < c_len - 1:
+            if colors[i] == colors[i + 1]:
+                cur_sum = neededTime[i]
+                cur_max = neededTime[i]
+                while (i < c_len - 1) and (colors[i] == colors[i + 1]):
+                    cur_sum += neededTime[i + 1]
+                    if cur_max < neededTime[i + 1]:
+                        cur_max = neededTime[i + 1]
+                    i += 1
+                if cur_sum != cur_max:
+                    cur_sum -= cur_max
+                res += cur_sum
+            i += 1
+        return res
 
 
 if __name__ == '__main__':
     qwe = Solution()
 
-    """Should return `[1,2,3,4,5]`."""
-    print(qwe.minCost('abaac'))
+    """Should return `3`."""
+    print(qwe.minCost('abaac', [1, 2, 3, 4, 5]))
 
-    """Should return `[1,2,3]`."""
-    print(qwe.minCost('abc'))
+    """Should return `0`."""
+    print(qwe.minCost('abc', [1, 2, 3]))
 
-    """Should return `[1,2,3,4,1]`."""
-    print(qwe.minCost('aabaa'))
+    """Should return `2`."""
+    print(qwe.minCost('aabaa', [1, 2, 3, 4, 1]))
+
+    """Should return `23`."""
+    print(qwe.minCost('bbbaaa', [4, 9, 3, 8, 8, 9]))
