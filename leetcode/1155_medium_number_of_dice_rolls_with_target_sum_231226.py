@@ -65,11 +65,15 @@ class Solution:
             for j in range(1, target + 1):
                 """
                 In `k` for-looping, it finds all positive integers which is 
-                less or equal to `target`, each one of them is one of the 
-                possibilities to combine `target`.
+                less or equal to `j`, each one of them is one of the 
+                possibilities to combine `j`.
                 """
                 for k in range(1, k + 1):
                     if j - k >= 0:
+                        """
+                        Sum the total possibilities from `j - 1`(coz `k` is `1` 
+                        at least) to `0`.
+                        """
                         dp[i][j] += dp[i - 1][j - k]
                 dp[i][j] %= mod
         """
@@ -89,7 +93,7 @@ if __name__ == '__main__':
     # print(qwe.numRollsToTarget(1, 6, 3))
 
     """Should return `6`."""
-    # print(qwe.numRollsToTarget(2, 6, 7))
+    print(qwe.numRollsToTarget(2, 6, 7))
 
     """Should return `222616187`."""
     # print(qwe.numRollsToTarget(30, 30, 500))
