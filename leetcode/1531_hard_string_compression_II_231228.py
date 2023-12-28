@@ -92,7 +92,6 @@ class Solution:
         """To delete, or not to delete."""
         memo[(i, k, prev, l)] = min(delete, skip)
 
-        """To think this part."""
         return memo[(i, k, prev, l)]
 
 
