@@ -41,7 +41,9 @@ Constraints:
     #1. 1 <= s.length <= 100
     #2. 0 <= k <= s.length
     #3. s contains only lowercase English letters.
-Refer to: ???
+Refer to: https://leetcode.com/problems/string-compression-ii/solutions/2704634/python-with-comments/?envType=daily-question&envId=2023-12-28
+    Time and Space Complexity(The author said so?): 
+        O(n ^ 2 * 26 * k) = O(n ^ 2 * k).
 Date: 231228.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -51,22 +53,47 @@ from typing import List
 
 class Solution:
     def getLengthOfOptimalCompression(self, s: str, k: int) -> int:
-        compressed_list = []
-        i = 0
-        while i < len(s) - 1:
-            tmp = 0
-            cur_char = s[i]
-            if s[i] == s[i + 1]:
-                tmp = 1
-                while (i < len(s) - 1) and cur_char == s[i]:
-                    tmp += 1
-                    i += 1
-            if tmp == 0:
-                compressed_list.append(cur_char)
+        """Used to store all possibilities."""
+        memo = {}
+
+        """
+        1st param: The compressed string `s`.
+        2nd param: Start from which index of `s`.
+        3rd param: You could remove `k` characters at most from `s`.
+        4th param: The previous character.
+        5th param: The run-length of the previous character.
+        """
+        return self.dfs(s, 0, k, None, 0, memo)
+
+    def dfs(self, s, i, k, prev, l, memo):
+        if i == len(s):
+            return 0
+        """The result has been found once."""
+        if (i, k, prev, l) in memo:
+            return memo[(i, k, prev, l)]
+        """Check the quota(`k`) has been run out or not."""
+        if k > 0:
+            delete = self.dfs(s, i + 1, k - 1, prev, l, memo)
+        else:
+            delete = float("inf")
+        if s[i] == prev:
+            """
+            Need one more digit to carry for the count.
+            If `l == 1`: E.g. `j` => `j2`.
+            If `len(str(l + 1)) > len(str(l))`: E.g. `j9` => `j10`.
+            """
+            if (l == 1) or (len(str(l + 1)) > len(str(l))):
+                carry = 1
             else:
-                compressed_list.append(cur_char + str(tmp))
-            i += 1
-        return compressed_list
+                carry = 0
+            skip = carry + self.dfs(s, i + 1, k, s[i], l + 1, memo)
+        else:
+            skip = 1 + self.dfs(s, i + 1, k, s[i], 1, memo)
+        """To delete, or not to delete."""
+        memo[(i, k, prev, l)] = min(delete, skip)
+
+        """To think this part."""
+        return memo[(i, k, prev, l)]
 
 
 if __name__ == '__main__':
@@ -76,7 +103,7 @@ if __name__ == '__main__':
     print(qwe.getLengthOfOptimalCompression('aaabcccd', 2))
 
     """Should return `2`."""
-    print(qwe.getLengthOfOptimalCompression('aabbaa', 2))
+    # print(qwe.getLengthOfOptimalCompression('aabbaa', 2))
 
     """Should return `3`."""
-    print(qwe.getLengthOfOptimalCompression('aaaaaaaaaaa', 0))
+    # print(qwe.getLengthOfOptimalCompression('aaaaaaaaaaa', 0))
