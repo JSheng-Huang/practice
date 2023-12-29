@@ -43,16 +43,58 @@ from typing import List
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
         """
-        The difficulty is the maximum of per day.
-        One day one job at least.
-        Can not fit, return `-1`.
+        https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/solutions/2812707/most-efficient-solution-with-detailed-comments-o-d-n-100-o-n-98-97/?envType=daily-question&envId=2023-12-29
         """
-        n_job = len(jobDifficulty)
-        if d > n_job:
+        """
+        Complexity
+        Time complexity: O(d∗n)O(d * n)O(d∗n)
+        Space complexity: O(n)O(n)O(n)
+        """
+        n = len(jobDifficulty)
+        if n < d:
             return -1
-        while 
-        
-        """If the length of the rest part"""
+
+        today = [None] * n
+        yesterday = [jobDifficulty[0]] + [None] * (n - 1)
+        # Solution for day 0 is just the running maximum
+        for i in range(1, n):
+            yesterday[i] = max(yesterday[i - 1], jobDifficulty[i])
+
+        for day in range(1, d):
+            # stack contains all index i where today[i] has a solution with jobDifficulty[i]
+            # as the biggest
+            stack = []
+            for i in range(day, n):
+                today[i] = yesterday[i - 1] + jobDifficulty[i]
+                # Each iteration of the while loop we either add or remove an item.
+                # Since each job is added and/or removed at most once for each day,
+                # the time complexity is still O(d*n)
+                while stack:
+                    # If the last job in the stack is less difficult than job i
+                    # then we can have the option to add job j+1 -> i to today[i]
+                    # Because solution at today[j] has jobDifficulty[j] as the biggest,
+                    # so after add job j+1 -> i, the new biggest is diff[i],
+                    # thus the total jobDifficulty is inceaseed by (jobDifficulty[i] + jobDifficulty[j])
+                    if jobDifficulty[stack[-1]] < jobDifficulty[i]:
+                        j = stack.pop()
+                        today[i] = min(today[i], today[j] - diff[j] + diff[i])
+                    else:
+                        # If we find a better solution at job i
+                        # then in this solution jobDifficulty[i] is the biggest.
+                        # add it to the stack
+                        if today[i] < today[stack[-1]]:
+                            stack.append(i)
+                        # else job i is a part of the solution at today[stack[-1]]
+                        else:
+                            today[i] = today[stack[-1]]
+                        break
+                else:
+                    # If stack is empty then of course we have a new solution at job i
+                    stack.append(i)
+
+            yesterday = today.copy()
+
+        return yesterday[-1]
 
 
 if __name__ == '__main__':
@@ -66,3 +108,9 @@ if __name__ == '__main__':
 
     """Should return `3`."""
     print(qwe.minDifficulty([1, 1, 1], 3))
+
+    """Should return `15`."""
+    print(qwe.minDifficulty([7, 1, 7, 1, 7, 1], 3))
+
+    """Should return `843`."""
+    print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))

@@ -91,7 +91,6 @@ class Solution:
             skip = 1 + self.dfs(s, i + 1, k, s[i], 1, memo)
         """To delete, or not to delete."""
         memo[(i, k, prev, l)] = min(delete, skip)
-
         return memo[(i, k, prev, l)]
 
 
