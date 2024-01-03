@@ -75,7 +75,7 @@ class Solution:
             Output `today` = [11, 111, 111, 222, 222, 333, 333, 444]
         Solution for day `0` is just the running maximum.
         """
-        """Author"""
+        """Author."""
         # today = deepcopy(jobDifficulty)
 
         today = jobDifficulty.copy()
@@ -141,28 +141,40 @@ class Solution:
             #     the most difficult of the last day (`cur_day`).
             """
             checkpoints = []
-
             day_left = d - cur_day - 1
 
+            """Author:
             # caching the solution of yesterday at jobs[cur_day - 1]
             # so it can be used for today at jobs[cur_day]
+            """
             cache = today[cur_day - 1]
 
+            """Author:
             # for `cur_day`, one can only works on jobs[i : n - day_left - 1]
             # (so that `cur_day - 1` previous days and `day_left` remaining days
             # each has at least 1 job)
+            """
             for cur_job in range(cur_day, n - day_left):
                 cur_difficulty = jobDifficulty[cur_job]
 
+                """Author:
                 # caching the solution of yesterday at cur_job
                 # so it can be used for today[cur_job + 1] in the next iteration
+                """
                 tmp = today[cur_job]
 
+                """Author:
                 # base case is only works on jobs[cur_job] for today
                 # so the solution = jobDifficulty[cur_job] + solution from yesterday
                 # that ends with the jobs[cur_job - 1].
+                """
+                """My understanding:
+                The base case is only works on `jobs[cur_job]` for today
+                """
                 today[cur_job] = cur_difficulty + cache
-                cache = tmp  # update cache to use for the next job
+
+                # update cache to use for the next job
+                cache = tmp
 
                 # Started with only `cur_job` for today (as mentioned above),
                 # maintain the following loop invariance:
