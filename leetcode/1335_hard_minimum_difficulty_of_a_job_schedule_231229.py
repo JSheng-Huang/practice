@@ -147,12 +147,25 @@ class Solution:
             # caching the solution of yesterday at jobs[cur_day - 1]
             # so it can be used for today at jobs[cur_day]
             """
+            """My wording:
+            Cache the value of the last index(yesterday), it means the solution 
+            when we only consider from `0` to `cur_day - 1`, and that's why the 
+            outer loop should start from `1`.
+            """
             cache = today[cur_day - 1]
 
             """Author:
             # for `cur_day`, one can only works on jobs[i : n - day_left - 1]
             # (so that `cur_day - 1` previous days and `day_left` remaining days
             # each has at least 1 job)
+            """
+            """My wording:
+            In the inner loop, we only consider days from `cur_day` to `n - 
+            day_left`.
+            For `cur[:cur_day]`: We have found the best solution in that 
+            interval.
+            For `cur[n - day_left:]`: We have to keep these remaining days for 
+            1 job per day at least.
             """
             for cur_job in range(cur_day, n - day_left):
                 cur_difficulty = jobDifficulty[cur_job]
@@ -168,7 +181,7 @@ class Solution:
                 # so the solution = jobDifficulty[cur_job] + solution from yesterday
                 # that ends with the jobs[cur_job - 1].
                 """
-                """My understanding:
+                """My wording:
                 The base case is only works on `jobs[cur_job]` for today
                 """
                 today[cur_job] = cur_difficulty + cache
