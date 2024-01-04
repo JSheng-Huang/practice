@@ -170,7 +170,7 @@ class Solution:
             for cur_job in range(cur_day, n - day_left):
                 cur_difficulty = jobDifficulty[cur_job]
 
-                """Author:
+                """???Author:
                 # caching the solution of yesterday at cur_job
                 # so it can be used for today[cur_job + 1] in the next iteration
                 """
@@ -182,7 +182,7 @@ class Solution:
                 # that ends with the jobs[cur_job - 1].
                 """
                 """My wording:
-                The base case is only works on `jobs[cur_job]` for today
+                The base case is only works on `jobs[cur_job]` for today.
                 """
                 today[cur_job] = cur_difficulty + cache
 
@@ -193,7 +193,7 @@ class Solution:
                 # maintain the following loop invariance:
                 #     the current solution for today[cur_job] has jobs[cur_job]
                 #     as the hardest jobs of the last day,
-                # and gradualy trying to extend to previous jobs (checkpoints).
+                # and gradually trying to extend to previous jobs (checkpoints).
 
                 # The loop ends either when it exhausts
                 # or when we can no longer maintain the invariance.
@@ -207,11 +207,8 @@ class Solution:
                     # thus the total diff is inceaseed by (jobDifficulty[cur_job] - jobDifficulty[last_checkpoint])
                     if jobDifficulty[checkpoints[-1]] < cur_difficulty:
                         last_checkpoint = checkpoints.pop()
-                        today[cur_job] = min(
-                            today[cur_job],
-                            today[last_checkpoint] + cur_difficulty -
-                            jobDifficulty[last_checkpoint]
-                        )
+                        today[cur_job] = min(today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]
+                                             )
                     else:
                         # else, this is the last checkpoint that we can consider (as discussed before).
                         # After consider this one, we will have found the optimal solution for today[cur_job]
