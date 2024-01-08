@@ -176,14 +176,7 @@ class Solution:
                 """
                 tmp = today[cur_job]
 
-                """Author:
-                # base case is only works on jobs[cur_job] for today
-                # so the solution = jobDifficulty[cur_job] + solution from yesterday
-                # that ends with the jobs[cur_job - 1].
-                """
-                """My wording:
-                The base case is only works on `jobs[cur_job]` for today.
-                """
+                """The base case is only works on `jobs[cur_job]` for today."""
                 today[cur_job] = cur_difficulty + cache
 
                 # update cache to use for the next job
@@ -198,17 +191,21 @@ class Solution:
                 # The loop ends either when it exhausts
                 # or when we can no longer maintain the invariance.
                 while checkpoints:
-                    # If the last job in the stack (`last_checkpoint`) is less difficult than `cur_job`
-                    # then we can have the option to extend the solution at today[last_checkpoint]
-                    # with all the jobs upto `cur_job`.
-                    #
-                    # Because the solution at today[last_checkpoint] has `last_checkpoint` as the most difficult,
-                    # so after extend to `cur_job`, the new hardest is `cur_job`,
-                    # thus the total diff is inceaseed by (jobDifficulty[cur_job] - jobDifficulty[last_checkpoint])
+                    """Author:
+                    If the last job in the stack (`last_checkpoint`) is less 
+                    difficult than `cur_job`, then we can have the option to 
+                    extend the solution at today[last_checkpoint] with all the 
+                    jobs upto `cur_job`.
+                    Because the solution at today[last_checkpoint] has 
+                    `last_checkpoint` as the most difficult, so after extend to 
+                    `cur_job`, the new hardest is `cur_job`, thus the total 
+                    diff is increased by `jobDifficulty[cur_job] - jobDifficulty
+                    [last_checkpoint]`.
+                    """
                     if jobDifficulty[checkpoints[-1]] < cur_difficulty:
                         last_checkpoint = checkpoints.pop()
-                        today[cur_job] = min(today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]
-                                             )
+                        today[cur_job] = min(
+                            today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint])
                     else:
                         # else, this is the last checkpoint that we can consider (as discussed before).
                         # After consider this one, we will have found the optimal solution for today[cur_job]
@@ -224,13 +221,14 @@ class Solution:
                             today[cur_job] = today[checkpoints[-1]]
                         break
                 else:
-                    # If there is no checkpoints left then the solution for today[cur_job] that we just found
-                    # has `cur_job` as the most difficult of the last day (the loop invariance)
+                    """
+                    If there is no checkpoints left then the solution for 
+                    today[cur_job] that we just found has `cur_job` as the most difficult of the last day(the loop invariance).
+                    """
                     checkpoints.append(cur_job)
                 # Each iteration of the while loop we either add or remove a checkpoint.
                 # Since each job is added and/or removed at most once for each day,
                 # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
-
         return today[-1]
 
 
