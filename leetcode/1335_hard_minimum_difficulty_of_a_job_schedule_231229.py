@@ -66,6 +66,11 @@ class Solution:
         # today = deepcopy(jobDifficulty)
 
         today = jobDifficulty.copy()
+
+        """
+        Input: [11, 111, 22, 222, 33, 333, 44, 444]
+        Output: [11, 111, 111, 222, 222, 333, 333, 444]
+        """
         for i in range(1, n):
             today[i] = max(today[i], today[i - 1])
         for cur_day in range(1, d):
@@ -115,7 +120,7 @@ class Solution:
             # difficulty) and uses `y` and `z` (i.e. optimal solution for today[20] and today[13])
             # to update today[27].
             #
-            # Until we encounter jobs[5], now wether the optimal solution for today[27]
+            # Until we encounter jobs[5], now whether the optimal solution for today[27]
             # includes jobs[5] or not, we know that there's no use in considering further
             # previous checkpoints. So we evaluate this last candidate using `x` then stop.
 
@@ -219,7 +224,7 @@ class Solution:
                 # Each iteration of the while loop we either add or remove a checkpoint.
                 # Since each job is added and/or removed at most once for each day,
                 # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
-        print(today)
+            print(today)
         return today[-1]
 
 
@@ -229,14 +234,14 @@ if __name__ == '__main__':
     """Should return `7`."""
     print(qwe.minDifficulty([6, 5, 4, 3, 2, 1], 2))
 
-    # """Should return `-1`."""
-    # print(qwe.minDifficulty([9, 9, 9], 4))
+    """Should return `-1`."""
+    print(qwe.minDifficulty([9, 9, 9], 4))
 
-    # """Should return `3`."""
+    """Should return `3`."""
     # print(qwe.minDifficulty([1, 1, 1], 3))
 
-    # """Should return `15`."""
-    # print(qwe.minDifficulty([7, 1, 7, 1, 7, 1, 8], 3))
+    """Should return `15`."""
+    # print(qwe.minDifficulty([7, 1, 7, 1, 7, 1], 3))
 
-    # """Should return `843`."""
-    # print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
+    """Should return `843`."""
+    print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
