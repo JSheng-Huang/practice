@@ -52,28 +52,15 @@ class Solution:
         """
         """
         To calculate today[i], we only use yesterday[i - 1]
-        or more precisely:
-        When calculating today[i], we only need to store today[:i + 1] and yesterday[i:]
+        or more precisely: When calculating today[i], we only need to store today[:i + 1] and yesterday[i:].
         """
         n = len(jobDifficulty)
         if d > n:
             return -1
-        """Author:
-        `today` is the dp array for the current day.
-        today[i] is the total difficulty of the optimal solution for jobs from 
-        0 -> i after each day.
-        More precisely: a solution at day `d` and job `i` is a way to split the 
-        jobs from 0 -> i into `d` consecutive segments, an optimal solution is 
-        one such that the total difficulty is minimized.
-        Solution for day 0 is just the running maximum.
         """
-        """My understanding:
-        `today[i]` is the total difficulty of the optimal solution for jobs 
-        from `0` to `i` after each day.
-        e.g.: 
-            Input: jobDifficulty = [11, 111, 22, 222, 33, 333, 44, 444]
-            Output `today` = [11, 111, 111, 222, 222, 333, 333, 444]
-        Solution for day `0` is just the running maximum.
+        `today` is the DP array for the current day.
+        `today[i]` is the total difficulty of the optimal solution for jobs from `0` to `i` after each day.
+        Solution for day 0 is just the running maximum.
         """
         """Author."""
         # today = deepcopy(jobDifficulty)
@@ -81,7 +68,6 @@ class Solution:
         today = jobDifficulty.copy()
         for i in range(1, n):
             today[i] = max(today[i], today[i - 1])
-
         for cur_day in range(1, d):
             """Author:
             # The checkpoints stack contains all previous jobs index i
@@ -207,12 +193,16 @@ class Solution:
                         today[cur_job] = min(
                             today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint])
                     else:
+                        """Author:
                         # else, this is the last checkpoint that we can consider (as discussed before).
                         # After consider this one, we will have found the optimal solution for today[cur_job]
-
                         # If we find a better solution for today[cur_job] then this solution
                         # has `cur_job` as the hardest of the last day (i.e. the current day)
                         # (this is the loop invariance), so we add it to the checkpoints.
+                        """
+                        """My wording:
+                        
+                        """
                         if today[cur_job] < today[checkpoints[-1]]:
                             checkpoints.append(cur_job)
                         else:
@@ -229,6 +219,7 @@ class Solution:
                 # Each iteration of the while loop we either add or remove a checkpoint.
                 # Since each job is added and/or removed at most once for each day,
                 # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
+        print(today)
         return today[-1]
 
 
@@ -236,7 +227,7 @@ if __name__ == '__main__':
     qwe = Solution()
 
     """Should return `7`."""
-    # print(qwe.minDifficulty([6, 5, 4, 3, 2, 1], 2))
+    print(qwe.minDifficulty([6, 5, 4, 3, 2, 1], 2))
 
     # """Should return `-1`."""
     # print(qwe.minDifficulty([9, 9, 9], 4))
@@ -245,7 +236,7 @@ if __name__ == '__main__':
     # print(qwe.minDifficulty([1, 1, 1], 3))
 
     # """Should return `15`."""
-    # print(qwe.minDifficulty([7, 1, 7, 1, 7, 1], 3))
+    # print(qwe.minDifficulty([7, 1, 7, 1, 7, 1, 8], 3))
 
-    """Should return `843`."""
-    print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
+    # """Should return `843`."""
+    # print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
