@@ -193,33 +193,44 @@ class Solution:
                             Not to extend, so it means to use a single day to 
                         do `cur_job`.
                         `today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]`: 
-                            To extend, so it means `cur_job` is the most difficulty of jobDifficulty[`last_checkpoint`]use a single day to 
-                        do the job.
+                            To extend, so it means `cur_job` is the most 
+                        difficulty of `jobDifficulty[last_checkpoint:cur_job + 1]`.
                     """
                     if jobDifficulty[checkpoints[-1]] < cur_difficulty:
                         last_checkpoint = checkpoints.pop()
-                        print('cur_job', cur_job)
-                        print('today[cur_job]', today[cur_job])
-                        print('today[last_checkpoint]', today[last_checkpoint])
-                        print(today[last_checkpoint] + cur_difficulty -
-                              jobDifficulty[last_checkpoint])
-                        print()
                         today[cur_job] = min(
                             today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint])
                     else:
                         """Author:
                         # else, this is the last checkpoint that we can consider (as discussed before).
-                        # After consider this one, we will have found the optimal solution for today[cur_job]
+                        After consider this one, we will have found the optimal solution for today[cur_job]
                         # If we find a better solution for today[cur_job] then this solution
                         # has `cur_job` as the hardest of the last day (i.e. the current day)
                         # (this is the loop invariance), so we add it to the checkpoints.
                         """
                         """My wording:
-                        
+                        Else, this is the last checkpoint that we can consider.
+                        After consider this one, we will have found the optimal 
+                        solution for today[cur_job].
                         """
+                        """
+                        If `today[cur_job] < today[checkpoints[-1]]`, we find a better solution for today[cur_job] then this solution
+                        # has `cur_job` as the hardest of the last day (i.e. the current day)
+                        # (this is the loop invariance), so we add it to the checkpoints.
+                        """
+                        print('out', today)
                         if today[cur_job] < today[checkpoints[-1]]:
+                            print(today)
+                            print(checkpoints)
+                            print(cur_job)
                             checkpoints.append(cur_job)
+                            print(checkpoints)
                         else:
+                            """
+                            If `today[cur_job] < today[checkpoints[-1]]`, we find a better solution for today[cur_job] then this solution
+                            # has `cur_job` as the hardest of the last day (i.e. the current day)
+                            # (this is the loop invariance), so we add it to the    checkpoints.
+                            """
                             # else we extend the solution at today[checkpoints[-1]] to `cur_job`,
                             # meaning jobs[checkpoints[-1]] is the hardest of solution for today[cur_job]
                             today[cur_job] = today[checkpoints[-1]]
@@ -233,7 +244,6 @@ class Solution:
                 # Each iteration of the while loop we either add or remove a checkpoint.
                 # Since each job is added and/or removed at most once for each day,
                 # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
-            # print(today)
         return today[-1]
 
 
