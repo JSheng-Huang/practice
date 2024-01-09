@@ -214,9 +214,10 @@ class Solution:
                         solution for today[cur_job].
                         """
                         """
-                        If `today[cur_job] < today[checkpoints[-1]]`, we find a better solution for today[cur_job] then this solution
-                        # has `cur_job` as the hardest of the last day (i.e. the current day)
-                        # (this is the loop invariance), so we add it to the checkpoints.
+                        If `today[cur_job] < today[checkpoints[-1]]`, we find a 
+                        better solution for `today[cur_job]` then this solution 
+                        has `cur_job` as the hardest of the last day(i.e. the 
+                        current day), so we add it to the checkpoints.
                         """
                         print('out', today)
                         if today[cur_job] < today[checkpoints[-1]]:
@@ -231,8 +232,10 @@ class Solution:
                             # has `cur_job` as the hardest of the last day (i.e. the current day)
                             # (this is the loop invariance), so we add it to the    checkpoints.
                             """
+                            """
                             # else we extend the solution at today[checkpoints[-1]] to `cur_job`,
                             # meaning jobs[checkpoints[-1]] is the hardest of solution for today[cur_job]
+                            """
                             today[cur_job] = today[checkpoints[-1]]
                         break
                 else:
