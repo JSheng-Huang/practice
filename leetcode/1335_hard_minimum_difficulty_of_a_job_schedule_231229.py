@@ -134,11 +134,7 @@ class Solution:
             checkpoints = []
             day_left = d - cur_day - 1
 
-            """Author:
-            # caching the solution of yesterday at jobs[cur_day - 1]
-            # so it can be used for today at jobs[cur_day]
             """
-            """My wording:
             Cache the value of the last index(yesterday), it means the solution 
             when we only consider from `0` to `cur_day - 1`, and that's why the 
             outer loop should start from `1`.
@@ -183,7 +179,7 @@ class Solution:
                 # or when we can no longer maintain the invariance.
                 while checkpoints:
                     """Author:
-                    If the last job in the stack (`last_checkpoint`) is less 
+                    If the last job in the stack(`last_checkpoint`) is less 
                     difficult than `cur_job`, then we can have the option to 
                     extend the solution at today[last_checkpoint] with all the 
                     jobs upto `cur_job`.
@@ -192,9 +188,22 @@ class Solution:
                     `cur_job`, the new hardest is `cur_job`, thus the total 
                     diff is increased by `jobDifficulty[cur_job] - jobDifficulty
                     [last_checkpoint]`.
+                    Choose to extend or not by comparing `today[cur_job]` and `today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]`:
+                        `today[cur_job]`: 
+                            Not to extend, so it means to use a single day to 
+                        do `cur_job`.
+                        `today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]`: 
+                            To extend, so it means `cur_job` is the most difficulty of jobDifficulty[`last_checkpoint`]use a single day to 
+                        do the job.
                     """
                     if jobDifficulty[checkpoints[-1]] < cur_difficulty:
                         last_checkpoint = checkpoints.pop()
+                        print('cur_job', cur_job)
+                        print('today[cur_job]', today[cur_job])
+                        print('today[last_checkpoint]', today[last_checkpoint])
+                        print(today[last_checkpoint] + cur_difficulty -
+                              jobDifficulty[last_checkpoint])
+                        print()
                         today[cur_job] = min(
                             today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint])
                     else:
@@ -224,7 +233,7 @@ class Solution:
                 # Each iteration of the while loop we either add or remove a checkpoint.
                 # Since each job is added and/or removed at most once for each day,
                 # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
-            print(today)
+            # print(today)
         return today[-1]
 
 
@@ -232,10 +241,10 @@ if __name__ == '__main__':
     qwe = Solution()
 
     """Should return `7`."""
-    print(qwe.minDifficulty([6, 5, 4, 3, 2, 1], 2))
+    # print(qwe.minDifficulty([6, 5, 4, 3, 2, 1], 2))
 
     """Should return `-1`."""
-    print(qwe.minDifficulty([9, 9, 9], 4))
+    # print(qwe.minDifficulty([9, 9, 9], 4))
 
     """Should return `3`."""
     # print(qwe.minDifficulty([1, 1, 1], 3))
@@ -244,4 +253,8 @@ if __name__ == '__main__':
     # print(qwe.minDifficulty([7, 1, 7, 1, 7, 1], 3))
 
     """Should return `843`."""
-    print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
+    # print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
+
+    """Should return `1803`."""
+    print(qwe.minDifficulty([186, 398, 479, 206, 885, 423,
+          805, 112, 925, 656, 16, 932, 740, 292, 671, 360], 4))
