@@ -32,7 +32,13 @@ Constraints:
     #1. 1 <= jobDifficulty.length <= 300
     #2. 0 <= jobDifficulty[i] <= 1000
     #3. 1 <= d <= 10
-Refer to: ???
+Refer to: https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/solutions/2812707/most-efficient-solution-with-detailed-comments-o-d-n-100-o-n-98-97/?envType=daily-question&envId=2023-12-29
+    Time Complexity: O(d * n).
+    Space Complexity: O(n).
+    Explanation:
+        Each iteration of the while loop we either add or remove a checkpoint. 
+    Since each job is added and/or removed at most once for each day, the time 
+    complexity is `O(d * n)` instead of `O(d * n * n)`.
 Date: 231229.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
@@ -42,17 +48,6 @@ from typing import List
 
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
-        """
-        https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/solutions/2812707/most-efficient-solution-with-detailed-comments-o-d-n-100-o-n-98-97/?envType=daily-question&envId=2023-12-29
-        """
-        """
-        Complexity
-        Time complexity: O(d * n)
-        Space complexity: O(n)
-        # Each iteration of the while loop we either add or remove a checkpoint.
-        # Since each job is added and/or removed at most once for each day,
-        # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
-        """
         """
         To calculate today[i], we only use yesterday[i - 1]
         or more precisely: When calculating today[i], we only need to store today[:i + 1] and yesterday[i:].
@@ -70,34 +65,23 @@ class Solution:
 
         today = jobDifficulty.copy()
 
-        """
+        """E.g.
         Input: [11, 111, 22, 222, 33, 333, 44, 444]
         Output: [11, 111, 111, 222, 222, 333, 333, 444]
         """
         for i in range(1, n):
             today[i] = max(today[i], today[i - 1])
         for cur_day in range(1, d):
-            """Author:
-            # The checkpoints stack contains all previous jobs index i
-            # where the optimal solution for today[i] has jobs[i] as
-            # the most difficult in the last day (`cur_day`).
-
-            # The idea is, starting with a solution that has only jobs[cur_job]
-            # for the last day (i.e today), we will try to include previous
-            # jobs to find a smaller total difficulty. Instead of considering
-            # all previous jobs, we maintain a checkpoint list of all previous
-            # jobs that may improve the current solution.
-
-            # For `last_checkpoint` < `cur_job`,
-            # if jobDifficulty[last_checkpoint] < jobDifficulty[cur_job],
-            # then we can consider including jobs[last_checkpoint] in "the
-            # last day of the current solution for today[cur_job]".
-            # Here the difficulty of the last day is unchanged but the total
-            # difficulty might change, so we evaluate the new solution then
-            # move to the previous checkpoint. How to evaluate the solution
-            # is will be explained along with the code.
-
-            # Otherwise, if jobDifficulty[last_checkpoint] > jobDifficulty[cur_job],
+            """???
+            The idea is, starting with a solution that has only jobs[cur_job] for the last day (i.e today), we will try to include previous jobs to find a smaller total difficulty. Instead of considering all previous jobs, we maintain a checkpoint list of all previous jobs that may improve the current solution.
+            For `last_checkpoint` < `cur_job`:
+                If jobDifficulty[last_checkpoint] < jobDifficulty[cur_job], 
+            then we can consider including jobs[last_checkpoint] in "the last 
+            day of the current solution for today[cur_job]". Here the 
+            difficulty of the last day is unchanged but the total difficulty 
+            might change, so we evaluate the new solution then move to the 
+            previous checkpoint. 
+                Otherwise, if jobDifficulty[last_checkpoint] > jobDifficulty[cur_job],
             # then the optimal solution for today[cur_job] can either include or not
             # include job[last_checkpoint]:
             #     - if it does include, then the solution for today[cur_job] will
@@ -111,28 +95,6 @@ class Solution:
             #     Thus today[cur_job] = today[last_checkpoint] is optimal.
             #     - if it doesn't include, then the current solution for today[cur_job]
             #     is already the optimal one.
-
-            # For example,
-            # when evaluating today[27] and the checkpoints are [..., 5, 13, 20]
-            #
-            #     jobs            ...     5   ...     13  ...     20  ...     27
-            #     difficulty      (any)   21  (< 17)  17  (< 13)  13  (< 13)  19
-            #     today           ...     x   ...     y   ...     z   ...     ?
-            #
-            # we can consider previous jobs[20] and then jobs[13] (which has smaller
-            # difficulty) and uses `y` and `z` (i.e. optimal solution for today[20] and today[13])
-            # to update today[27].
-            #
-            # Until we encounter jobs[5], now whether the optimal solution for today[27]
-            # includes jobs[5] or not, we know that there's no use in considering further
-            # previous checkpoints. So we evaluate this last candidate using `x` then stop.
-
-            # Thus we maintain the list `checkpoints` such that, for i in `checkpoints`
-            #     - `jobDifficulty[i]` is monotonically decreasing
-            #         => `checkpoints` is a monotonic decreasing stack of jobs with
-            #         respected to their difficulty
-            #     - and the optimal solution for today[i] has jobs[i] as
-            #     the most difficult of the last day (`cur_day`).
             """
             checkpoints = []
             day_left = d - cur_day - 1
@@ -164,14 +126,18 @@ class Solution:
                 """The base case is only works on `jobs[cur_job]` for today."""
                 today[cur_job] = cur_difficulty + cache
 
+                """???Author:
                 # update cache to use for the next job
+                """
                 cache = tmp
 
+                """???Author:
                 # Started with only `cur_job` for today (as mentioned above),
                 # maintain the following loop invariance:
                 #     the current solution for today[cur_job] has jobs[cur_job]
                 #     as the hardest jobs of the last day,
                 # and gradually trying to extend to previous jobs (checkpoints).
+                """
                 while checkpoints:
                     """
                     If the last job in the stack(`last_checkpoint`) is less 
@@ -183,7 +149,9 @@ class Solution:
                     `cur_job`, the new hardest is `cur_job`, thus the total 
                     diff is increased by `jobDifficulty[cur_job] - jobDifficulty
                     [last_checkpoint]`.
-                    Choose to extend or not by comparing `today[cur_job]` and `today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]`:
+                    Choose to extend or not by comparing `today[cur_job]` and 
+                    `today[last_checkpoint] + cur_difficulty - jobDifficulty
+                    [last_checkpoint]`:
                         `today[cur_job]`: 
                             Not to extend, so it means to use a single day to 
                         do `cur_job`.
@@ -193,19 +161,14 @@ class Solution:
                         difficulty of `jobDifficulty[last_checkpoint:cur_job + 1]`.
                     """
                     if jobDifficulty[checkpoints[-1]] < cur_difficulty:
-                        print(today)
-                        print(checkpoints)
                         last_checkpoint = checkpoints.pop()
-                        print(cur_job)
                         today[cur_job] = min(
                             today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint])
-                        print(today)
-                        print('---')
                     else:
                         """
                         Else, this is the last checkpoint that we can consider.
                         After consider this one, we will have found the optimal 
-                        solution for today[cur_job].
+                        solution for `today[cur_job]`.
                         """
                         """
                         If `today[cur_job] < today[checkpoints[-1]]`, we find a 
@@ -250,16 +213,31 @@ if __name__ == '__main__':
     """Should return `843`."""
     # print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
 
-    """Should return `1803`."""
     """
-    Input: [186, 398, 479, 206, 885, 423, 805, 112, 925, 656, 16, 932, 740, 
+    Input: [186, 398, 479, 206, 885, 423, 805, 112, *925, 656, 16, 932, 740, 
     292, 671, 360], 4
-    [186, 584, 665, 665, 1071, 1071, 1071, 997, 1810, 925, 925, 932, 932, 932, 
+    [186, 584, 665, 665, 1071, 1071, 1071, 997, *1810, 925, 925, 932, 932, 932, 
     932, 932]
     [4, 7]
     8
-    [186, 584, 665, 665, 1071, 1071, 1071, 997, 1810, 925, 925, 932, 932, 932, 
+    [186, 584, 665, 665, 1071, 1071, 1071, 997, *1810, 925, 925, 932, 932, 932, 
     932, 932]
+    """
+    """Should return `1803`.
+    Extend the current job is not always the best solution:
+        In `cur_day == 2`(i.e. `day == 3`) and `cur_job == 8`(i.e. `len(jobDifficulty) == 9`):
+            `today`: [186, 584, 1063, 871, 1469, 1469, 1469, 1183, 1922, 1111, 941, 1118, 1118, 1118, 932, 932]
+            `today[cur_job]`: If choose this one, the 3 sections are:
+                1. `[:7]`([186, 398, 479, 206, 885, 423, 805]): `805`.
+                2. `[7]`([112]): `112`.
+                3. `[8]`([925]): `925`.
+                Total: 1922.
+            `today[last_checkpoint] + cur_difficulty - jobDifficulty
+            [last_checkpoint]`: If choose this one, the 3 sections are:
+                1. `[0]`([186])
+                2. `[1:7]`([398, 479, 206, 885, 423, 805])
+                3. `[7:]`([112, 925])
+                Total: 1996.
     """
     print(qwe.minDifficulty([186, 398, 479, 206, 885, 423,
           805, 112, 925, 656, 16, 932, 740, 292, 671, 360], 4))
