@@ -49,6 +49,9 @@ class Solution:
         Complexity
         Time complexity: O(d * n)
         Space complexity: O(n)
+        # Each iteration of the while loop we either add or remove a checkpoint.
+        # Since each job is added and/or removed at most once for each day,
+        # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
         """
         """
         To calculate today[i], we only use yesterday[i - 1]
@@ -141,12 +144,7 @@ class Solution:
             """
             cache = today[cur_day - 1]
 
-            """Author:
-            # for `cur_day`, one can only works on jobs[i : n - day_left - 1]
-            # (so that `cur_day - 1` previous days and `day_left` remaining days
-            # each has at least 1 job)
             """
-            """My wording:
             In the inner loop, we only consider days from `cur_day` to `n - 
             day_left`.
             For `cur[:cur_day]`: We have found the best solution in that 
@@ -174,11 +172,8 @@ class Solution:
                 #     the current solution for today[cur_job] has jobs[cur_job]
                 #     as the hardest jobs of the last day,
                 # and gradually trying to extend to previous jobs (checkpoints).
-
-                # The loop ends either when it exhausts
-                # or when we can no longer maintain the invariance.
                 while checkpoints:
-                    """Author:
+                    """
                     If the last job in the stack(`last_checkpoint`) is less 
                     difficult than `cur_job`, then we can have the option to 
                     extend the solution at today[last_checkpoint] with all the 
@@ -192,23 +187,22 @@ class Solution:
                         `today[cur_job]`: 
                             Not to extend, so it means to use a single day to 
                         do `cur_job`.
-                        `today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint]`: 
+                        `today[last_checkpoint] + cur_difficulty - jobDifficulty
+                        [last_checkpoint]`: 
                             To extend, so it means `cur_job` is the most 
                         difficulty of `jobDifficulty[last_checkpoint:cur_job + 1]`.
                     """
                     if jobDifficulty[checkpoints[-1]] < cur_difficulty:
+                        print(today)
+                        print(checkpoints)
                         last_checkpoint = checkpoints.pop()
+                        print(cur_job)
                         today[cur_job] = min(
                             today[cur_job], today[last_checkpoint] + cur_difficulty - jobDifficulty[last_checkpoint])
+                        print(today)
+                        print('---')
                     else:
-                        """Author:
-                        # else, this is the last checkpoint that we can consider (as discussed before).
-                        After consider this one, we will have found the optimal solution for today[cur_job]
-                        # If we find a better solution for today[cur_job] then this solution
-                        # has `cur_job` as the hardest of the last day (i.e. the current day)
-                        # (this is the loop invariance), so we add it to the checkpoints.
                         """
-                        """My wording:
                         Else, this is the last checkpoint that we can consider.
                         After consider this one, we will have found the optimal 
                         solution for today[cur_job].
@@ -219,22 +213,13 @@ class Solution:
                         has `cur_job` as the hardest of the last day(i.e. the 
                         current day), so we add it to the checkpoints.
                         """
-                        print('out', today)
                         if today[cur_job] < today[checkpoints[-1]]:
-                            print(today)
-                            print(checkpoints)
-                            print(cur_job)
                             checkpoints.append(cur_job)
-                            print(checkpoints)
                         else:
                             """
-                            If `today[cur_job] < today[checkpoints[-1]]`, we find a better solution for today[cur_job] then this solution
-                            # has `cur_job` as the hardest of the last day (i.e. the current day)
-                            # (this is the loop invariance), so we add it to the    checkpoints.
-                            """
-                            """
-                            # else we extend the solution at today[checkpoints[-1]] to `cur_job`,
-                            # meaning jobs[checkpoints[-1]] is the hardest of solution for today[cur_job]
+                            Else, we extend the solution at `today[checkpoints
+                            [-1]]` to `cur_job`, meaning jobs[checkpoints[-1]] 
+                            is the hardest of solution for `today[cur_job]`.
                             """
                             today[cur_job] = today[checkpoints[-1]]
                         break
@@ -244,9 +229,6 @@ class Solution:
                     today[cur_job] that we just found has `cur_job` as the most difficult of the last day(the loop invariance).
                     """
                     checkpoints.append(cur_job)
-                # Each iteration of the while loop we either add or remove a checkpoint.
-                # Since each job is added and/or removed at most once for each day,
-                # the time complexity is $$O(d*n)$$ instead of $$O(d*n*n)$$
         return today[-1]
 
 
@@ -269,5 +251,15 @@ if __name__ == '__main__':
     # print(qwe.minDifficulty([11, 111, 22, 222, 33, 333, 44, 444], 6))
 
     """Should return `1803`."""
+    """
+    Input: [186, 398, 479, 206, 885, 423, 805, 112, 925, 656, 16, 932, 740, 
+    292, 671, 360], 4
+    [186, 584, 665, 665, 1071, 1071, 1071, 997, 1810, 925, 925, 932, 932, 932, 
+    932, 932]
+    [4, 7]
+    8
+    [186, 584, 665, 665, 1071, 1071, 1071, 997, 1810, 925, 925, 932, 932, 932, 
+    932, 932]
+    """
     print(qwe.minDifficulty([186, 398, 479, 206, 885, 423,
           805, 112, 925, 656, 16, 932, 740, 292, 671, 360], 4))
