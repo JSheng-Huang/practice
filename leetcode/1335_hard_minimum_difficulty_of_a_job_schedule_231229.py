@@ -57,7 +57,8 @@ class Solution:
             return -1
         """
         `today` is the DP array for the current day.
-        `today[i]` is the total difficulty of the optimal solution for jobs from `0` to `i` after each day.
+        `today[i]` is the total difficulty of the optimal solution for jobs 
+        from `0` to `i` after each day.
         Solution for day 0 is just the running maximum.
         """
         """Author."""
@@ -119,8 +120,8 @@ class Solution:
                 cur_difficulty = jobDifficulty[cur_job]
 
                 """
-                Cache the solution of yesterday at `cur_job`
-                # so it can be used for today[cur_job + 1] in the next iteration
+                Cache the solution of yesterday at `cur_job`, so it can be used 
+                for today[cur_job + 1] in the next iteration
                 """
                 tmp = today[cur_job]
 
