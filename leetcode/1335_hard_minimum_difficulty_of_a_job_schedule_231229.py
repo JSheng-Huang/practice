@@ -49,8 +49,10 @@ from typing import List
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
         """
-        To calculate today[i], we only use yesterday[i - 1]
-        or more precisely: When calculating today[i], we only need to store today[:i + 1] and yesterday[i:].
+        To calculate `today[i]`, we only use yesterday(`[i - 1]`) or more 
+        precisely: 
+            When calculating `today[i]`, we only need to store `today[:i + 1]` 
+        and yesterday(`[i:]`).
         """
         n = len(jobDifficulty)
         if d > n:
@@ -74,7 +76,11 @@ class Solution:
             today[i] = max(today[i], today[i - 1])
         for cur_day in range(1, d):
             """
-            The idea is, starting with a solution that has only `jobs[cur_job]` for the last day (i.e today), we will try to include previous jobs to find a smaller total difficulty. Instead of considering all previous jobs, we maintain a checkpoint list of all previous jobs that may improve the current solution.
+            The idea is, starting with a solution that has only `jobs[cur_job]` 
+            for the last day (i.e today), we will try to include previous jobs 
+            to find a smaller total difficulty. Instead of considering all 
+            previous jobs, we maintain a checkpoint list of all previous jobs 
+            that may improve the current solution.
             For `last_checkpoint` < `cur_job`:
                 If `jobDifficulty[last_checkpoint] < jobDifficulty[cur_job]`, 
             then we can consider including `jobs[last_checkpoint]` in "the last 
@@ -97,6 +103,7 @@ class Solution:
                 today[last_checkpoint]` is optimal.
                     If it doesn't include, then the current solution for `today
                 [cur_job]` is already the optimal one.
+            `checkpoints` is used to store indices which  the most difficult job to each section(e.g. If `d = 4`, then ) in all days.
             """
             checkpoints = []
             day_left = d - cur_day - 1
@@ -118,10 +125,9 @@ class Solution:
             """
             for cur_job in range(cur_day, n - day_left):
                 cur_difficulty = jobDifficulty[cur_job]
-
                 """
                 Cache the solution of yesterday at `cur_job`, so it can be used 
-                for today[cur_job + 1] in the next iteration
+                for today[cur_job + 1] in the next iteration.
                 """
                 tmp = today[cur_job]
 
@@ -181,15 +187,16 @@ class Solution:
                         else:
                             """
                             Else, we extend the solution at `today[checkpoints
-                            [-1]]` to `cur_job`, meaning jobs[checkpoints[-1]] 
-                            is the hardest of solution for `today[cur_job]`.
+                            [-1]]` to `cur_job`, meaning `jobs[checkpoints[-1]]
+                            ` is the hardest of solution for `today[cur_job]`.
                             """
                             today[cur_job] = today[checkpoints[-1]]
                         break
                 else:
                     """
-                    If there is no checkpoints left then the solution for 
-                    today[cur_job] that we just found has `cur_job` as the most difficult of the last day(the loop invariance).
+                    If there is no checkpoints left, then the solution for 
+                    `today[cur_job]` that we just found has `cur_job` as the 
+                    most difficult of the last day(the loop invariance).
                     """
                     checkpoints.append(cur_job)
         return today[-1]
