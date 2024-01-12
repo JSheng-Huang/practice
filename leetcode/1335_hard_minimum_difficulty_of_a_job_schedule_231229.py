@@ -103,7 +103,8 @@ class Solution:
                 today[last_checkpoint]` is optimal.
                     If it doesn't include, then the current solution for `today
                 [cur_job]` is already the optimal one.
-            `checkpoints` is used to store indices which  the most difficult job to each section(e.g. If `d = 4`, then ) in all days.
+            `checkpoints` is used to store indices which are possible to be the 
+            most difficult job to `cur_job`.
             """
             checkpoints = []
             day_left = d - cur_day - 1
