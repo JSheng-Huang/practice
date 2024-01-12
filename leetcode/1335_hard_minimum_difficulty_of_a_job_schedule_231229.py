@@ -126,6 +126,7 @@ class Solution:
             """
             for cur_job in range(cur_day, n - day_left):
                 cur_difficulty = jobDifficulty[cur_job]
+
                 """
                 Cache the solution of yesterday at `cur_job`, so it can be used 
                 for today[cur_job + 1] in the next iteration.
