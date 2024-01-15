@@ -74,6 +74,7 @@ class Solution:
         """
         for i in range(1, n):
             today[i] = max(today[i], today[i - 1])
+        print(today)
         for cur_day in range(1, d):
             """
             The idea is, starting with a solution that has only `jobs[cur_job]` 
@@ -185,6 +186,9 @@ class Solution:
                         current day), so we add it to the checkpoints.
                         """
                         if today[cur_job] < today[checkpoints[-1]]:
+                            print(cur_job)
+                            print(checkpoints)
+                            print(today)
                             checkpoints.append(cur_job)
                         else:
                             """
