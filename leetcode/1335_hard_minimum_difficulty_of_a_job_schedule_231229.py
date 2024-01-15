@@ -91,7 +91,9 @@ class Solution:
                 Otherwise, if `jobDifficulty[last_checkpoint] > jobDifficulty
             [cur_job]`, then the optimal solution for `today[cur_job]` can 
             either include or not include `job[last_checkpoint]`:
-                    If it does include, then the solution for `today[cur_job]` 
+                    If it doesn't include, then the current solution for `today
+                [cur_job]` is already the optimal one.
+                    If it includes, then the solution for `today[cur_job]` 
                 will just be an extension of the solution for `today
                 [last_checkpoint]`(extend the last day of solution for today
                 [last_checkpoint] with jobs `last_checkpoint + 1` to 
@@ -101,8 +103,6 @@ class Solution:
                 [last_checkpoint]` as the most difficult in the last day" 
                 cannot do better than `today[cur_job]`. Thus `today[cur_job] = 
                 today[last_checkpoint]` is optimal.
-                    If it doesn't include, then the current solution for `today
-                [cur_job]` is already the optimal one.
             `checkpoints` is used to store indices which are possible to be the 
             most difficult job to `cur_job`.
             """
