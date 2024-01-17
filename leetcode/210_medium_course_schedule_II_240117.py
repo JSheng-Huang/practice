@@ -47,8 +47,7 @@ from typing import List
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         """Dic?
-        Build an empty array
-        for-loop given data
+        https://leetcode.com/problems/course-schedule-ii/solutions/4284339/python-beginner-friendly-o-v-e/
         """
         ans = []
         for i in range(numCourses):
@@ -56,10 +55,19 @@ class Solution:
         if len(prerequisites) == 0:
             return ans
         pre_dic = {}
-        # for i in range(len(prerequisites)):
+        for i in range(len(prerequisites)):
+            if prerequisites[i][0] not in pre_dic:
+                pre_dic[prerequisites[i][0]] = [prerequisites[i][1]]
+            else:
+                pre_dic[prerequisites[i][0]].append(prerequisites[i][1])
+        for i in range(numCourses):
+            if i in pre_dic:
+                
 
         return ans
-
+    def findRoot(self, pre_dic, target):
+        if target in pre_dic:
+            self.findRoot(pre_dic, target)
 
 if __name__ == '__main__':
     qwe = Solution()
@@ -72,3 +80,9 @@ if __name__ == '__main__':
 
     """Should return `[0]`."""
     print(qwe.findOrder(1, []))
+
+    """Should return `[]`."""
+    print(qwe.findOrder(2, [[0, 1], [1, 0]]))
+
+    """Should return `[]`."""
+    print(qwe.findOrder(3, [[1, 0], [0, 2], [2, 1]]))
