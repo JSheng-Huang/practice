@@ -49,6 +49,38 @@ class Solution:
         """Dic?
         https://leetcode.com/problems/course-schedule-ii/solutions/4284339/python-beginner-friendly-o-v-e/
         """
+        preReq = defaultdict(list)
+
+        for c,pr in prerequisites:
+            preReq[c].append(pr)
+        
+        res = []
+
+        visit, cycle = set(), set()
+
+        def dfs(c):
+            # terminating case
+            if c in cycle:
+                return False
+            
+            if c in visit:
+                return True
+            
+            cycle.add(c)
+            for pr in preReq[c]:
+                if dfs(pr) == False:
+                    return False
+            cycle.remove(c)
+            visit.add(c)
+            res.append(c)
+            return True
+
+        for c in range(numCourses):
+            if dfs(c) == False:
+                return []
+            
+        return res
+        """Mine."""
         ans = []
         for i in range(numCourses):
             ans.append(i)
