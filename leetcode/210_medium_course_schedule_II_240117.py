@@ -41,65 +41,71 @@ Date: 240117.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
+from collections import defaultdict
 from typing import List
 
 
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        """Dic?
+        """
         https://leetcode.com/problems/course-schedule-ii/solutions/4284339/python-beginner-friendly-o-v-e/
         """
-        preReq = defaultdict(list)
+        """
+        Intuition
+        The problem is asking for the order in which courses can be taken given a list of prerequisites.
+        We can model the problem as a directed graph, where nodes represent courses and directed edges represent prerequisites.
+        The goal is to find a valid topological ordering of the graph.
+        Approach
+        We can use a depth-first search (DFS) based approach to find a valid topological ordering.
 
-        for c,pr in prerequisites:
-            preReq[c].append(pr)
-        
+        Create a dictionary (preReq) to represent the directed edges between courses and their prerequisites.
+        Initialize an empty list (res) to store the final result, a set (visit) to keep track of visited nodes, and a set (cycle) to detect cycles during the DFS traversal.
+        Define a DFS function that takes a course as an argument.
+        Check if the course is in the cycle set. If true, there is a cycle, and return False.
+        Check if the course is in the visit set. If true, the course is already processed, return True.
+        Add the course to the cycle set to mark it as visited.
+        Recursively call the DFS function for each prerequisite of the current course.
+        Remove the course from the cycle set (backtrack) and add it to the visit set.
+        Append the course to the result list.
+        Return True.
+        Iterate through all courses and call the DFS function for each course.
+        If the DFS function returns False, there is a cycle, and the result is not possible, return an empty list.
+        Return the result list as the valid topological ordering.
+        Complexity
+        Time complexity:
+        O(N + E), where N is the number of courses and E is the number of prerequisites. The DFS traversal visits each course once and each prerequisite once.
+
+        Space complexity:
+        O(N + E) for the graph representation and recursion stack. The preReq dictionary stores the graph, and the visit and cycle sets store information during DFS.
+        """
+        pre_req = {}
+        for i, j in prerequisites:
+            if i not in pre_req:
+                pre_req[i] = []
+            pre_req[i].append(j)
         res = []
-
         visit, cycle = set(), set()
-
-        def dfs(c):
-            # terminating case
-            if c in cycle:
-                return False
-            
-            if c in visit:
-                return True
-            
-            cycle.add(c)
-            for pr in preReq[c]:
-                if dfs(pr) == False:
-                    return False
-            cycle.remove(c)
-            visit.add(c)
-            res.append(c)
-            return True
-
         for c in range(numCourses):
-            if dfs(c) == False:
+            if self.dfs(c, pre_req, cycle, visit, res) == False:
                 return []
-            
         return res
-        """Mine."""
-        ans = []
-        for i in range(numCourses):
-            ans.append(i)
-        if len(prerequisites) == 0:
-            return ans
-        pre_dic = {}
-        for i in range(len(prerequisites)):
-            if prerequisites[i][0] not in pre_dic:
-                pre_dic[prerequisites[i][0]] = [prerequisites[i][1]]
-            else:
-                pre_dic[prerequisites[i][0]].append(prerequisites[i][1])
-        for i in range(numCourses):
-            if i in pre_dic:
-                
 
-        return ans
-    def findRoot(self, pre_dic, target):
-        if target in pre_dic:
-            self.findRoot(pre_dic, target)
+    def dfs(self, c, pre_req, cycle, visit, res):
+        # terminating case
+        if c in cycle:
+            return False
+        if c in visit:
+            return True
+        cycle.add(c)
+        if pre_req.get(c):
+            for pr in pre_req[c]:
+                if self.dfs(pr, pre_req, cycle, visit, res) == False:
+                    return False
+        cycle.remove(c)
+        visit.add(c)
+        res.append(c)
+        return True
+
 
 if __name__ == '__main__':
     qwe = Solution()
