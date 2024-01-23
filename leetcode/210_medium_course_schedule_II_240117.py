@@ -51,7 +51,6 @@ Date: 240117.
 Created by JSheng <jasonhuang0124@gmail.com>"""
 
 # # For Function Annotations.
-from collections import defaultdict
 from typing import List
 
 
@@ -63,7 +62,8 @@ class Solution:
                 pre_req[i] = []
             pre_req[i].append(j)
         res = []
-        visit, cycle = set(), set()
+        visit = set()
+        cycle = set()
         for c in range(numCourses):
             if self.dfs(c, pre_req, cycle, visit, res) == False:
                 return []
