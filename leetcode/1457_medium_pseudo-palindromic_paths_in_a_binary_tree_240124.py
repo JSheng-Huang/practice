@@ -50,6 +50,11 @@ class TreeNode:
 class Solution:
     def pseudoPalindromicPaths(self, root: Optional[TreeNode]) -> int:
         """240124: Happy Birthday to myself:)"""
+        ans = 0
+
+        return ans
+
+    def dfs(self):
         return
 
 
@@ -57,14 +62,18 @@ if __name__ == '__main__':
     qwe = Solution()
 
     """Should return `2`."""
-    root = TreeNode(2, 3, 1)
+    root = TreeNode(2)
+    root.left = TreeNode(3, TreeNode(3), TreeNode(1))
+    root.right = TreeNode(1, None, TreeNode(1))
     print(qwe.pseudoPalindromicPaths([2, 3, 1, 3, 1, None, 1]))
 
     """Should return `1`."""
-
+    root = TreeNode(2)
+    root.left = TreeNode(1, TreeNode(1), TreeNode(3, None, 1))
+    root.right = TreeNode(1)
     print(qwe.pseudoPalindromicPaths(
         [2, 1, 1, 1, 3, None, None, None, None, None, 1]))
 
     """Should return `1`."""
-
+    root = TreeNode(9)
     print(qwe.pseudoPalindromicPaths([9]))
