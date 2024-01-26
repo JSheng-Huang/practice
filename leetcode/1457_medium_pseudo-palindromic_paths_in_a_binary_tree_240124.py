@@ -51,66 +51,86 @@ class Solution:
     def pseudoPalindromicPaths(self, root: Optional[TreeNode]) -> int:
         """240124: Happy Birthday to myself:)"""
         ans = 0
-    # def pseudoPalindromicPaths(self, root, count = 0):
-        # https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/solutions/648534/java-c-python-at-most-one-odd-occurrence/?envType=daily-question&envId=2024-01-24
+        return ans
+
+    def pseudoPalindromicPaths(self, root, count=0):
+        """#1.
+        ~~~
+        """
+        """
+        https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/solutions/648534/java-c-python-at-most-one-odd-occurrence/?envType=daily-question&envId=2024-01-24
+        """
+        """
         # Recursively iterate all paths from root to leaves,
         # count the occurrence of each digits in an integer.
 
         # Use this integer as a bit mask.
         # Also c++, we can use bitmask directly.
-
+        
         # Whenever meet an element,
         # toggle the corresponding bit using ^ operation.
-
+        
         # At the leaf node,
         # check if the count has only one bit that is 1.
-
+        
         # We use lowbit to help count this.
         # Google it if you don't know.
-
+        
         # Time O(N)
         # Space O(K + H)
-        # if not root: return 0
-        # count ^= 1 << (root.val - 1)
-        # res = self.pseudoPalindromicPaths(root.left, count) + self.pseudoPalindromicPaths(root.right, count)
-        # if root.left == root.right:
-        #     if count & (count - 1) == 0:
-        #         res += 1
-        # return res
-        return ans
-    # https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/solutions/2573170/python-dfs-set-with-explanation-easy-to-understand/?envType=daily-question&envId=2024-01-24
-    # def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
-        # traverse the tree, the set pairs maintains the number of each element
-        # If you already have the same element in pairs, then remove it
-        # Else, add it to pairs
+        """
+        if not root:
+            return 0
+        count ^= 1 << (root.val - 1)
+        print('debug', count)
+        res = self.pseudoPalindromicPaths(
+            root.left, count) + self.pseudoPalindromicPaths(root.right, count)
+        if root.left == root.right:
+            if count & (count - 1) == 0:
+                res += 1
+        return res
 
-        # In the leaf, if the set is empty, then its an even palindrome.
-        # In the leaf, if the set has 1 element , its an odd palindrome.
-        # In th leaf, if the set has > 1 elements, its not a palindrome.
+    # def pseudoPalindromicPaths(self, root: Optional[TreeNode]) -> int:
+    #     """#2.
+    #     ~~~
+    #     """
+    #     """
+    #     https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/solutions/2573170/python-dfs-set-with-explanation-easy-to-understand/?envType=daily-question&envId=2024-01-24
+    #     """
+    #     """
+    #     # traverse the tree, the set pairs maintains the number of each element
+    #     # If you already have the same element in pairs, then remove it
+    #     # Else, add it to pairs
 
-        # def traverse(node, pairs):
-        #     if not node:
-        #         return 0
+    #     # In the leaf, if the set is empty, then its an even palindrome.
+    #     # In the leaf, if the set has 1 element , its an odd palindrome.
+    #     # In th leaf, if the set has > 1 elements, its not a palindrome.
+    #     """
+    #     def traverse(node, pairs):
+    #         if not node:
+    #             return 0
 
-        #     if node.val in pairs:
-        #         pairs.remove(node.val)
-        #     else:
-        #         pairs.add(node.val)
+    #         if node.val in pairs:
+    #             pairs.remove(node.val)
+    #         else:
+    #             pairs.add(node.val)
 
-        #     if not node.left and not node.right:
-        #         return 1 if len(pairs) <= 1 else 0
+    #         if not node.left and not node.right:
+    #             return 1 if len(pairs) <= 1 else 0
+    #         """
+    #         # correct!!
+    #         """
+    #         left = traverse(node.left, set(pairs))
+    #         right = traverse(node.right, set(pairs))
 
-        #     # correct!!
-        #     left = traverse(node.left, set(pairs))
-        #     right = traverse(node.right, set(pairs))
-
-        #     # wrong, becasue pairs will change after we traversed node.left or node.right!
-        #     # left = traverse(node.left, pairs)
-        #     # right = traverse(node.right, pairs)
-
-        #     return left + right
-
-        # return traverse(root, set())
+    #         """
+    #         # wrong, becasue pairs will change after we traversed node.left or
+    #         # node.right!
+    #         left = traverse(node.left, pairs)
+    #         right = traverse(node.right, pairs)
+    #         """
+    #         return left + right
+    #     return traverse(root, set())
 
 
 if __name__ == '__main__':
@@ -120,15 +140,24 @@ if __name__ == '__main__':
     root = TreeNode(2)
     root.left = TreeNode(3, TreeNode(3), TreeNode(1))
     root.right = TreeNode(1, None, TreeNode(1))
+
+    """
     print(qwe.pseudoPalindromicPaths([2, 3, 1, 3, 1, None, 1]))
+    """
+    # print(qwe.pseudoPalindromicPaths(root))
 
     """Should return `1`."""
     root = TreeNode(2)
-    root.left = TreeNode(1, TreeNode(1), TreeNode(3, None, 1))
+    root.left = TreeNode(1, TreeNode(1), TreeNode(
+        TreeNode(3), None, TreeNode(1)))
     root.right = TreeNode(1)
+    """
     print(qwe.pseudoPalindromicPaths(
         [2, 1, 1, 1, 3, None, None, None, None, None, 1]))
+    """
+    print(qwe.pseudoPalindromicPaths(root))
 
     """Should return `1`."""
     root = TreeNode(9)
-    print(qwe.pseudoPalindromicPaths([9]))
+    """print(qwe.pseudoPalindromicPaths([9]))"""
+    # print(qwe.pseudoPalindromicPaths(root))
