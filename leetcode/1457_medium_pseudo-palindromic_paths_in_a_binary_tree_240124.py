@@ -86,9 +86,13 @@ class Solution:
         count ^= 1 << (root.val - 1)
         res = self.pseudoPalindromicPaths(
             root.left, count) + self.pseudoPalindromicPaths(root.right, count)
-
+        """
+        Check the result while in leaf nodes.
+        """
         if root.left == root.right:
             print('left == right:', root.val)
+            print('left == right:', root.left)
+            print('left == right:', root.right)
             if count & (count - 1) == 0:
                 res += 1
         return res
