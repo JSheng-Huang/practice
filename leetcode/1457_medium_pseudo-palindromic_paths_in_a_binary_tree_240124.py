@@ -90,6 +90,7 @@ class Solution:
         Check the result while in leaf nodes.
         """
         if root.left == root.right:
+            breakpoint()
             print('left == right:', root.val)
             print('left == right:', root.left)
             print('left == right:', root.right)
